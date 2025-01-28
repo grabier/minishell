@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/01/27 12:46:24 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:28:22 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,16 @@
 	t_token	*next;
 }			t_token; */
 
-
+//parseo.c
 int	ft_get_input(char *envp[]);
 
+
+//quotes.c
+int	ft_check_quotes(char *input);
+char	*ft_expand(char *input, int start);
+char	*ft_check_expands(char *input);
+char *ft_quotes(char *input);
+
+//aux
+char	*ft_strinsert(char *str, char *word, int start, int end);
 #endif

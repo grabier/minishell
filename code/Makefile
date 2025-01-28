@@ -8,9 +8,9 @@ LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I$(LIBFT_DIR)
 
 SRC_DIR = ./src
-SRCS = $(SRC_DIR)/parseo.c\
-#		$(SRC_DIR)/ft_execute.c\
-#		$(SRC_DIR)/ft_process.c\
+SRCS =	$(SRC_DIR)/parseo.c\
+		$(SRC_DIR)/quotes.c\
+		$(SRC_DIR)/aux.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs
