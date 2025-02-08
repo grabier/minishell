@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/07 16:41:16 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:13:30 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_cmd	*ft_cmdnew()
 	new_node->outfile = NULL;
 	new_node->append = 0;
 	new_node->hd = 0;
+	new_node->is_cmd = 0;
+	new_node->is_bi = 0;
 	new_node->next = NULL;
 	return (new_node);
 }

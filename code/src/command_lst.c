@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/07 16:38:23 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:04:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ int	ft_count_args(t_tkn	*tkn)
 	return (i);
 }
 
+int		ft_isbuiltin(char *str)
+{
+	if (!ft_strcmp(str, "echo"))
+		return (1);
+	else if (!ft_strcmp(str, "cd"))
+		return (1);
+	else if (!ft_strcmp(str, "pwd"))
+		return (1);
+	else if (!ft_strcmp(str, "export"))
+		return (1);
+	else if (!ft_strcmp(str, "unset"))
+		return (1);
+	else if (!ft_strcmp(str, "env"))
+		return (1);
+	else
+		return (0);
+} 
+
 void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	int	i;
@@ -44,7 +62,12 @@ void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst)
 			break ;
 	}
 	(*cmd_lst)->args[i] = NULL;
+	if (ft_isbuiltin((*cmd_lst)->args[0]))
+		(*cmd_lst)->is_bi = 1;
+	else
+		(*cmd_lst)->is_cmd = 1;
 }
+
 void	ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	(*tkn) = (*tkn)->next;
@@ -97,7 +120,5 @@ t_cmd	*ft_get_commands(t_tkn *tkn)
 			ft_add_here_doc(&tkn, &new);
 			tkn = tkn->next;
 		}
-	//printf("cmd: %s\n", cmd_lst->args[0]);
-	ft_cmdadd_back(&cmd_lst, new);
-	return (cmd_lst);
+	return (ft_cmdadd_back(&cmd_lst, new), cmd_lst);
 }

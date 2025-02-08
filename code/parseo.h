@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/07 13:41:11 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:04:13 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_cmd
 	char	*outfile;
 	int		append;
 	int		hd;
+	int		is_cmd;
+	int		is_bi;
 	struct	s_cmd	*next;
 }			t_cmd;
 
@@ -65,6 +67,7 @@ int		ft_count_quotes(char *input);
 //aux
 char	*ft_strinsert(char *str, char *word, int start, int end);
 void	ft_printsplit(char **sp);
+int		ft_strcmp(char *s1, char *s2);
 
 //token_list.c
 void	ft_tknadd_back(t_tkn **lst, t_tkn *new);
@@ -102,5 +105,15 @@ void	ft_cmdadd_back(t_cmd **lst, t_cmd *new);
 void	ft_cmdadd_front(t_cmd **lst, t_cmd *new);
 t_cmd	*ft_cmdnew();
 int		ft_cmdsize(t_cmd *lst);
+
+//ft_search_path.c
+char	*ft_strcat_cmd(char *s1, char *s2);
+char	*ft_find_cmd(char *cmd, char *path);
+char	*aux_find_path(char *cmd, char *envp[], char *res, int i);
+char	*ft_find_path(char *cmd, char *envp[]);
+
+//exec_commands.c
+void	ft_exec_commands(t_cmd *cmd_lst, char *envp[]);
+int		ft_execute_cmd(char **args, char *envp[]);
 
 #endif
