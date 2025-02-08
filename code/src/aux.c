@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:28:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/01/28 16:28:50 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:06:00 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	*ft_strinsert(char *str, char *word, int start, int end)
 	
 	i = -1;
 	j = 0;
-	printf("start: %i\n", start);
-	printf("end: %i\n", end);
+	//printf("start: %i\n", start);
+	//printf("end: %i\n", end);
 	res = malloc(ft_strlen(str) - (end - start) + ft_strlen(word) + 1);
 	while (++i < start)
 		res[i] = str[i];
@@ -32,4 +32,13 @@ char	*ft_strinsert(char *str, char *word, int start, int end)
 		res[i++] = str[end++];
 	res[i] = '\0';
 	return (res);
+}
+
+void	ft_printsplit(char **sp)
+{
+	int	i;
+
+	i = -1;
+	while (sp[++i])
+		printf("[%s]\n", sp[i]);
 }

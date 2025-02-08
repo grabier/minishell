@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/01/28 17:19:55 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:38:26 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 int	ft_get_input(char *envp[])
 {
 	char	*input;
-	char	**tokens;
-	int token_count;
-	int	i = -1;
+	t_tkn	*tkn_lst;
+	t_cmd	*cmd_lst;
 
 	(void)envp;
 	while (1)
@@ -34,12 +33,14 @@ int	ft_get_input(char *envp[])
 			break ;
 		}
 		add_history(input);
-		input = ft_quotes(input);
+		tkn_lst = ft_tokenize(input);
+		ft_check_syntax(tkn_lst);
+		ft_quotes(&tkn_lst);
+		//ft_tknprint(tkn_lst);
+		cmd_lst = ft_get_commands(tkn_lst);
+		ft_cmdprint(cmd_lst);
+		ft_free_tkn_lst(&tkn_lst);
 		free(input);
-		/* tokens = parse_input(input, &token_count);
-		while (tokens[++i])
-			printf("[%s]\n", tokens[i]);
-		free_tokens(tokens, token_count); */
 	}
 	return (1);
 }

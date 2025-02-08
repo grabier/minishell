@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   expand_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/01/28 17:18:37 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:26:35 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_expand(char *input, int start)
 	}
 	name = malloc(sizeof(char) * (j + 1));
 	ft_strlcpy(name, &input[start], j + 1);
-	printf("name: %s\n", name);
+	//printf("name: %s\n", name);
 	if (!getenv(name))
 		return (NULL);
 	res = ft_strinsert(input, getenv(name), start - 1, i - 1);
@@ -68,10 +68,10 @@ char	*ft_check_expands(char *input)
 	res = NULL;
 	while (input[i])
 	{
-		if (input[i] == 34 && input[i + 1] != '\0')
+		if (input[i] == 34 && input[i++ + 1] != '\0')
 		{
 			//printf("i: %i\n", i);
-			i++;
+			//i++;
 			while (input[i] != '$' && input[i] != 34 && input[i])
 				i++;
 			if (input[i] == '$')
@@ -82,25 +82,45 @@ char	*ft_check_expands(char *input)
 					return (NULL);
 				//free(input);
 				input = ft_strdup(res);
-				printf("input: %s\n", input);
+				//printf("input: %s\n", input);
 				i = -1;
 			}
 		}
 		i++;
 	}
-	free(input);
-	return (res);
+	if (res)
+		return (free(input), res);
+	else
+		return (free(res), input);
 }
 
-char *ft_quotes(char *input)
+char *ft_do_quotes(char *input)
 {
 	char	*res;
 
-	if (!ft_check_quotes(input))
-		return (NULL);
+	/* if (!ft_check_quotes(input))
+		return (NULL); */
 	res = ft_check_expands(input);
 	if (!res)
 		return (input);
-	printf("res: %s\n", res);
+	//printf("res: %s\n", res);
 	return (res);
+}
+
+void	ft_quotes(t_tkn **tkn)
+{
+	t_tkn	*first;
+
+	first = *tkn;
+	while (*tkn)
+	{
+		if ((*tkn)->type == 2)
+		{
+			(*tkn)->token = ft_check_expands((*tkn)->token);
+			(*tkn)->token = ft_delete_quotes((*tkn)->token);
+			(*tkn)->type = 0;
+		}
+		(*tkn) = (*tkn)->next;
+	}
+	*tkn = first;
 }

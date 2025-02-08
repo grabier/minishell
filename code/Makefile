@@ -9,8 +9,14 @@ INCLUDES = -I$(LIBFT_DIR)
 
 SRC_DIR = ./src
 SRCS =	$(SRC_DIR)/parseo.c\
-		$(SRC_DIR)/quotes.c\
 		$(SRC_DIR)/aux.c\
+		$(SRC_DIR)/delete_quotes.c\
+		$(SRC_DIR)/expand_quotes.c\
+		$(SRC_DIR)/ft_token_list.c\
+		$(SRC_DIR)/tokenize_utils.c\
+		$(SRC_DIR)/tokenize.c\
+		$(SRC_DIR)/command_lst.c\
+		$(SRC_DIR)/ft_command_lst.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs
