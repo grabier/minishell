@@ -16,7 +16,7 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/tokenize_utils.c\
 		$(SRC_DIR)/tokenize.c\
 		$(SRC_DIR)/command_lst.c\
-		$(SRC_DIR)/ft_command_lst.c\
+		$(SRC_DIR)/command_lst2.c\
 		$(SRC_DIR)/ft_search_path.c\
 		$(SRC_DIR)/exec_commands.c\
 #		$(SRC_DIR)/ft_utils.c\

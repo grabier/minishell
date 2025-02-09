@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_command_lst.c                                   :+:      :+:    :+:   */
+/*   command_lst2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/08 20:13:30 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:56:06 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
+
+void	ft_free_cmd_lst(t_cmd **cmd)
+{
+	t_cmd *aux;
+
+	while (*cmd)
+	{
+		aux = (*cmd)->next;
+		if ((*cmd)->args)
+			ft_free_split((*cmd)->args);
+		if ((*cmd)->infile)
+			free((*cmd)->infile);
+		if ((*cmd)->outfile)
+			free((*cmd)->outfile);
+		free(*cmd);
+		*cmd = aux;
+	}
+}
 
 void	ft_cmdprint(t_cmd *lst)
 {

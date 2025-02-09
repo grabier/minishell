@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/08 20:03:03 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:56:48 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_get_input(char *envp[])
 		ft_exec_commands(cmd_lst, envp);
 		ft_cmdprint(cmd_lst);
 		ft_free_tkn_lst(&tkn_lst);
+		ft_free_cmd_lst(&cmd_lst);
 		free(input);
 	}
 	return (1);

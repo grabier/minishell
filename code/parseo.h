@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/08 21:04:13 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:56:25 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst);
 t_cmd	*ft_get_commands(t_tkn *tkn);
 
 
-//ft_command_lst.c
+//command_lst2.c
 void	ft_cmdprint(t_cmd *lst);
 void	ft_cmdadd_back(t_cmd **lst, t_cmd *new);
 void	ft_cmdadd_front(t_cmd **lst, t_cmd *new);
 t_cmd	*ft_cmdnew();
 int		ft_cmdsize(t_cmd *lst);
+void	ft_free_cmd_lst(t_cmd **cmd);
 
 //ft_search_path.c
 char	*ft_strcat_cmd(char *s1, char *s2);
