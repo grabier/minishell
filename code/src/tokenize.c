@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/07 11:05:38 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:33:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_check_syntax(t_tkn *tokens)
 
 t_tkn	*ft_tokenize(char *input)
 {
-	int	i;
+	int		i;
 	t_tkn	*tkn_lst;
 
 	tkn_lst = NULL;

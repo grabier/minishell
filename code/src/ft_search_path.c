@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:03:57 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/09 16:31:10 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/09 18:42:20 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_find_cmd(char *cmd, char *path)
 	while (split[i])
 	{
 		result = ft_strcat_cmd(split[i], cmd);
-		printf("rsult: %s\n", result);
+		//printf("rsult: %s\n", result);
 		if (result)
 			break ;
 		free(result);

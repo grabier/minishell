@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/09 15:56:25 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:18:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ char	*ft_find_path(char *cmd, char *envp[]);
 //exec_commands.c
 void	ft_exec_commands(t_cmd *cmd_lst, char *envp[]);
 int		ft_execute_cmd(char **args, char *envp[]);
+void	ft_exec_single_cmd(t_cmd *cmd, char *envp[]);
+int		ft_open_n_redir(t_cmd *cmd, int mode);
 
 #endif
