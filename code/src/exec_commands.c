@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/10 15:30:19 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:35:04 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode)
 		fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	else if (mode == 1 && cmd->outfile && cmd->append)
 		fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	if(!fd)
+	if(fd < 0)
 		exit(2);
 	return (fd);
 }
@@ -79,6 +79,7 @@ void	ft_exec_single_cmd(t_cmd *cmd, char *envp[])
 
 	saved_stdin = dup(STDIN_FILENO);
 	i_fd = ft_open_n_redir(cmd, 0);
+	
 	o_fd = ft_open_n_redir(cmd, 1);
 	pid = fork();
 	if (pid == 0)
@@ -98,6 +99,11 @@ void	ft_exec_single_cmd(t_cmd *cmd, char *envp[])
 	//printf("llegaaaaa\n");
 }
 
+void	ft_exec_pipeline(t_cmd *cmd, char *envp[])
+{
+	
+}
+
 void	ft_exec_commands(t_cmd *cmd_lst, char *envp[])
 {
 	int	i_fd;
@@ -105,6 +111,6 @@ void	ft_exec_commands(t_cmd *cmd_lst, char *envp[])
 	
 	if (!cmd_lst->next)
 		ft_exec_single_cmd(cmd_lst, envp);
-	printf("SALE\n");
-	
+	else
+		ft_exec_pipeline(cmd_lst, envp);
 }
