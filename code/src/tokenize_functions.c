@@ -1,37 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_utils.c                                   :+:      :+:    :+:   */
+/*   tokenize_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:07:37 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/01 17:39:09 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:26:45 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-
-int	ft_find_end_sq(char *input)
-{
-	int	i;
-
-	i = 1;
-	while (input[i] != 39)
-		i++;
-	return (i + 1);
-}
-
-int	ft_find_end_dq(char *input)
-{
-	int	i;
-
-	i = 1;
-	while (input[i] != 34)
-		i++;
-	return (i + 1);
-}
-
+//funciones para crear tokens de distintos tipos
 t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i)
 {
 	t_tkn	*tkn;

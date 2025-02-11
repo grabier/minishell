@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token_list.c                                    :+:      :+:    :+:   */
+/*   token_list_func.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:50:20 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/01/29 16:25:49 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:26:07 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-
+//funciones para moverse por listas de tokens
 void	ft_tknprint(t_tkn *lst)
 {
 	while (lst)

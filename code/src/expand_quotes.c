@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/07 11:26:35 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:03:50 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_expand(char *input, int start)
 
 	j = 0;
 	i = start;
-	while (input[i] != 34 && input[i] != ' ')
+	while (input[i] != 34 && input[i] != ' ' && input[i])
 	{
 		i++;
 		j++; 
@@ -114,10 +114,15 @@ void	ft_quotes(t_tkn **tkn)
 	first = *tkn;
 	while (*tkn)
 	{
-		if ((*tkn)->type == 2)
+		if ((*tkn)->type == 2 || (*tkn)->type == 1)
 		{
-			(*tkn)->token = ft_check_expands((*tkn)->token);
-			(*tkn)->token = ft_delete_quotes((*tkn)->token);
+			if ((*tkn)->type == 2)
+			{
+				(*tkn)->token = ft_check_expands((*tkn)->token);
+				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
+			}
+			else
+				(*tkn)->token = ft_delete_squotes((*tkn)->token);
 			(*tkn)->type = 0;
 		}
 		(*tkn) = (*tkn)->next;

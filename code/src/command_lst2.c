@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/09 15:56:06 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:19:48 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,6 @@ void	ft_cmdadd_front(t_cmd **lst, t_cmd *new)
 {
 	new->next = *lst;
 	*lst = new;
-}
-
-t_cmd	*ft_cmdnew()
-{
-	t_cmd	*new_node;
-
-	new_node = (t_cmd *)malloc(sizeof(t_cmd));
-	if (!new_node)
-		return (NULL);
-	new_node->args = NULL;
-	new_node->infile = NULL;
-	new_node->outfile = NULL;
-	new_node->append = 0;
-	new_node->hd = 0;
-	new_node->is_cmd = 0;
-	new_node->is_bi = 0;
-	new_node->next = NULL;
-	return (new_node);
 }
 
 int	ft_cmdsize(t_cmd *lst)

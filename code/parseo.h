@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/10 13:18:21 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:46:46 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ char	*ft_do_quotes(char *input);
 void	ft_quotes(t_tkn **tkn);
 
 //delete_quotes.c
-char	*ft_delete_quotes(char *input);
-int		ft_count_quotes(char *input);
+char	*ft_delete_squotes(char *input);
+char	*ft_delete_dquotes(char *input);
+int		ft_count_quotes(char *input, int mode);
 
 //aux
 char	*ft_strinsert(char *str, char *word, int start, int end);
@@ -79,44 +80,52 @@ int		ft_tknsize(t_tkn *lst);
 //tokenize.c
 t_tkn	*ft_tokenize(char *input);
 int		ft_check_syntax(t_tkn *tokens);
-void	ft_free_tkn_lst(t_tkn **tkn);
 int		ft_find_end_word(char *input);
 
-//tokenize_utils.c
-int		ft_find_end_dq(char *input);
+//tokenize_functions.c
 t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i);
 t_tkn	*ft_redir_tkn(t_tkn **tkn_lst, char *input, int *i);
 t_tkn	*ft_pipe_tkn(t_tkn **tkn_lst, char *input, int *i);
 t_tkn	*ft_word_tkn(t_tkn **tkn_lst, char *input, int *i);
 
+//tokenize_aux.c
+void	ft_free_tkn_lst(t_tkn **tkn);
+int		ft_find_end_dq(char *input);
+int		ft_find_end_sq(char *input);
+
 //command_lst.c
 int		ft_count_args(t_tkn	*tkn);
-void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst);
-void	ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
-void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst);
-void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst);
-void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst);
 t_cmd	*ft_get_commands(t_tkn *tkn);
-
+int		ft_isbuiltin(char *str);
+t_cmd	*ft_cmdnew();
 
 //command_lst2.c
 void	ft_cmdprint(t_cmd *lst);
 void	ft_cmdadd_back(t_cmd **lst, t_cmd *new);
 void	ft_cmdadd_front(t_cmd **lst, t_cmd *new);
-t_cmd	*ft_cmdnew();
 int		ft_cmdsize(t_cmd *lst);
 void	ft_free_cmd_lst(t_cmd **cmd);
 
-//ft_search_path.c
+//command_types.c
+void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst);
+void	ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
+void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst);
+void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst);
+void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst);
+
+//search_path.c
 char	*ft_strcat_cmd(char *s1, char *s2);
 char	*ft_find_cmd(char *cmd, char *path);
 char	*aux_find_path(char *cmd, char *envp[], char *res, int i);
 char	*ft_find_path(char *cmd, char *envp[]);
 
-//exec_commands.c
+//execute.c
 void	ft_exec_commands(t_cmd *cmd_lst, char *envp[]);
-int		ft_execute_cmd(char **args, char *envp[]);
+int		ft_execute_cmd(t_cmd *cmd, char *envp[]);
+
+//ex_single_cmd.c
 void	ft_exec_single_cmd(t_cmd *cmd, char *envp[]);
 int		ft_open_n_redir(t_cmd *cmd, int mode);
+
 
 #endif

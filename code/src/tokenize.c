@@ -6,24 +6,11 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/10 15:33:24 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:11:08 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-
-void	ft_free_tkn_lst(t_tkn **tkn)
-{
-	t_tkn *aux;
-
-	while (*tkn)
-	{
-		aux = (*tkn)->next;
-		free((*tkn)->token);
-		free(*tkn);
-		*tkn = aux;
-	}
-}
 
 int ft_check_redirections(t_tkn *tokens)
 {
@@ -34,21 +21,12 @@ int ft_check_redirections(t_tkn *tokens)
 		if (tokens->type == R1 || tokens->type == R2)
 		{
 			if (!tokens->next || tokens->next->type != WORD)
-			{
-				printf("Error: Missing file for redirection\n");
-				return 0;
-			}	
+				return (printf("Error: Missing file for redirection\n"), 0);
 			if (tokens->next->next && (tokens->next->next->type == R1 
 					|| tokens->next->next->type == R2))
-			{
-				printf("Error: Redirection after another redirection without a command in between\n");
-				return 0;
-			}
+				return (printf("Error: Redirection after another redirection without a command in between\n"), 0);
 			if (tokens->next && (tokens->next->type == R1 || tokens->next->type == R2))
-			{
-				printf("Error: Redirection cannot be followed by another redirection directly\n");
-				return 0;
-			}
+				return (printf("Error: Redirection cannot be followed by another redirection directly\n"), 0);
 		}
 		prev = tokens;
 		tokens = tokens->next;
@@ -56,14 +34,15 @@ int ft_check_redirections(t_tkn *tokens)
 	return (1);
 }
 
-
+//checkeamos la sintaxis de los tokens: no puede haber dos pipas ni redirs seguidas, 
 int	ft_check_syntax(t_tkn *tokens)
 {
 	t_tkn *prev = NULL;
 
 	if (!ft_check_redirections(tokens))
 		return (1);
-	while (tokens) {
+	while (tokens)
+	{
 		if (tokens->type == PI)
 		{
 			if (!prev || prev->type > 2 || !tokens->next || tokens->next->type == L1
@@ -84,7 +63,9 @@ int	ft_check_syntax(t_tkn *tokens)
 	return 0; // No errores
 }
 
-t_tkn	*ft_tokenize(char *input)
+//transformamos el input en una lista enlazada de tokens
+//los tokens seran de los tipo que vienen en el .h
+t_tkn	*ft_get_tokens(char *input)
 {
 	int		i;
 	t_tkn	*tkn_lst;
@@ -95,20 +76,30 @@ t_tkn	*ft_tokenize(char *input)
 	{
 		if ((input[i]) == ' ')
 			i++;
-		else if (input[i] == 34 || input[i] == 39)
+		else if (input[i] == 34 || input[i] == 39)//creamos token de tipo comilla
 		{
 			if (!ft_quote_tkn(&tkn_lst, input, &i))
 				return (ft_free_tkn_lst(&tkn_lst), NULL);
 		}
-		else if (input[i] == '<' || input[i] == '>')
+		else if (input[i] == '<' || input[i] == '>')//tokens de tipo redireccion
 			ft_redir_tkn(&tkn_lst, input, &i);
-		else if (input[i] == '|')
+		else if (input[i] == '|')//tokens de tipo pipa
 			ft_pipe_tkn(&tkn_lst, input, &i);
 		else
 		{
-			if (!ft_word_tkn(&tkn_lst, input, &i))
+			if (!ft_word_tkn(&tkn_lst, input, &i))//si no es ninguno de los anteriores creamos token de tipo palabra
 				break;
 		}
 	}
+	return (tkn_lst);
+}
+
+t_tkn	*ft_tokenize(char *input)
+{
+	t_tkn	*tkn_lst;
+
+	tkn_lst = ft_get_tokens(input);//transformamos el input en lista de tokens
+	ft_check_syntax(tkn_lst);//checkeamos el orden de los tokens para sintaxis
+	ft_quotes(&tkn_lst);//lidiamos con comillas
 	return (tkn_lst);
 }

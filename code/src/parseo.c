@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/10 18:15:46 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:28:12 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ int	ft_get_input(char *envp[])
 	t_cmd	*cmd_lst;
 
 	(void)envp;
-	while (1)
+	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
-		input = readline("minishell->");
+		input = readline("minishell->");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (!ft_strncmp(input, "exit", 5))
 		{
 			free(input);
 			break ;
 		}
-		add_history(input);
-		tkn_lst = ft_tokenize(input);
-		ft_check_syntax(tkn_lst);
-		ft_quotes(&tkn_lst);
+		add_history(input);//FALTA: añadir funciones de modificar historial
+		tkn_lst = ft_tokenize(input);//devuelve una lista de tokens con un checkeo de sintax previo
+									// y comillas limpias(excepto comando)
 		//ft_tknprint(tkn_lst);
-		cmd_lst = ft_get_commands(tkn_lst);
-		ft_cmdprint(cmd_lst);
-		ft_exec_commands(cmd_lst, envp);
+		cmd_lst = ft_get_commands(tkn_lst);//devuelve una lista con los comandos 
+							//a ejecutar y las redirs necesarias
+		//ft_cmdprint(cmd_lst);
+		ft_exec_commands(cmd_lst, envp); 
 		ft_free_tkn_lst(&tkn_lst);
 		ft_free_cmd_lst(&cmd_lst);
 		free(input);
