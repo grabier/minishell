@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:19:48 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:09:44 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_free_cmd_lst(t_cmd **cmd)
 {
 	t_cmd *aux;
 
+	if (!*cmd)
+		return ;
 	while (*cmd)
 	{
 		aux = (*cmd)->next;

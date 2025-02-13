@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:11:08 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:23:09 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,35 @@ t_tkn	*ft_get_tokens(char *input)
 	return (tkn_lst);
 }
 
+int	ft_check_words(t_tkn *tkn)
+{
+	int cont;
+	t_tkn *prev;
+
+	cont = 0;
+	if (tkn->type == 0)
+		return (1);
+	prev = tkn;
+	tkn = tkn->next;
+	while (tkn)
+	{
+		if (tkn->type == 0 && prev->type < 4)
+			cont++;
+		prev = tkn;
+		tkn = tkn->next;
+	}
+	return (cont);
+}
+
 t_tkn	*ft_tokenize(char *input)
 {
 	t_tkn	*tkn_lst;
 
 	tkn_lst = ft_get_tokens(input);//transformamos el input en lista de tokens
-	ft_check_syntax(tkn_lst);//checkeamos el orden de los tokens para sintaxis
+	if (!ft_check_words(tkn_lst))
+		return (NULL);
+	if (ft_check_syntax(tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
+		return (NULL);
 	ft_quotes(&tkn_lst);//lidiamos con comillas
 	return (tkn_lst);
 }

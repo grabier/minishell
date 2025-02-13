@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/12 20:34:24 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:39:01 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode)
 	return (fd);
 }
 
-void	ft_exec_single_cmd(t_cmd *cmd, char *envp[])
+void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 {
 	pid_t	pid;
 	int		i_fd;

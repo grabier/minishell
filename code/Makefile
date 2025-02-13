@@ -24,6 +24,9 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/exec_pipeline.c\
 		$(SRC_DIR)/command_types.c\
 		$(SRC_DIR)/built-ins.c\
+		$(SRC_DIR)/jk_builtin_env.c\
+		$(SRC_DIR)/jk_builtin_exit.c\
+		$(SRC_DIR)/jk_env_copy.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 11:32:59 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:12:25 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_cmd
 
 //parseo.c
 int		ft_get_input(char *envp[]);
-
+void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *env[]);
 
 //expand_quotes.c
 int		ft_check_quotes(char *input);
@@ -120,19 +120,34 @@ char	*aux_find_path(char *cmd, char *envp[], char *res, int i);
 char	*ft_find_path(char *cmd, char *envp[]);
 
 //execute.c
-void	ft_exec_commands(t_cmd *cmd_lst, char *envp[]);
-int		ft_execute_cmd(t_cmd *cmd, char *envp[]);
+void	ft_exec_commands(t_cmd *cmd_lst, char **envp[]);
+int		ft_execute_cmd(t_cmd *cmd, char **envp[]);
 
 //ex_single_cmd.c
-void	ft_exec_single_cmd(t_cmd *cmd, char *envp[]);
+void	ft_exec_single_cmd(t_cmd *cmd, char **envp[]);
 int		ft_open_n_redir(t_cmd *cmd, int mode);
 
 //exec_pipeline.c
-void	ft_exec_pipeline(t_cmd *cmd, char *envp[]);
-void	ft_exec_middle_cmd(t_cmd *cmd, char *envp[], int i_fd, int o_fd);
-void	ft_exec_last_cmd(t_cmd *cmd, char *envp[]);
+void	ft_exec_pipeline(t_cmd *cmd, char **envp[]);
+void	ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd);
+void	ft_exec_last_cmd(t_cmd *cmd, char **envp[]);
 
 //built-ins.c
-void	ft_exec_built_in(t_cmd *cmd, char *envp[]);
+void	ft_exec_built_in(t_cmd *cmd, char **envp[]);
 
+//builtin-env.c
+char	**ft_unset(char **env_copy, char *str);
+char	*ft_get_var_name(char *var);
+char	**ft_insert_change(char **env, char *insert, int *changed);
+char	**ft_insert_dp(char **env, char *insert);
+
+//builtin-exit.c
+int		ft_is_num(char *str);
+void	ft_exit(char **args);
+
+//builtin-env-cpy.c
+int		ft_strlen_pointers(char *env[]);
+char	**ft_copy_dp(char **env);
+void	print_env(char **env_copy);
+void	print_env_export(char **env_copy);
 #endif
