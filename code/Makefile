@@ -21,7 +21,9 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/search_path.c\
 		$(SRC_DIR)/execute.c\
 		$(SRC_DIR)/ex_single_cmd.c\
+		$(SRC_DIR)/exec_pipeline.c\
 		$(SRC_DIR)/command_types.c\
+		$(SRC_DIR)/built-ins.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs

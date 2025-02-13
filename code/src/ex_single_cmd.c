@@ -6,12 +6,13 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:40:19 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/12 20:34:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-
+//devuelve el fd de infile/outfile, 0, y 1 por defecto
+//pero consideramos las redirecciones
 int		ft_open_n_redir(t_cmd *cmd, int mode)
 {
 	int	fd;
@@ -43,15 +44,15 @@ void	ft_exec_single_cmd(t_cmd *cmd, char *envp[])
 	int		o_fd;
 	int		saved_stdin;
 
-	saved_stdin = dup(STDIN_FILENO);
-	i_fd = ft_open_n_redir(cmd, 0);
-	o_fd = ft_open_n_redir(cmd, 1);
+	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
+	i_fd = ft_open_n_redir(cmd, 0);//en la funcion open_n_redir, asi que hay que
+	o_fd = ft_open_n_redir(cmd, 1);//guardar una copia del STDIN para devolverlo
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0)//dupeamos la salida out en el hijo para no tener que preocuparnos
 	{
 		//o_fd = ft_open_n_redir_out(cmd, 1);
-		dup2(o_fd, STDOUT_FILENO);
-		ft_execute_cmd(cmd, envp);
+		dup2(o_fd, STDOUT_FILENO);//los dups realizados en procesos hijos
+		ft_execute_cmd(cmd, envp);//no afectan al proceso padre
 	}
 	else
 		waitpid(pid, NULL, 0);
@@ -59,7 +60,7 @@ void	ft_exec_single_cmd(t_cmd *cmd, char *envp[])
 		close(i_fd);
 	if (o_fd != 1)
 		close(o_fd);
-	dup2(saved_stdin, STDIN_FILENO);
-	close(saved_stdin);
+	dup2(saved_stdin, STDIN_FILENO);//devolvemos STDIN a lo original
+	//close(saved_stdin);
 	//printf("llegaaaaa\n");
 }
