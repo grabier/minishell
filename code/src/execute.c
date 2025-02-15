@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 17:40:02 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:13:52 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	ft_exec_commands(t_cmd *cmd_lst, char **envp[])
 	
 	if (!cmd_lst->next)//las redirecciones son distintas si no hay pipas
 	{
-		if (cmd_lst->is_bi)
+		/* if (cmd_lst->is_bi)
 			ft_exec_built_in(cmd_lst, envp);
-		else
+		else */
 			ft_exec_single_cmd(cmd_lst, envp);
 	}
 	else

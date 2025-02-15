@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 15:39:01 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 18:52:22 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int		ft_open_n_redir(t_cmd *cmd, int mode)
 			exit(2);
 		dup2(fd, STDIN_FILENO);
 	}
+	else if (mode == 0 && cmd->infile && cmd->hd)
+	{
+		fd = ft_here_doc(cmd->infile);
+		dup2(fd, STDIN_FILENO);
+	}
 	else if (mode == 1 && cmd->outfile && !cmd->append)
 		fd = open(cmd->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	else if (mode == 1 && cmd->outfile && cmd->append)
@@ -44,6 +49,7 @@ void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 	int		o_fd;
 	int		saved_stdin;
 
+	printf("entra\n");
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
 	i_fd = ft_open_n_redir(cmd, 0);//en la funcion open_n_redir, asi que hay que
 	o_fd = ft_open_n_redir(cmd, 1);//guardar una copia del STDIN para devolverlo

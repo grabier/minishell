@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 17:12:25 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 18:44:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ int		ft_open_n_redir(t_cmd *cmd, int mode);
 
 //exec_pipeline.c
 void	ft_exec_pipeline(t_cmd *cmd, char **envp[]);
-void	ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd);
-void	ft_exec_last_cmd(t_cmd *cmd, char **envp[]);
+int		ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd);
+int		ft_exec_last_cmd(t_cmd *cmd, char **envp[]);
 
 //built-ins.c
 void	ft_exec_built_in(t_cmd *cmd, char **envp[]);
@@ -150,4 +150,7 @@ int		ft_strlen_pointers(char *env[]);
 char	**ft_copy_dp(char **env);
 void	print_env(char **env_copy);
 void	print_env_export(char **env_copy);
+
+//here_doc.c
+int	ft_here_doc(char *limit);
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 13:23:09 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:36:05 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int ft_check_redirections(t_tkn *tokens)
 		{
 			if (!tokens->next || tokens->next->type != WORD)
 				return (printf("Error: Missing file for redirection\n"), 0);
-			if (tokens->next->next && (tokens->next->next->type == R1 
+			/* if (tokens->next->next && (tokens->next->next->type == R1 
 					|| tokens->next->next->type == R2))
-				return (printf("Error: Redirection after another redirection without a command in between\n"), 0);
+				return (printf("Error: Redirection after another redirection without a command in between\n"), 0); */
 			if (tokens->next && (tokens->next->type == R1 || tokens->next->type == R2))
 				return (printf("Error: Redirection cannot be followed by another redirection directly\n"), 0);
 		}

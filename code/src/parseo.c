@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/13 17:40:18 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 18:57:54 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ int	ft_get_input(char *envp[])
 	t_cmd	*cmd_lst;
 
 	(void)envp;
+	cmd_lst = NULL;
+	tkn_lst = NULL;
 	//print_env(envp);
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
 		input = readline("minishell->");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (!ft_strcmp(input, "exit"))
 		{
-			free(input);
+			ft_free_parse(input, &tkn_lst, &cmd_lst, envp);
+			unlink(".tempppp");
 			return (1);
 		}
 		add_history(input);//FALTA: añadir funciones de modificar historial
@@ -51,11 +54,12 @@ int	ft_get_input(char *envp[])
 		{
 			//printf("sale?\n");
 			cmd_lst = ft_get_commands(tkn_lst);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			//ft_cmdprint(cmd_lst);
+			ft_cmdprint(cmd_lst);
 			ft_exec_commands(cmd_lst, &envp); 
 			ft_free_parse(input, &tkn_lst, &cmd_lst, envp);
 		}
 	}
+	unlink(".tempppp");
 	return (1);
 }
 
