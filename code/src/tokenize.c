@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 17:02:00 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:07:39 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ t_tkn	*ft_tokenize(char *input)
 		return (NULL);
 	if (ft_check_syntax(tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
 		return (NULL);
+	//ft_tknprint(tkn_lst);
 	ft_quotes(&tkn_lst);//lidiamos con comillas
 	return (tkn_lst);
 }

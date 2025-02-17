@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 17:00:36 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:58:41 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	ft_get_input(char *envp[])
 		}
 		add_history(input);//FALTA: añadir funciones de modificar historial
 		tkn_lst = ft_tokenize(input);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
+		//ft_tknprint(tkn_lst);
 		if (!tkn_lst)
 			ft_free_parse(input, &tkn_lst, NULL, prompt);
-			//ft_tknprint(tkn_lst);
 		else
 		{
 			//printf("sale?\n");
