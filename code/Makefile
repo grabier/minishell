@@ -28,12 +28,13 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/jk_builtin_exit.c\
 		$(SRC_DIR)/jk_env_copy.c\
 		$(SRC_DIR)/here_doc.c\
+		$(SRC_DIR)/get_prompt.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-NAME = parseo
+NAME = minishell
 
 #OBJ_DIR_BONUS = ./objs_bonus
 #BONUS_DIR = ./src

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 16:36:05 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:02:00 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	ft_check_syntax(t_tkn *tokens)
 	{
 		if (tokens->type == PI)
 		{
-			if (!prev || prev->type > 2 || !tokens->next || tokens->next->type == L1
-					|| tokens->next->type == L2)
+			if (!prev || prev->type > 2 || !tokens->next)
 				return (printf("Error: Syntax near '|'\n"), 1);
 		}
 		if (tokens->type == R1 || tokens->type == R2 ||
@@ -118,6 +117,8 @@ t_tkn	*ft_tokenize(char *input)
 {
 	t_tkn	*tkn_lst;
 
+	if (!input || input[0] == 0)
+		return (NULL);
 	tkn_lst = ft_get_tokens(input);//transformamos el input en lista de tokens
 	if (!ft_check_words(tkn_lst))
 		return (NULL);

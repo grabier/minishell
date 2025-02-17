@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 18:57:54 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:00:36 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,19 @@
 #include <string.h>
 #include <ctype.h>
 
-void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *env[])
+void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt)
 {
 	if (c != NULL)
 		ft_free_cmd_lst(c);
 	ft_free_tkn_lst(t);
-	//ft_free_split(env);
 	free(input);
+	free(prompt);
 }
 
 int	ft_get_input(char *envp[])
 {
 	char	*input;
+	char	*prompt;
 	t_tkn	*tkn_lst;
 	t_cmd	*cmd_lst;
 
@@ -38,28 +39,28 @@ int	ft_get_input(char *envp[])
 	//print_env(envp);
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
-		input = readline("minishell->");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		prompt = ft_get_prompt(envp);
+		input = readline(prompt);//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (!ft_strcmp(input, "exit"))
 		{
-			ft_free_parse(input, &tkn_lst, &cmd_lst, envp);
+			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
 			unlink(".tempppp");
 			return (1);
 		}
 		add_history(input);//FALTA: añadir funciones de modificar historial
 		tkn_lst = ft_tokenize(input);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
 		if (!tkn_lst)
-			ft_free_parse(input, &tkn_lst, NULL, envp);
+			ft_free_parse(input, &tkn_lst, NULL, prompt);
 			//ft_tknprint(tkn_lst);
 		else
 		{
 			//printf("sale?\n");
 			cmd_lst = ft_get_commands(tkn_lst);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			ft_cmdprint(cmd_lst);
+			//ft_cmdprint(cmd_lst);
 			ft_exec_commands(cmd_lst, &envp); 
-			ft_free_parse(input, &tkn_lst, &cmd_lst, envp);
+			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
 		}
 	}
-	unlink(".tempppp");
 	return (1);
 }
 

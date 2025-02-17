@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 18:52:22 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:05:45 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 	int		o_fd;
 	int		saved_stdin;
 
-	printf("entra\n");
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
 	i_fd = ft_open_n_redir(cmd, 0);//en la funcion open_n_redir, asi que hay que
 	o_fd = ft_open_n_redir(cmd, 1);//guardar una copia del STDIN para devolverlo

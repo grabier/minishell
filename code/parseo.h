@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 18:44:32 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:43:20 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_cmd
 
 //parseo.c
 int		ft_get_input(char *envp[]);
-void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *env[]);
+void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt);
 
 //expand_quotes.c
 int		ft_check_quotes(char *input);
@@ -152,5 +152,8 @@ void	print_env(char **env_copy);
 void	print_env_export(char **env_copy);
 
 //here_doc.c
-int	ft_here_doc(char *limit);
+int		ft_here_doc(char *limit);
+
+//get_prompt.c
+char	*ft_get_prompt(char **env);
 #endif

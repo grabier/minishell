@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:03:57 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:38:40 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:23:45 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,15 @@ char	*aux_find_path(char *cmd, char *envp[], char *res, int i)
 			break ;
 		i++;
 	}
-	path = envp[i] + 4;
+	if (envp[i])
+		path = envp[i] + 4;
+	else
+		return (NULL);
 	if (!ft_find_cmd(cmd, path))
+	{
+		printf("%s: command not found\n", cmd);
 		return (free(res), NULL);
+	}
 	return (free(res), ft_find_cmd(cmd, path));
 }
 
