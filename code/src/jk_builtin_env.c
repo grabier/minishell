@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/13 17:12:35 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:24:43 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 	char	*var_name;
 	char	*value;
 	char	*new_value;
+	char	*other_value;
 
 	i = 0;
 	var_name = ft_get_var_name(insert);
 	value = ft_strchr(insert, '=') + 1;
 	new_value = ft_strjoin("\"", value);
-	new_value = ft_strjoin(new_value, "\"");
+	other_value = ft_strjoin(new_value, "\"");
+	free(new_value);
 	while (env[i])
 	{
 		if (!ft_strncmp(env[i], var_name, ft_strlen(var_name))
@@ -97,27 +99,63 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 		{
 			free(env[i]);
 			env[i] = ft_strjoin(var_name, "=");
-			env[i] = ft_strjoin(env[i], new_value);
-			free(new_value);
+			env[i] = ft_strjoin(env[i], other_value);
+			free(other_value);
 			free(var_name);
 			*changed = 1;
 			return (env);
 		}
 		i++;
 	}
-	free(new_value);
+	free(other_value);
 	free(var_name);
 	return (env);
+}
+
+char	**ft_insert_no_value(char **env, char *insert)
+{
+	char	**copy;
+	int		i;
+	char	*aux;
+	int		changed;
+	
+	i = 0;
+	aux = ft_strjoin(insert, "=");
+	if (!ft_strnstr(insert, aux, ft_strlen(insert)))
+	{
+		free(aux);
+		aux = ft_strjoin("++", insert);
+		printf("aux: %s\n", aux);
+		copy = (char **)malloc((ft_strlen_pointers(env) + 2) * sizeof(char *));
+		while (env[i])
+		{
+			copy[i] = ft_strdup(env[i]);
+			i++;
+		}
+		copy[i] = ft_strdup(aux);
+		printf("copy[i] : %s\n", copy[i]);
+		i++;
+		copy[i] = NULL;
+		ft_free_split_dp(env);
+		return (copy);
+	}
+	else
+		return (free(aux), env);
 }
 
 char	**ft_insert_dp(char **env, char *insert)
 {
 	char	**copy;
 	int		i;
+	char	*aux;
 	int		changed;
 
 /* 	if (ft_strchr(insert, '=') != NULL)
 		return () */
+	if (!ft_strchr(insert, '='))
+	{
+		return (ft_insert_no_value(env, insert));
+	}
 	i = 0;
 	changed = 0;
 	env = ft_insert_change(env, insert, &changed);
@@ -132,10 +170,11 @@ char	**ft_insert_dp(char **env, char *insert)
 		i++;
 	}
 	copy[i] = ft_strdup(insert);
+	
 	i++;
 	copy[i] = NULL;
 	ft_free_split_dp(env);
-	//print_env(copy);
+	print_env(copy);
 	return (copy);
 }
 

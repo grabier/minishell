@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 18:58:41 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:50:36 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_get_input(char *envp[])
 		{
 			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
 			unlink(".tempppp");
+			ft_free_split(envp);
 			return (1);
 		}
 		add_history(input);//FALTA: añadir funciones de modificar historial
@@ -69,7 +70,9 @@ int main(int argc, char *argv[], char *env[])
 	char **cpy;
 	
 	cpy =  ft_copy_dp(env);
+	//printf("cpy[0]: %s\n", cpy[0]);
 	ft_get_input(cpy);
-	ft_free_split(cpy);
+	/* print_env(cpy);
+	ft_free_split(cpy); */
 	return (0);
 }

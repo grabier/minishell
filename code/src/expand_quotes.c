@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 19:07:31 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:55:50 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*ft_expand(char *input, int start)
 	return (res);
 }
 
-char	*ft_check_expands(char *input)
+char	*ft_check_expands(char *input, int mode)
 {
 	int	i;
 	char	*res;
@@ -69,7 +69,7 @@ char	*ft_check_expands(char *input)
 	res = NULL;
 	while (input[i] && i >= 0)
 	{
-		if (input[i] == 34 && input[i++ + 1] != '\0')
+		if ((input[i] == 34 && input[i++ + 1] != '\0') || mode == 0)
 		{
 			while (input[i] != '$' && input[i] != 34 && input[i])
 				i++;
@@ -94,18 +94,18 @@ char	*ft_check_expands(char *input)
 		return (free(res), input);
 }
 
-char *ft_do_quotes(char *input)
+/* char *ft_do_quotes(char *input)
 {
 	char	*res;
 
-	/* if (!ft_check_quotes(input))
-		return (NULL); */
-	res = ft_check_expands(input);
+	if (!ft_check_quotes(input))
+		return (NULL);
+	res = ft_check_expands(input, 1);
 	if (!res)
 		return (input);
 	//printf("res: %s\n", res);
 	return (res);
-}
+} */
 
 void	ft_quotes(t_tkn **tkn)
 {
@@ -118,7 +118,7 @@ void	ft_quotes(t_tkn **tkn)
 		{
 			if ((*tkn)->type == 2)
 			{
-				(*tkn)->token = ft_check_expands((*tkn)->token);
+				(*tkn)->token = ft_check_expands((*tkn)->token, 1);
 				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
 			}
 			else

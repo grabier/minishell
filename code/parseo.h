@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 14:43:20 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:54:58 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt);
 //expand_quotes.c
 int		ft_check_quotes(char *input);
 char	*ft_expand(char *input, int start);
-char	*ft_check_expands(char *input);
+char	*ft_check_expands(char *input, int mode);
 char	*ft_do_quotes(char *input);
 void	ft_quotes(t_tkn **tkn);
 

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 19:06:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 17:20:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 13:47:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ char *ft_put_together(char *u, char *s, char *p)
 	int		j;
 	char	*res;
 
+	if (!u || !s || !p)
+		return (NULL);
 	i = 0;
 	j = 0;
 	res = malloc(ft_strlen(u) + ft_strlen(s) + ft_strlen(p) + 6);

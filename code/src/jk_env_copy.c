@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:08:06 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/13 17:13:08 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:28:23 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**ft_copy_dp(char **env) //para copiar solo el primero puntero con las line
 	int		i;
 
 	i = 0;
-	copy = (char **)malloc((ft_strlen_pointers(env) + 1) * sizeof(char *));
+	copy = (char **)malloc((ft_strlen_pointers(env) + 2) * sizeof(char *));
 	if (!copy)
 		return (NULL);
 	while (env[i])
@@ -58,6 +58,8 @@ char	**ft_copy_dp(char **env) //para copiar solo el primero puntero con las line
 		copy[i] = ft_strdup(env[i]);
 		i++;
 	}
+	copy[i] = ft_strdup("_=/usr/bin/env");
+	i++;
 	copy[i] = NULL;
 	return (copy);
 }
@@ -69,7 +71,8 @@ void	print_env(char **env_copy)
 	i = 0;
 	while (env_copy[i])
 	{
-		printf("%s\n", env_copy[i]);
+		if (env_copy[i][0] != '+' && env_copy[i][1] != '+')
+			printf("%s\n", env_copy[i]);
 		i++;
 	}
 }
@@ -81,8 +84,16 @@ void	print_env_export(char **env_copy)
 	i = 0;
 	while (env_copy[i])
 	{
-		printf("declare -x ");
-		printf("%s\n", env_copy[i]);
+		if (env_copy[i][0] != '_' && env_copy[i][0] != '+' && env_copy[i][1] != '+')
+		{
+			printf("declare -x ");
+			printf("%s\n", env_copy[i]);
+		}
+		if (env_copy[i][0] == '+' && env_copy[i][1] == '+')
+		{
+			printf("declare -x ");
+			printf("%s\n", &env_copy[i][2]);
+		}
 		i++;
 	}
 }

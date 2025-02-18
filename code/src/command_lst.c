@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:20:53 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:50:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_count_args(t_tkn	*tkn)
 
 int		ft_isbuiltin(char *str)
 {
-	if (!ft_strcmp(str, "echo"))
-		return (1);
-	else if (!ft_strcmp(str, "cd"))
+	/* if (!ft_strcmp(str, "echo"))
+		return (1); */
+	if (!ft_strcmp(str, "cd"))
 		return (1);
 	else if (!ft_strcmp(str, "pwd"))
 		return (1);
