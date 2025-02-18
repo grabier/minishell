@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parseo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 16:50:36 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:22:50 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt)
 		ft_free_cmd_lst(c);
 	ft_free_tkn_lst(t);
 	free(input);
-	free(prompt);
+	//free(prompt);
 }
 
 int	ft_get_input(char *envp[])
@@ -39,8 +39,8 @@ int	ft_get_input(char *envp[])
 	//print_env(envp);
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
-		prompt = ft_get_prompt(envp);
-		input = readline(prompt);//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		//prompt = ft_get_prompt(envp);
+		input = readline("minishell>");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (!ft_strcmp(input, "exit"))
 		{
 			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);

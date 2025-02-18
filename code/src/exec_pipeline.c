@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipeline.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 17:27:28 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:39:30 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 
-int	ft_exec_last_cmd(t_cmd *cmd, char **envp[])
+int	ft_exec_last_cmd(t_cmd *cmd, char **envp[], int	saved_stdin)
 {
 	pid_t	pid;
 	int		i_fd;
 	int		o_fd;
 
-	i_fd = ft_open_n_redir(cmd, 0);
-	o_fd = ft_open_n_redir(cmd, 1);
+	i_fd = ft_open_n_redir(cmd, 0, saved_stdin);
+	o_fd = ft_open_n_redir(cmd, 1, 0);
 	pid = fork();
 	if (pid < 0)
 		return (0);
@@ -83,8 +83,8 @@ void	ft_exec_pipeline(t_cmd *cmd, char **envp[])
 	saved_stdout = dup(STDOUT_FILENO);
 	while (cmd->next)
 	{
-		i_fd = ft_open_n_redir(cmd, 0);
-		o_fd = ft_open_n_redir(cmd, 1);
+		i_fd = ft_open_n_redir(cmd, 0, saved_stdin);
+		o_fd = ft_open_n_redir(cmd, 1, 0);
 		pids[i] = ft_exec_middle_cmd(cmd, envp, i_fd, o_fd);
 		if (i_fd != 0)
 			close(i_fd);
@@ -95,7 +95,7 @@ void	ft_exec_pipeline(t_cmd *cmd, char **envp[])
 	}
 	/* i_fd = ft_open_n_redir(cmd, 0);
 	o_fd = ft_open_n_redir(cmd, 1); */
-	pids[i] = ft_exec_last_cmd(cmd, envp);
+	pids[i] = ft_exec_last_cmd(cmd, envp, saved_stdin);
 	i = 0;
 	while (i < size)
 		waitpid(pids[i++], NULL, 0);

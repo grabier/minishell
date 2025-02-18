@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ex_single_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 19:05:45 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:38:07 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 //devuelve el fd de infile/outfile, 0, y 1 por defecto
 //pero consideramos las redirecciones
-int		ft_open_n_redir(t_cmd *cmd, int mode)
+int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 {
 	int	fd;
 	
@@ -30,6 +30,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode)
 	}
 	else if (mode == 0 && cmd->infile && cmd->hd)
 	{
+		dup2(saved_stdin, STDIN_FILENO);
 		fd = ft_here_doc(cmd->infile);
 		dup2(fd, STDIN_FILENO);
 	}
@@ -50,8 +51,8 @@ void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 	int		saved_stdin;
 
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
-	i_fd = ft_open_n_redir(cmd, 0);//en la funcion open_n_redir, asi que hay que
-	o_fd = ft_open_n_redir(cmd, 1);//guardar una copia del STDIN para devolverlo
+	i_fd = ft_open_n_redir(cmd, 0, saved_stdin);//en la funcion open_n_redir, asi que hay que
+	o_fd = ft_open_n_redir(cmd, 1, 0);//guardar una copia del STDIN para devolverlo
 	pid = fork();
 	if (pid == 0)//dupeamos la salida out en el hijo para no tener que preocuparnos
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parseo.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 16:54:58 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:39:20 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,12 @@ int		ft_execute_cmd(t_cmd *cmd, char **envp[]);
 
 //ex_single_cmd.c
 void	ft_exec_single_cmd(t_cmd *cmd, char **envp[]);
-int		ft_open_n_redir(t_cmd *cmd, int mode);
+int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin);
 
 //exec_pipeline.c
 void	ft_exec_pipeline(t_cmd *cmd, char **envp[]);
 int		ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd);
-int		ft_exec_last_cmd(t_cmd *cmd, char **envp[]);
+int		ft_exec_last_cmd(t_cmd *cmd, char **envp[], int saved_stdin);
 
 //built-ins.c
 void	ft_exec_built_in(t_cmd *cmd, char **envp[]);

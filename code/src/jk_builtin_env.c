@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jk_builtin_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/18 17:24:43 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:27:54 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	**ft_insert_no_value(char **env, char *insert)
 	{
 		free(aux);
 		aux = ft_strjoin("++", insert);
-		printf("aux: %s\n", aux);
+		//printf("aux: %s\n", aux);
 		copy = (char **)malloc((ft_strlen_pointers(env) + 2) * sizeof(char *));
 		while (env[i])
 		{
@@ -133,7 +133,7 @@ char	**ft_insert_no_value(char **env, char *insert)
 			i++;
 		}
 		copy[i] = ft_strdup(aux);
-		printf("copy[i] : %s\n", copy[i]);
+		//printf("copy[i] : %s\n", copy[i]);
 		i++;
 		copy[i] = NULL;
 		ft_free_split_dp(env);
@@ -174,7 +174,7 @@ char	**ft_insert_dp(char **env, char *insert)
 	i++;
 	copy[i] = NULL;
 	ft_free_split_dp(env);
-	print_env(copy);
+	//print_env(copy);
 	return (copy);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:43:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 18:54:53 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:42:47 by jkubecka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_here_doc(char *limit)
 	while (1)
 	{
 		buff = readline("heredoc:");
-		if (!ft_strncmp(buff, limit, ft_strlen(limit)))
+		if (!ft_strcmp(buff, limit))
 			break ;
 		write(fd, buff, ft_strlen(buff));
 		write(fd, "\n", 1);
