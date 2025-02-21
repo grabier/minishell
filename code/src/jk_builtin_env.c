@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jk_builtin_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/18 19:27:54 by jkubecka         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:34:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ char	**ft_insert_no_value(char **env, char *insert)
 		i++;
 		copy[i] = NULL;
 		ft_free_split_dp(env);
+		free(aux);
 		return (copy);
 	}
 	else

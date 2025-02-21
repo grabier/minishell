@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parseo.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 19:39:20 by jkubecka         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:31:01 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	ft_free_cmd_lst(t_cmd **cmd);
 
 //command_types.c
 void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst);
-void	ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
+char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst);
@@ -156,4 +156,14 @@ int		ft_here_doc(char *limit);
 
 //get_prompt.c
 char	*ft_get_prompt(char **env);
-#endif
+
+//built_in_cd.c
+int		ft_cd(char ***env, t_cmd *cmd);
+int		ft_cd_dot(char ***env, t_cmd *cmd);
+int		ft_cd_normal(char ***env, t_cmd *cmd);
+int		ft_cd_minus(char ***env, t_cmd *cmd);
+char	*ft_getenv(char **env, char *var);
+
+//built_in_pwd.c
+int		ft_pwd(char ***env, t_cmd *cmd);
+#endif 

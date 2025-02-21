@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:59 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 14:11:00 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:11:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	ft_exec_built_in(t_cmd *cmd, char **envp[])
 	}
 	else if (!ft_strcmp(cmd->args[0], "unset"))
 		*envp = ft_unset(*envp, cmd->args[1]);
+	else if (!ft_strcmp(cmd->args[0], "cd"))
+		ft_cd(envp, cmd);
+	else if (!ft_strcmp(cmd->args[0], "pwd"))
+		ft_pwd(envp, cmd);
+	else
+		return ;
 	/* else if (!ft_strcmp(cmd->args[0], "echo"))
 		ft_echo();
-	else if (!ft_strcmp(cmd->args[0], "cd"))
-		ft_cd();
 	else if (!ft_strcmp(cmd->args[0], "exit"))
 		ft_exit(); */
 }

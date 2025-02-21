@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 16:56:23 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:48:12 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,24 @@ void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst)
 		(*cmd_lst)->is_cmd = 1;
 }
 
-void	ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)
+char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	int	fd;
 
 	(*tkn) = (*tkn)->next;
 	if (!(*cmd_lst)->infile)
-		(*cmd_lst)->infile = ft_strdup((*tkn)->token);
+	{
+		if (!access((*tkn)->token, R_OK))
+			(*cmd_lst)->infile = ft_strdup((*tkn)->token);
+		else
+			return (printf("%s: no file\n",(*tkn)->token), NULL);
+	}
 	else
 	{
-		fd = open((*cmd_lst)->infile, O_RDONLY | O_CREAT, 0777);
-		close(fd);
+		free((*cmd_lst)->infile);
 		(*cmd_lst)->infile = ft_strdup((*tkn)->token);
 	}
+	return (".");
 }
 //comprobamos si hay un outfile existente. si lo hay creamos el archivo 
 //y nos olvidamos de el

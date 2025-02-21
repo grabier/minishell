@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 16:50:21 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:30:26 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,23 @@ t_cmd	*ft_get_commands(t_tkn *tkn)
 	new = ft_cmdnew();
 	while (tkn)
 	{
-		if (tkn->type == 3)// | pipa ->añadimos a la lista el anterior comando
+		if (tkn->type == PI)// | pipa ->añadimos a la lista el anterior comando
 		{					//y creamos uno nuevo
 			ft_cmdadd_back(&cmd_lst, new);
 			new = ft_cmdnew();
 		}
-		else if (tkn->type == 0)// word
+		else if (tkn->type == WORD)// word
 			ft_add_cmd(&tkn, &new);
-		else if (tkn->type == 6)// < infile
-			ft_add_infile(&tkn, &new);
-		else if (tkn->type == 4)// > outfile
+		else if (tkn->type == L1)// < infile
+		{
+			if (!ft_add_infile(&tkn, &new))
+				return (NULL);
+		}
+		else if (tkn->type == R1)// > outfile
 			ft_add_outfile(&tkn, &new);
-		else if (tkn->type == 5)// >> append
+		else if (tkn->type == R2)// >> append
 			ft_add_append(&tkn, &new);
-		else if (tkn->type == 7)// << here_doc
+		else if (tkn->type == L2)// << here_doc
 			ft_add_here_doc(&tkn, &new);
 		tkn = tkn->next;
 		}

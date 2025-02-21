@@ -29,6 +29,8 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/jk_env_copy.c\
 		$(SRC_DIR)/here_doc.c\
 		$(SRC_DIR)/get_prompt.c\
+		$(SRC_DIR)/built_in_cd.c\
+		$(SRC_DIR)/built_in_pwd.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs
@@ -56,7 +58,7 @@ WHITE   			= \033[0;37m
 RESET   			= \033[0m
 
 # Reglas
-all: $(NAME)
+all: $(NAME) $(EXEC)
 
 #bonus: $(BONUS_NAME)
 

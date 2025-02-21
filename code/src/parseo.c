@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parseo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 19:22:50 by jkubecka         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:16:22 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,28 @@ int	ft_get_input(char *envp[])
 	//print_env(envp);
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
-		//prompt = ft_get_prompt(envp);
-		input = readline("minishell>");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		//prompt = ft_get_prompt("minichell>");
+		input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (!ft_strcmp(input, "exit"))
 		{
 			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
-			unlink(".tempppp");
+			unlink(".tempppp");//eliminamos el temporal del here_doc si hay
 			ft_free_split(envp);
 			return (1);
 		}
 		add_history(input);//FALTA: añadir funciones de modificar historial
 		tkn_lst = ft_tokenize(input);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
-		//ft_tknprint(tkn_lst);
+		ft_tknprint(tkn_lst);
 		if (!tkn_lst)
 			ft_free_parse(input, &tkn_lst, NULL, prompt);
 		else
 		{
 			//printf("sale?\n");
 			cmd_lst = ft_get_commands(tkn_lst);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			//ft_cmdprint(cmd_lst);
-			ft_exec_commands(cmd_lst, &envp); 
+			ft_cmdprint(cmd_lst);
+			if (cmd_lst)
+				ft_exec_commands(cmd_lst, &envp);//nos vamos a ejecucion
+			//printf("sale?\n");
 			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
 		}
 	}

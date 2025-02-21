@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/18 16:55:50 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:58:20 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_check_expands(char *input, int mode)
 	res = NULL;
 	while (input[i] && i >= 0)
 	{
-		if ((input[i] == 34 && input[i++ + 1] != '\0') || mode == 0)
+		if ((input[i] == 34 && input[i++ + 1] != '\0') || mode == 0)//34 es doble
 		{
 			while (input[i] != '$' && input[i] != 34 && input[i])
 				i++;
@@ -114,9 +114,9 @@ void	ft_quotes(t_tkn **tkn)
 	first = *tkn;
 	while (*tkn)
 	{
-		if ((*tkn)->type == 2 || (*tkn)->type == 1)
+		if ((*tkn)->type == QD || (*tkn)->type == QS)
 		{
-			if ((*tkn)->type == 2)
+			if ((*tkn)->type == QD)
 			{
 				(*tkn)->token = ft_check_expands((*tkn)->token, 1);
 				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
