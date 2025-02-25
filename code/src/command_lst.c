@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/20 19:30:26 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:29:35 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_cmd	*ft_cmdnew()
 	if (!new_node)
 		return (NULL);
 	new_node->args = NULL;
+	new_node->exit_status = 0;
 	new_node->infile = NULL;
 	new_node->outfile = NULL;
 	new_node->append = 0;
@@ -36,7 +37,7 @@ int	ft_count_args(t_tkn	*tkn)
 	int	i;
 
 	i = 0;
-	while (tkn && tkn->type == 0)
+	while (tkn && (tkn->type == 0 || (tkn)->type == QS) )
 	{
 		i++;
 		tkn = tkn->next;
@@ -46,9 +47,9 @@ int	ft_count_args(t_tkn	*tkn)
 
 int		ft_isbuiltin(char *str)
 {
-	/* if (!ft_strcmp(str, "echo"))
-		return (1); */
-	if (!ft_strcmp(str, "cd"))
+	if (!ft_strcmp(str, "echo"))
+		return (1);
+	else if (!ft_strcmp(str, "cd"))
 		return (1);
 	else if (!ft_strcmp(str, "pwd"))
 		return (1);
@@ -58,6 +59,8 @@ int		ft_isbuiltin(char *str)
 		return (1);
 	else if (!ft_strcmp(str, "env"))
 		return (1);
+	else if (!ft_strcmp(str, "exit"))
+		return (1);
 	else
 		return (0);
 } 
@@ -65,7 +68,7 @@ int		ft_isbuiltin(char *str)
 //transformamos la lista de tokens en una lista enlazada de comandos
 //un comando sera todo aquello separado por el token pipa |
 //aqui asignamos ya los archivos y el tipo de redireccion necesaria
-t_cmd	*ft_get_commands(t_tkn *tkn)
+t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
 {
 	t_cmd	*new;
 	t_cmd	*cmd_lst;
@@ -79,8 +82,8 @@ t_cmd	*ft_get_commands(t_tkn *tkn)
 			ft_cmdadd_back(&cmd_lst, new);
 			new = ft_cmdnew();
 		}
-		else if (tkn->type == WORD)// word
-			ft_add_cmd(&tkn, &new);
+		else if (tkn->type == WORD || tkn->type == QS)// word
+			ft_add_cmd(&tkn, &new, env);
 		else if (tkn->type == L1)// < infile
 		{
 			if (!ft_add_infile(&tkn, &new))

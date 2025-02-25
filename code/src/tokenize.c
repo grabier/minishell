@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/21 13:38:00 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:10:59 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_tkn	*ft_get_tokens(char *input)
 			i++;
 		else if (input[i] == 34 || input[i] == 39)//creamos token de tipo comilla
 		{
-			if (!ft_quote_tkn(&tkn_lst, input, &i))
+			if (!ft_quote_tkn(&tkn_lst, input, &i))//ARREGLAR
 				return (ft_free_tkn_lst(&tkn_lst), NULL);
 		}
 		else if (input[i] == '<' || input[i] == '>')//tokens de tipo redireccion
@@ -99,6 +99,8 @@ int	ft_check_words(t_tkn *tkn)
 	t_tkn *prev;
 
 	cont = 0;
+	if (!tkn)
+		return (0);
 	if (tkn->type == 0)
 		return (1);
 	prev = tkn;
@@ -113,18 +115,24 @@ int	ft_check_words(t_tkn *tkn)
 	return (cont);
 }
 
-t_tkn	*ft_tokenize(char *input)
+t_tkn	*ft_tokenize(char *input, char ***env)
 {
 	t_tkn	*tkn_lst;
 
 	if (!input || input[0] == 0)
 		return (NULL);
 	tkn_lst = ft_get_tokens(input);//transformamos el input en lista de tokens
+	/* printf("---------before quotes--------\n");
+	ft_tknprint(tkn_lst); */
 	if (!ft_check_words(tkn_lst))
 		return (NULL);
 	if (ft_check_syntax(tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
 		return (NULL);
-	//ft_tknprint(tkn_lst);
-	ft_quotes(&tkn_lst);//lidiamos con comillas
+		
+	
+	ft_quotes(&tkn_lst, env);//lidiamos con comillas
+	
+	/* printf("---------after quotes--------\n");
+	ft_tknprint(tkn_lst); */
 	return (tkn_lst);
 }

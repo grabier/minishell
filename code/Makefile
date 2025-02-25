@@ -31,6 +31,7 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/get_prompt.c\
 		$(SRC_DIR)/built_in_cd.c\
 		$(SRC_DIR)/built_in_pwd.c\
+		$(SRC_DIR)/jk_builtin_echo.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/21 14:18:29 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:42:16 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_exec_last_cmd(t_cmd *cmd, char **envp[], int	saved_stdin)
 	{
 		dup2(o_fd, STDOUT_FILENO);
 		if(!cmd->is_bi)
-		ft_execute_cmd(cmd, envp);
+			ft_execute_cmd(cmd, envp);
 		else
 		{
 			ft_exec_built_in(cmd, envp);

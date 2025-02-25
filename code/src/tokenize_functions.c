@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:07:37 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:26:45 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:51:16 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i)
 	char	*str;
 	int		end;
 
-	if (!ft_check_quotes(input))
-		return (NULL);
+	//printf("input: %s\n", input);
+	/* if (!ft_check_quotes(input))
+		return (printf("sale  x aki?\n"), NULL); */
 	if (input[*i] == 34)
 	{
 		end = ft_find_end_dq(&input[*i]);
+		if (!end)
+			return (NULL);
 		str = ft_substr(&input[*i], 0, end);
 		tkn = ft_tknnew(str, 2);
 		ft_tknadd_back(tkn_lst, tkn);
@@ -30,7 +33,10 @@ t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i)
 	else if (input[*i] == 39)
 	{
 		end = ft_find_end_sq(&input[*i]);
-		str = ft_substr(input, *i, *i + end);
+		printf("i: %i\n", *i);
+		printf("end: %i\n", end);
+		str = ft_substr(input, *i, end);//cambion end por *i+end
+		printf("str: %s\n", str);
 		tkn = ft_tknnew(str, 1);
 		ft_tknadd_back(tkn_lst, tkn);
 	}
@@ -88,7 +94,6 @@ t_tkn	*ft_word_tkn(t_tkn **tkn_lst, char *input, int *i)
 	int		end;
 
 	end = ft_find_end_word(&input[*i]);
-	//printf("end: %i\n", end);
 	str = ft_substr(&input[*i], 0, end);
 	tkn = ft_tknnew(str, 0);
 	//printf("str: %s\n", str);
@@ -97,6 +102,7 @@ t_tkn	*ft_word_tkn(t_tkn **tkn_lst, char *input, int *i)
 	//printf("i: %i\n", *i);
 	if (!(*i))
 		return (NULL);
+	//printf("que conio sale?: %s\n", (*tkn_lst)->token);
 	return (*tkn_lst);
 }
 

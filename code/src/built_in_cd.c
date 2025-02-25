@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:21:12 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/21 15:37:22 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:39:56 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ char	*ft_getenv(char **env, char *var)
 	char	*res;
 
 	i = 0;
+	//printf("var: %s\n", var);
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], var, ft_strlen(var)))
-			return (ft_strdup(&env[i][ft_strlen(var)]));
+		if (!ft_strncmp(env[i], var, ft_strlen(var)) && env[i][ft_strlen(var)] == '=')
+			return (ft_strdup(&env[i][ft_strlen(var) + 1]));
 		i++;
 	}
 	return (NULL);
@@ -58,7 +59,7 @@ int	ft_cd_minus(char ***env, t_cmd *cmd)//se va al directorio anterior
 	char	*aux2;
 
 	free(cmd->args[1]);
-	aux = ft_getenv(*env, "OLDPWD=");
+	aux = ft_getenv(*env, "OLDPWD");
 	cmd->args[1] = ft_strdup(aux);
 	free(aux);
 	*env = ft_unset(*env, "OLDPWD");
@@ -77,7 +78,7 @@ int	ft_cd_minus(char ***env, t_cmd *cmd)//se va al directorio anterior
 	return (1);
 }
 
-int	ft_cd_normal(char ***env, t_cmd *cmd)
+int	ft_cd_normal(char ***env, char *path)
 {
 	int	i;
 	char	*aux;
@@ -86,7 +87,7 @@ int	ft_cd_normal(char ***env, t_cmd *cmd)
 	*env = ft_unset(*env, "OLDPWD");//eliminamos OLDPWD del env
 	aux2 = getcwd(NULL, 0);//te devuelve el pwd y lo guardamos en aux2
 	aux = ft_strjoin("OLDPWD=", aux2);//añdimos oldpwd delante
-	if (chdir(cmd->args[1]) == -1)//cambiamos de directorio
+	if (chdir(path) == -1)//cambiamos de directorio
 		return (free(aux), free(aux2), printf("cd: unable to chdir\n"), 0);
 	*env = ft_insert_dp(*env, aux);//exportamos el OLDPWD al entorno
 	(free(aux), free(aux2));
@@ -105,7 +106,12 @@ int	ft_cd(char ***env, t_cmd *cmd)
 	char	*aux2;
 
 	if (cmd->args[1] == NULL)
-		return (printf("cd: no arguments\n"), 0);
+	{
+		aux = ft_getenv(*env, "HOME");
+		if (!ft_cd_normal(env, aux))
+			return (free(aux), 0);
+		return (free(aux), 1);
+	}
 	if (cmd->args[2] != NULL)
 		return (printf("cd: too many arguments\n"), 0);
 	else if (!ft_strcmp(cmd->args[1], "."))
@@ -120,7 +126,7 @@ int	ft_cd(char ***env, t_cmd *cmd)
 	}
 	else
 	{
-		if (!ft_cd_normal(env, cmd))
+		if (!ft_cd_normal(env, cmd->args[1]))
 			return (0);
 	}
 	return (1);

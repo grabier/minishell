@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/20 19:58:20 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:10:38 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_check_quotes(char *input)
 	cont1 = 0;
 	cont2 = 0;
 	i = 0;
+	printf("input: %s\n", input);
 	while (input[i])
 	{
 		if (input[i] == 39)
@@ -34,16 +35,18 @@ int	ft_check_quotes(char *input)
 	return (1);
 }
 
-char	*ft_expand(char *input, int start)
+char	*ft_expand(char *input, int start, char **env[])
 {
 	int		i;
 	int		j;
 	char	*name;
 	char	*res;
+	char	*aux;
 
 	j = 0;
 	i = start;
-	while (input[i] != 34 && input[i] != ' ' && input[i] && input[i] != '$')
+	while (input[i] != 34 && input[i] != ' ' && input[i] && input[i] != '$'
+		&& input[i] != '\'')
 	{
 		i++;
 		j++; 
@@ -51,16 +54,20 @@ char	*ft_expand(char *input, int start)
 	name = malloc(sizeof(char) * (j + 1));
 	ft_strlcpy(name, &input[start], j + 1);
 	//printf("name %s\n", name);
-	//printf("name: %s\n", name);
-	if (!getenv(name))
-		return (ft_strdup(""));
-	res = ft_strinsert(input, getenv(name), start - 1, i - 1);
+	//print_env(*env);
+	//printf("-------------------\n");
+	aux = ft_getenv(*env, name);
+	//printf("aux: %s\n", aux);
+	if (!aux)
+		return (printf("sale x aki?\n"), ft_strdup(""));
+	res = ft_strinsert(input, aux, start - 1, i - 1);
 	free(input);
 	free(name);
+	free(aux);
 	return (res);
 }
 
-char	*ft_check_expands(char *input, int mode)
+char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 {
 	int	i;
 	char	*res;
@@ -69,16 +76,21 @@ char	*ft_check_expands(char *input, int mode)
 	res = NULL;
 	while (input[i] && i >= 0)
 	{
-		if ((input[i] == 34 && input[i++ + 1] != '\0') || mode == 0)//34 es doble
+		if ((input[i] == 34 && input[i + 1] != '\0') || mode == 0)//34 es doble
 		{
+			if (mode != 0)
+				i++;
+			//printf("mode: %i\n",mode);
 			while (input[i] != '$' && input[i] != 34 && input[i])
 				i++;
 			if (input[i] == '$')
 			{
+				//printf("entra?\n");
 				free(res);
-				res = ft_expand(input, i + 1);
+				//printf("input: %s\n", input);
+				res = ft_expand(input, i + 1, env);
 				if (!res)
-					return (NULL);
+				return (NULL);
 				input = ft_strdup(res);
 				if (ft_strchr(input, '$'))
 					i = -1;
@@ -88,6 +100,7 @@ char	*ft_check_expands(char *input, int mode)
 		}
 		i++;
 	}
+	//printf("res: %s\n", res);
 	if (res)
 		return (free(input), res);
 	else
@@ -107,23 +120,26 @@ char	*ft_check_expands(char *input, int mode)
 	return (res);
 } */
 
-void	ft_quotes(t_tkn **tkn)
+void	ft_quotes(t_tkn **tkn, char **env[])
 {
 	t_tkn	*first;
 
 	first = *tkn;
+	//print_env(*env);
 	while (*tkn)
 	{
 		if ((*tkn)->type == QD || (*tkn)->type == QS)
 		{
 			if ((*tkn)->type == QD)
 			{
-				(*tkn)->token = ft_check_expands((*tkn)->token, 1);
+				
+				(*tkn)->token = ft_check_expands((*tkn)->token, 1, env);
 				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
 			}
 			else
 				(*tkn)->token = ft_delete_squotes((*tkn)->token);
-			(*tkn)->type = 0;
+			if ((*tkn)->type == 2)
+				(*tkn)->type = 0;
 		}
 		(*tkn) = (*tkn)->next;
 	}

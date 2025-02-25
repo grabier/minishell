@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/20 16:34:32 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:08:10 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,17 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 			&& env[i][ft_strlen(var_name)] == '=')
 		{
 			free(env[i]);
-			env[i] = ft_strjoin(var_name, "=");
-			env[i] = ft_strjoin(env[i], other_value);
+			new_value = ft_strjoin(var_name, "=");
+			env[i] = ft_strjoin(new_value, other_value);
 			free(other_value);
+			free(new_value);
 			free(var_name);
 			*changed = 1;
 			return (env);
 		}
 		i++;
 	}
-	free(other_value);
-	free(var_name);
-	return (env);
+	return (free(other_value), free(var_name), env);
 }
 
 char	**ft_insert_no_value(char **env, char *insert)
@@ -125,16 +124,13 @@ char	**ft_insert_no_value(char **env, char *insert)
 	{
 		free(aux);
 		aux = ft_strjoin("++", insert);
-		//printf("aux: %s\n", aux);
 		copy = (char **)malloc((ft_strlen_pointers(env) + 2) * sizeof(char *));
 		while (env[i])
 		{
 			copy[i] = ft_strdup(env[i]);
 			i++;
 		}
-		copy[i] = ft_strdup(aux);
-		//printf("copy[i] : %s\n", copy[i]);
-		i++;
+		copy[i++] = ft_strdup(aux);
 		copy[i] = NULL;
 		ft_free_split_dp(env);
 		free(aux);
@@ -151,12 +147,8 @@ char	**ft_insert_dp(char **env, char *insert)
 	char	*aux;
 	int		changed;
 
-/* 	if (ft_strchr(insert, '=') != NULL)
-		return () */
 	if (!ft_strchr(insert, '='))
-	{
 		return (ft_insert_no_value(env, insert));
-	}
 	i = 0;
 	changed = 0;
 	env = ft_insert_change(env, insert, &changed);
@@ -171,11 +163,9 @@ char	**ft_insert_dp(char **env, char *insert)
 		i++;
 	}
 	copy[i] = ft_strdup(insert);
-	
 	i++;
 	copy[i] = NULL;
 	ft_free_split_dp(env);
-	//print_env(copy);
 	return (copy);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/21 14:17:14 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:27:54 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_execute_cmd(t_cmd *cmd, char **envp[])
 		if (execve(aux, cmd->args, *envp) == -1)
 		{
 			printf("fuck\n");
+			cmd->exit_status = 1;
 			exit(1);
 		}
 	}

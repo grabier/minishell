@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:53:32 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:05:34 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:21:51 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	ft_find_end_dq(char *input)
 	int	i;
 
 	i = 1;
-	while (input[i] != 34)
+	while (input[i] != 34 && input[i])
 		i++;
+	if (input[i] == '\0')
+		return(0);
 	return (i + 1);
 }
 

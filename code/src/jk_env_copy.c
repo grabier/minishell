@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:08:06 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/18 17:28:23 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:25:29 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	print_env(char **env_copy)
 	int	i;
 
 	i = 0;
+	printf("llega a entrar?\n");
 	while (env_copy[i])
 	{
 		if (env_copy[i][0] != '+' && env_copy[i][1] != '+')
