@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:07:37 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 16:51:16 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:24:49 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_tkn	*ft_word_tkn(t_tkn **tkn_lst, char *input, int *i)
 	end = ft_find_end_word(&input[*i]);
 	str = ft_substr(&input[*i], 0, end);
 	tkn = ft_tknnew(str, 0);
+	//free(str);
 	//printf("str: %s\n", str);
 	ft_tknadd_back(tkn_lst, tkn);
 	*i += end;

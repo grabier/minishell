@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:10:38 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:18:34 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_expand(char *input, int start, char **env[])
 	aux = ft_getenv(*env, name);
 	//printf("aux: %s\n", aux);
 	if (!aux)
-		return (printf("sale x aki?\n"), ft_strdup(""));
+		return (free(name), ft_strdup(""));
 	res = ft_strinsert(input, aux, start - 1, i - 1);
 	free(input);
 	free(name);

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:10:52 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:52:51 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ int	ft_get_input(char *envp[])
 		{
 			//printf("sale?\n");
 			cmd_lst = ft_get_commands(tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			//ft_cmdprint(cmd_lst);
+			ft_cmdprint(cmd_lst);
 			if (cmd_lst)
 				ft_exec_commands(cmd_lst, &envp);//nos vamos a ejecucion
 			//printf("sale?\n");
 			//printf("exit: %i\n", cmd_lst->exit_status);
+			unlink(".tempppp");
 			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
 		}
 	}

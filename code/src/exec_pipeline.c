@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 10:42:16 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:51:57 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd)
 		close(p[1]);
 		dup2(p[0], STDIN_FILENO);//dupeamos el stdin en el proceso padre
 		//para que el siguiente comando lea de la pipa
-		if (!ft_strcmp(cmd->next->args[0], "head"))
+		if (cmd->next && !ft_strcmp(cmd->next->args[0], "head"))
 			return (-1);
 		//waitpid(pid, NULL, 0);
 		return (pid);

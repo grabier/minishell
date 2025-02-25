@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:13:03 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:56:06 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 		//printf("i: %i\n", i);
 		//printf("args[%i]: %s\n", i, (*cmd_lst)->args[i]);
 		i++;
-		if ((*tkn)->next  && ((*tkn)->type == 0 || (*tkn)->type == QS))
+		if ((*tkn)->next  && ((*tkn)->next->type == 0 || (*tkn)->next->type == QS))
 			(*tkn) = (*tkn)->next;
 		else
 			break ;
@@ -98,8 +98,9 @@ void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst)
 void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	(*tkn) = (*tkn)->next;
-	if (!(*cmd_lst)->outfile)
+	if (!(*cmd_lst)->infile)
 		(*cmd_lst)->infile = ft_strdup((*tkn)->token);
+	free((*cmd_lst)->infile);
 	(*cmd_lst)->infile = ft_strdup((*tkn)->token);
 	(*cmd_lst)->hd = 1;
 }
