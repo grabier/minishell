@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 12:29:18 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:04:04 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <signal.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # define WORD 0
@@ -29,6 +30,13 @@
 # define R2 5
 # define L1 6
 # define L2 7
+
+typedef struct s_shell
+{
+	t_tkn	*tkn_lst;
+	t_cmd	*cmd_lst;
+	int		exitstat;
+}			t_shell;
 
 typedef struct s_tkn
 {

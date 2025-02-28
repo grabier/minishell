@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 12:29:35 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:00:43 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
 		else if (tkn->type == L1)// < infile
 		{
 			if (!ft_add_infile(&tkn, &new))
-				return (NULL);
+				return (ft_free_cmd_lst(&cmd_lst), ft_free_split(new->args), free(new), NULL);
 		}
 		else if (tkn->type == R1)// > outfile
 			ft_add_outfile(&tkn, &new);

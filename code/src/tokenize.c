@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:10:59 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:04:19 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,9 @@ t_tkn	*ft_tokenize(char *input, char ***env)
 	/* printf("---------before quotes--------\n");
 	ft_tknprint(tkn_lst); */
 	if (!ft_check_words(tkn_lst))
-		return (NULL);
+		return (ft_free_tkn_lst(&tkn_lst), NULL);
 	if (ft_check_syntax(tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
-		return (NULL);
-		
-	
+		return (ft_free_tkn_lst(&tkn_lst), NULL);
 	ft_quotes(&tkn_lst, env);//lidiamos con comillas
 	
 	/* printf("---------after quotes--------\n");

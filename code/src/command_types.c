@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 18:56:06 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:50:09 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst)
 		close(fd);
 		(*cmd_lst)->outfile = ft_strdup((*tkn)->token);
 	}
+	free((*cmd_lst)->outfile);
 	(*cmd_lst)->outfile = ft_strdup((*tkn)->token);
 	(*cmd_lst)->append = 1;
 }
@@ -100,7 +101,10 @@ void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst)
 	(*tkn) = (*tkn)->next;
 	if (!(*cmd_lst)->infile)
 		(*cmd_lst)->infile = ft_strdup((*tkn)->token);
-	free((*cmd_lst)->infile);
-	(*cmd_lst)->infile = ft_strdup((*tkn)->token);
+	else
+	{
+		free((*cmd_lst)->infile);
+		(*cmd_lst)->infile = ft_strdup((*tkn)->token);
+	}
 	(*cmd_lst)->hd = 1;
 }

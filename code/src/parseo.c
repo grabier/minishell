@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 18:52:51 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:55:23 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 #include <string.h>
 #include <ctype.h>
 
+int	signal;
+
 void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt)
 {
+	
 	if (c != NULL)
 		ft_free_cmd_lst(c);
 	ft_free_tkn_lst(t);
@@ -52,12 +55,15 @@ int	ft_get_input(char *envp[])
 		tkn_lst = ft_tokenize(input, &envp);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
 		//ft_tknprint(tkn_lst);
 		if (!tkn_lst)
+		{
+			//printf("sale x aki?\n");
 			ft_free_parse(input, &tkn_lst, NULL, prompt);
+		}
 		else
 		{
 			//printf("sale?\n");
 			cmd_lst = ft_get_commands(tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			ft_cmdprint(cmd_lst);
+			//ft_cmdprint(cmd_lst);
 			if (cmd_lst)
 				ft_exec_commands(cmd_lst, &envp);//nos vamos a ejecucion
 			//printf("sale?\n");

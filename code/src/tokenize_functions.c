@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:07:37 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:24:49 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:09:41 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i)
 	else if (input[*i] == 39)
 	{
 		end = ft_find_end_sq(&input[*i]);
-		printf("i: %i\n", *i);
-		printf("end: %i\n", end);
+		if (!end)
+			return (NULL);
+		/* printf("i: %i\n", *i);
+		printf("end: %i\n", end); */
 		str = ft_substr(input, *i, end);//cambion end por *i+end
-		printf("str: %s\n", str);
+		//printf("str: %s\n", str);
 		tkn = ft_tknnew(str, 1);
 		ft_tknadd_back(tkn_lst, tkn);
 	}
@@ -82,7 +84,7 @@ int	ft_find_end_word(char *input)
 	i = 1;
 	while (input[i] != 34 && input[i] != '<'
 			&& input[i] != '>' && input[i] != '|' && input[i] != ' '
-				&& input[i] != '\0')
+				&& input[i] != '\0' && input[i] != '\'')
 		i++;
 	return (i);
 }

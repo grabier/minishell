@@ -3,6 +3,9 @@
 		"parseo.h": "c",
 		"history.h": "c",
 		"readline.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"string.h": "c",
+		"stdio.h": "c",
+		"wait.h": "c"
 	}
 }

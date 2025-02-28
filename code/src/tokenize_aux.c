@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:53:32 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 16:21:51 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:09:11 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	ft_find_end_sq(char *input)
 	int	i;
 
 	i = 1;
-	while (input[i] != 39)
+	while (input[i] != 39 && input[i])
 		i++;
+	if (!input[i])
+		return (printf("sq end not found\n"), 0);
 	return (i + 1);
 }
 
@@ -40,6 +42,7 @@ void	ft_free_tkn_lst(t_tkn **tkn)
 
 	while (*tkn)
 	{
+		//printf("freed token·\n");
 		aux = (*tkn)->next;
 		free((*tkn)->token);
 		free(*tkn);
