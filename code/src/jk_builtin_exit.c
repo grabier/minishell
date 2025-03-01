@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jk_builtin_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkubecka <jkubecka@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:13:40 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/13 14:39:16 by jkubecka         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:15:31 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,31 @@ int	ft_is_num(char *str)
 	return (1);
 }
 
-void	ft_exit(char **args)
+void	ft_exit(t_shell *ms, char *env[])
 {
 	int	exit_code;
 
 	exit_code = 0;
 	printf("exit\n");
-	if (args[1])
+	if (ms->cmd_lst->args[1])
 	{
-		if (!ft_is_num(args[1]))
+		if (!ft_is_num(ms->cmd_lst->args[1]))
 		{
 			printf("minishell: exit: numeric argument required\n");
+			ft_free_shell(ms);
+			free(ms);
 			exit(255);
 		}
-		exit_code = ft_atoi(args[1]);
+		exit_code = ft_atoi(ms->cmd_lst->args[1]);
 		if (exit_code < 0 || exit_code > 255)
 			exit_code = exit_code % 256;
-		if (args[2])
+		if (ms->cmd_lst->args[2])
 		{
 			printf("minishell: exit: too many arguments\n");
 			return ;
 		}
 	}
+	ft_free_shell(ms);
+	free(ms);
 	exit((unsigned char)exit_code);
 }

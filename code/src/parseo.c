@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 10:55:23 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:42:56 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 #include <string.h>
 #include <ctype.h>
 
-int	signal;
 
-void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt)
+void	ft_free_shell(t_shell *shell)
 {
 	
-	if (c != NULL)
-		ft_free_cmd_lst(c);
-	ft_free_tkn_lst(t);
-	free(input);
+	if (shell->cmd_lst != NULL)
+		ft_free_cmd_lst(&shell->cmd_lst);
+	if (shell->tkn_lst != NULL)
+		ft_free_tkn_lst(&shell->tkn_lst);
+	free(shell->input);
+	//free(shell);
 	//free(prompt);
 }
 
@@ -33,45 +34,50 @@ int	ft_get_input(char *envp[])
 {
 	char	*input;
 	char	*prompt;
-	t_tkn	*tkn_lst;
-	t_cmd	*cmd_lst;
+	t_shell	*ms;
+	//t_tkn	*tkn_lst;
+	//t_cmd	*cmd_lst;
 
-	(void)envp;
-	cmd_lst = NULL;
-	tkn_lst = NULL;
+	//ms = NULL;
+	//ms->input = "hola k paza";
 	//print_env(envp);
+	ms = malloc(sizeof(t_shell));
+	ms->exitstat = 0;
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
 		//prompt = ft_get_prompt("minichell>");
-		input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
-		if (!ft_strcmp(input, "exit"))
+		ms->input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		//printf("exitstatus: %i\n", ms->exitstat);
+		/* if (!ft_strcmp(ms->input, "exit"))
 		{
-			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
+			ft_free_shell(ms);
+			free(ms);
 			unlink(".tempppp");//eliminamos el temporal del here_doc si hay
 			ft_free_split(envp);
 			return (1);
-		}
-		add_history(input);//FALTA: añadir funciones de modificar historial
-		tkn_lst = ft_tokenize(input, &envp);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
+		} */
+		add_history(ms->input);//FALTA: añadir funciones de modificar historial
+		ms->tkn_lst = ft_tokenize(ms, &envp);//devuelve una lista de tokens con un checkeo de sintax previo y comillas limpias(excepto comando)
 		//ft_tknprint(tkn_lst);
-		if (!tkn_lst)
+		if (!ms->tkn_lst)
 		{
 			//printf("sale x aki?\n");
-			ft_free_parse(input, &tkn_lst, NULL, prompt);
+			ft_free_shell(ms);
 		}
 		else
 		{
+			ms->cmd_lst = ft_get_commands(ms->tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
 			//printf("sale?\n");
-			cmd_lst = ft_get_commands(tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
-			//ft_cmdprint(cmd_lst);
-			if (cmd_lst)
-				ft_exec_commands(cmd_lst, &envp);//nos vamos a ejecucion
+			
+			if (ms->cmd_lst)
+				ft_exec_commands(ms, &envp);//nos vamos a ejecucion
 			//printf("sale?\n");
 			//printf("exit: %i\n", cmd_lst->exit_status);
 			unlink(".tempppp");
-			ft_free_parse(input, &tkn_lst, &cmd_lst, prompt);
+			ft_free_shell(ms);
 		}
 	}
+	free(ms);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:18:34 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:21:30 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,13 @@ char	*ft_expand(char *input, int start, char **env[])
 	j = 0;
 	i = start;
 	while (input[i] != 34 && input[i] != ' ' && input[i] && input[i] != '$'
-		&& input[i] != '\'')
-	{
-		i++;
+		&& input[i++] != '\'')
 		j++; 
-	}
 	name = malloc(sizeof(char) * (j + 1));
 	ft_strlcpy(name, &input[start], j + 1);
-	//printf("name %s\n", name);
-	//print_env(*env);
-	//printf("-------------------\n");
 	aux = ft_getenv(*env, name);
-	//printf("aux: %s\n", aux);
 	if (!aux)
-		return (free(name), ft_strdup(""));
+		return (free(name), NULL);
 	res = ft_strinsert(input, aux, start - 1, i - 1);
 	free(input);
 	free(name);
@@ -83,14 +76,14 @@ char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 			//printf("mode: %i\n",mode);
 			while (input[i] != '$' && input[i] != 34 && input[i])
 				i++;
-			if (input[i] == '$')
+			if (input[i] == '$' && input[i + 1] != ' ' && input[i + 1] != '\"' && input[i + 1])
 			{
 				//printf("entra?\n");
 				free(res);
 				//printf("input: %s\n", input);
 				res = ft_expand(input, i + 1, env);
 				if (!res)
-				return (NULL);
+					return (input);
 				input = ft_strdup(res);
 				if (ft_strchr(input, '$'))
 					i = -1;

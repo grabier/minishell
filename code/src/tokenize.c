@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/27 19:04:19 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:11:57 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,22 +115,22 @@ int	ft_check_words(t_tkn *tkn)
 	return (cont);
 }
 
-t_tkn	*ft_tokenize(char *input, char ***env)
+t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 {
 	t_tkn	*tkn_lst;
 
-	if (!input || input[0] == 0)
+	if (!ms->input || ms->input[0] == 0)
 		return (NULL);
-	tkn_lst = ft_get_tokens(input);//transformamos el input en lista de tokens
-	/* printf("---------before quotes--------\n");
-	ft_tknprint(tkn_lst); */
-	if (!ft_check_words(tkn_lst))
-		return (ft_free_tkn_lst(&tkn_lst), NULL);
-	if (ft_check_syntax(tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
-		return (ft_free_tkn_lst(&tkn_lst), NULL);
-	ft_quotes(&tkn_lst, env);//lidiamos con comillas
+	ms->tkn_lst = ft_get_tokens(ms->input);//transformamos el input en lista de tokens
+	printf("---------before quotes--------\n");
+	ft_tknprint(ms->tkn_lst);
+	if (!ft_check_words(ms->tkn_lst))
+		return (ft_free_tkn_lst(&ms->tkn_lst), NULL);
+	if (ft_check_syntax(ms->tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
+		return (ft_free_tkn_lst(&ms->tkn_lst), NULL);
+	ft_quotes(&ms->tkn_lst, env);//lidiamos con comillas
 	
-	/* printf("---------after quotes--------\n");
-	ft_tknprint(tkn_lst); */
-	return (tkn_lst);
+	printf("---------after quotes--------\n");
+	ft_tknprint(ms->tkn_lst);
+	return (ms->tkn_lst);
 }

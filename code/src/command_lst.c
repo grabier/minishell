@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/27 19:00:43 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:57:42 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
 	t_cmd	*new;
 	t_cmd	*cmd_lst;
 	
+	//printf("entra?\n");
 	cmd_lst = NULL;
 	new = ft_cmdnew();
 	while (tkn)
@@ -97,5 +98,8 @@ t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
 			ft_add_here_doc(&tkn, &new);
 		tkn = tkn->next;
 		}
-	return (ft_cmdadd_back(&cmd_lst, new), cmd_lst);
+	//printf("sale?\n");
+	ft_cmdadd_back(&cmd_lst, new);
+	//ft_cmdprint(cmd_lst);
+	return (cmd_lst);
 }

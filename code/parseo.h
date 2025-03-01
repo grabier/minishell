@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 11:04:04 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:15:50 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <signal.h>
+# include <sys/types.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # define WORD 0
@@ -31,12 +32,6 @@
 # define L1 6
 # define L2 7
 
-typedef struct s_shell
-{
-	t_tkn	*tkn_lst;
-	t_cmd	*cmd_lst;
-	int		exitstat;
-}			t_shell;
 
 typedef struct s_tkn
 {
@@ -58,9 +53,17 @@ typedef struct s_cmd
 	struct	s_cmd	*next;
 }			t_cmd;
 
+typedef struct s_shell
+{
+	char	*input;
+	t_tkn	*tkn_lst;
+	t_cmd	*cmd_lst;
+	int		exitstat;
+}			t_shell;
+
 //parseo.c
 int		ft_get_input(char *envp[]);
-void	ft_free_parse(char *input, t_tkn **t, t_cmd **c, char *prompt);
+void	ft_free_shell(t_shell *shell);
 
 //expand_quotes.c
 int		ft_check_quotes(char *input);
@@ -87,7 +90,7 @@ void	ft_tknprint(t_tkn *lst);
 int		ft_tknsize(t_tkn *lst);
 
 //tokenize.c
-t_tkn	*ft_tokenize(char *input, char ***env);
+t_tkn	*ft_tokenize(t_shell *ms, char ***env);
 int		ft_check_syntax(t_tkn *tokens);
 int		ft_find_end_word(char *input);
 
@@ -129,20 +132,20 @@ char	*aux_find_path(char *cmd, char *envp[], char *res, int i);
 char	*ft_find_path(char *cmd, char *envp[]);
 
 //execute.c
-void	ft_exec_commands(t_cmd *cmd_lst, char **envp[]);
-int		ft_execute_cmd(t_cmd *cmd, char **envp[]);
+void	ft_exec_commands(t_shell *ms, char **envp[]);
+int		ft_execute_cmd(t_shell *ms, char **envp[]);
 
 //ex_single_cmd.c
-void	ft_exec_single_cmd(t_cmd *cmd, char **envp[]);
+void	ft_exec_single_cmd(t_shell *ms, char **envp[]);
 int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin);
 
 //exec_pipeline.c
-void	ft_exec_pipeline(t_cmd *cmd, char **envp[]);
-int		ft_exec_middle_cmd(t_cmd *cmd, char **envp[], int i_fd, int o_fd);
-int		ft_exec_last_cmd(t_cmd *cmd, char **envp[], int saved_stdin);
+void	ft_exec_pipeline(t_shell *ms, char **envp[]);
+int		ft_exec_middle_cmd(t_shell *ms, char **envp[], int i_fd, int o_fd);
+int		ft_exec_last_cmd(t_shell *ms, char **envp[], int saved_stdin);
 
 //built-ins.c
-void	ft_exec_built_in(t_cmd *cmd, char **envp[]);
+void	ft_exec_built_in(t_shell *ms, char **envp[]);
 
 //builtin-env.c
 char	**ft_unset(char **env_copy, char *str);
@@ -152,7 +155,7 @@ char	**ft_insert_dp(char **env, char *insert);
 
 //builtin-exit.c
 int		ft_is_num(char *str);
-void	ft_exit(char **args);
+void	ft_exit(t_shell *ms, char *env[]);
 
 //builtin-env-cpy.c
 int		ft_strlen_pointers(char *env[]);

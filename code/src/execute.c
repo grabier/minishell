@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 16:27:54 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:29:28 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,43 @@ char	*ft_trim_path(char *s)
 }
 
 //hay que ejecutar los built ins por separado
-int	ft_execute_cmd(t_cmd *cmd, char **envp[])
+int	ft_execute_cmd(t_shell *ms, char **envp[])
 {
-	//printf("args[0] : %s\n", cmd->args[0]);
-	if (!access(cmd->args[0], X_OK) )//gestionamos si nos entra la ruta del comando
+	//printf("args[0] : %s\n", ms->cmd_lst->args[0]);
+	if (!access(ms->cmd_lst->args[0], X_OK) )//gestionamos si nos entra la ruta del comando
 	{//echo ->>>> /usr/bin/echo
 		//printf("entra\n");
-		char *aux = ft_strdup(cmd->args[0]);
-		cmd->args[0] = ft_trim_path(cmd->args[0]);
-		if (execve(aux, cmd->args, *envp) == -1)
+		char *aux = ft_strdup(ms->cmd_lst->args[0]);
+		ms->cmd_lst->args[0] = ft_trim_path(ms->cmd_lst->args[0]);
+		if (execve(aux, ms->cmd_lst->args, *envp) == -1)
 		{
-			printf("fuck\n");
-			cmd->exit_status = 1;
-			exit(1);
+			printf("fuck 1\n");
+			//ms->exitstat = 1;
+			exit(127);
 		}
 	}
-	if (execve(ft_find_path(cmd->args[0], *envp), cmd->args, *envp) == -1)
-		exit(1);
+	if (execve(ft_find_path(ms->cmd_lst->args[0], *envp), ms->cmd_lst->args, *envp) == -1)
+	{
+		printf("fuck 2\n");
+		//ms->exitstat = 1;
+		exit(127);
+	}
 	return (0);
 }
 
-void	ft_exec_commands(t_cmd *cmd_lst, char **envp[])
+void	ft_exec_commands(t_shell *ms, char **envp[])
 {
 	int	i_fd;
 	int	o_fd;
 	//printf("llega\n");
-	if (!cmd_lst->next)//las redirecciones son distintas si no hay pipas
+	//ft_cmdprint(ms->cmd_lst);
+	if (!ms->cmd_lst->next)//las redirecciones son distintas si no hay pipas
 	{
-		if (cmd_lst->is_bi)//los builtins tienen que ir por separado
-			ft_exec_built_in(cmd_lst, envp);//ya que no deben ir en un fork
+		if (ms->cmd_lst->is_bi)//los builtins tienen que ir por separado
+			ft_exec_built_in(ms, envp);//ya que no deben ir en un fork
 		else
-			ft_exec_single_cmd(cmd_lst, envp);
+			ft_exec_single_cmd(ms, envp);
 	}
 	else
-		ft_exec_pipeline(cmd_lst, envp);
+		ft_exec_pipeline(ms, envp);
 }

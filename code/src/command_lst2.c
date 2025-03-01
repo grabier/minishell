@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/27 18:57:39 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:57:05 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_free_cmd_lst(t_cmd **cmd)
 	t_cmd *aux;
 
 	//printf("entra?\n");
+	//ft_cmdprint(*cmd);
 	if (!*cmd)
 		return ;
 	while (*cmd)

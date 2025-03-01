@@ -6,33 +6,33 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:59 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 10:52:19 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:16:23 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 
-void	ft_exec_built_in(t_cmd *cmd, char **envp[])
+void	ft_exec_built_in(t_shell *ms, char **envp[])
 {
-	if (!ft_strcmp(cmd->args[0], "env"))
+	if (!ft_strcmp(ms->cmd_lst->args[0], "env"))
 		print_env(*envp);
-	else if (!ft_strcmp(cmd->args[0], "export"))
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "export"))
 	{
-		if (cmd->args[1])
-			*envp = ft_insert_dp(*envp, cmd->args[1]);
+		if (ms->cmd_lst->args[1])
+			*envp = ft_insert_dp(*envp, ms->cmd_lst->args[1]);
 		else
 			print_env_export(*envp);
 	}
-	else if (!ft_strcmp(cmd->args[0], "unset"))
-		*envp = ft_unset(*envp, cmd->args[1]);
-	else if (!ft_strcmp(cmd->args[0], "cd"))
-		ft_cd(envp, cmd);
-	else if (!ft_strcmp(cmd->args[0], "pwd"))
-		ft_pwd(envp, cmd);
-	else if (!ft_strcmp(cmd->args[0], "echo"))
-		ft_echo(cmd);
-	else if (!ft_strcmp(cmd->args[0], "exit"))
-		ft_exit(cmd->args);
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "unset"))
+		*envp = ft_unset(*envp, ms->cmd_lst->args[1]);
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "cd"))
+		ft_cd(envp, ms->cmd_lst);
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "pwd"))
+		ft_pwd(envp, ms->cmd_lst);
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "echo"))
+		ft_echo(ms->cmd_lst);
+	else if (!ft_strcmp(ms->cmd_lst->args[0], "exit"))
+		ft_exit(ms, *envp);
 	else
 		return ;
 	}

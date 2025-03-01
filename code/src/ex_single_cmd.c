@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/24 10:41:19 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:38:43 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 	return (fd);
 }
 
-void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
+void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 {
 	pid_t	pid;
 	int		i_fd;
@@ -53,8 +53,8 @@ void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 
 	
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
-	i_fd = ft_open_n_redir(cmd, 0, saved_stdin);//en la funcion open_n_redir, asi que hay que
-	o_fd = ft_open_n_redir(cmd, 1, 0);//guardar una copia del STDIN para devolverlo
+	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);//en la funcion open_n_redir, asi que hay que
+	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0);//guardar una copia del STDIN para devolverlo
 	if (i_fd < 0 || o_fd < 0)
 		return ;
 	pid = fork();
@@ -62,11 +62,15 @@ void	ft_exec_single_cmd(t_cmd *cmd, char **envp[])
 	{
 		//o_fd = ft_open_n_redir_out(cmd, 1);
 		dup2(o_fd, STDOUT_FILENO);//los dups realizados en procesos hijos
-		if (!cmd->is_bi)
-			ft_execute_cmd(cmd, envp);//no afectan al proceso padre
+		if (!ms->cmd_lst->is_bi)
+			ft_execute_cmd(ms, envp);//no afectan al proceso padre
 	}
 	else
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &ms->exitstat, 0);
+	if (WIFEXITED(ms->exitstat))
+		ms->exitstat = WEXITSTATUS(ms->exitstat);  // Extraer correctamente el exit status
+	else if (WIFSIGNALED(ms->exitstat))
+		ms->exitstat = 128 + WTERMSIG(ms->exitstat);
 	if (i_fd != 0)
 		close(i_fd);
 	if (o_fd != 1)
