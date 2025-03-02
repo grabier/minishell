@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:53:32 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/27 19:09:11 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:27:49 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_free_tkn_lst(t_tkn **tkn)
 
 	while (*tkn)
 	{
-		//printf("freed token·\n");
 		aux = (*tkn)->next;
+		//printf("freed token %s\n", (*tkn)->token);
 		free((*tkn)->token);
 		free(*tkn);
 		*tkn = aux;

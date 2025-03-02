@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/27 17:50:09 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:37:39 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 	{
 		if (i == 0)
 			((*tkn)->token) = ft_delete_squotes(((*tkn)->token));
-		if ((*tkn)->token[0] == '$' && (*tkn)->type != QS)
+		if (ft_strchr((*tkn)->token, '$') && (*tkn)->type != QS)
 			((*tkn)->token) = ft_check_expands((*tkn)->token,  0, env);
 		(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
 		//printf("i: %i\n", i);

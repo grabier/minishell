@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/01 14:21:30 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/02 19:36:01 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,33 @@ char	*ft_expand(char *input, int start, char **env[])
 	ft_strlcpy(name, &input[start], j + 1);
 	aux = ft_getenv(*env, name);
 	if (!aux)
-		return (free(name), NULL);
+		return (free(name),free(aux), NULL);
 	res = ft_strinsert(input, aux, start - 1, i - 1);
 	free(input);
 	free(name);
 	free(aux);
+	return (res);
+}
+
+static char	*ft_copy_to_dollar(char *input)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	while (input[i] && input[i] != '$')
+		i++;
+	if (i == 0)
+		return (free(input), NULL);
+	res = malloc(i + 1);
+	i = 0;
+	while (input[i] && input[i] != '$')
+	{
+		res[i] = input[i];
+		i++;
+	}
+	res[i] = '\0';
+	free(input);
 	return (res);
 }
 
@@ -67,6 +89,7 @@ char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 
 	i = 0;
 	res = NULL;
+	printf("entra?\n");
 	while (input[i] && i >= 0)
 	{
 		if ((input[i] == 34 && input[i + 1] != '\0') || mode == 0)//34 es doble
@@ -80,10 +103,11 @@ char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 			{
 				//printf("entra?\n");
 				free(res);
-				//printf("input: %s\n", input);
+				printf("input: %s\n", input);
 				res = ft_expand(input, i + 1, env);
+				printf("res: %s\n", res);
 				if (!res)
-					return (input);
+					return (ft_copy_to_dollar(input));
 				input = ft_strdup(res);
 				if (ft_strchr(input, '$'))
 					i = -1;
