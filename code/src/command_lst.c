@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 11:57:42 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:36:00 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		ft_isbuiltin(char *str)
 //transformamos la lista de tokens en una lista enlazada de comandos
 //un comando sera todo aquello separado por el token pipa |
 //aqui asignamos ya los archivos y el tipo de redireccion necesaria
-t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
+t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[])
 {
 	t_cmd	*new;
 	t_cmd	*cmd_lst;
@@ -84,7 +84,7 @@ t_cmd	*ft_get_commands(t_tkn *tkn, char **env[])
 			new = ft_cmdnew();
 		}
 		else if (tkn->type == WORD || tkn->type == QS)// word
-			ft_add_cmd(&tkn, &new, env);
+			ft_add_cmd(ms, &tkn, &new, env);
 		else if (tkn->type == L1)// < infile
 		{
 			if (!ft_add_infile(&tkn, &new))

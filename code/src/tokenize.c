@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/04 20:22:46 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:24:12 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_check_syntax(t_shell *ms)
 			if (!prev || prev->type > 2 || !ms->tkn_lst->next)
 			{
 				ms->tkn_lst = head;
-				return (printf("Error: Syntax near '|'\n"), 1);
+				return (printf("Error: Syntax near '|'\n"), 2);
 			}
 		}
 		if (ms->tkn_lst->type == R1 || ms->tkn_lst->type == R2 ||
@@ -58,13 +58,13 @@ int	ft_check_syntax(t_shell *ms)
 			if (!ms->tkn_lst->next || ms->tkn_lst->next->type > 2)
 			{
 				ms->tkn_lst = head;
-				return (printf("Error: Missing file for redirection\n"), 1);
+				return (printf("Error: Missing file for redirection\n"), 2);
 			}
 		}
 		if ((ms->tkn_lst->type == WORD || ms->tkn_lst->type == QS || ms->tkn_lst->type == QD) && !ms->tkn_lst->token)
 		{
 			ms->tkn_lst = head;
-			return (printf("Error: Empty token\n"), 1);
+			return (printf("Error: Empty token\n"), 2);
 		}
 		prev = ms->tkn_lst;
 		ms->tkn_lst = ms->tkn_lst->next;
@@ -129,6 +129,7 @@ int	ft_check_words(t_tkn *tkn)
 t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 {
 	t_tkn	*tkn_lst;
+	int		exit;
 
 	if (!ms->input || ms->input[0] == 0)
 		return (NULL);
@@ -137,11 +138,14 @@ t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 	//ft_tknprint(ms->tkn_lst);
 	if (!ft_check_words(ms->tkn_lst))
 		return (ft_free_tkn_lst(&ms->tkn_lst),  NULL);
-	ms->exitstat = ft_check_syntax(ms);
-	if (ms->exitstat != 0)//checkeamos el orden de los tokens para sintaxis
+	exit = ft_check_syntax(ms);
+	if (exit != 0)
+	{
+		ms->exitstat = exit;
 		return (ft_free_tkn_lst(&ms->tkn_lst), NULL);
-	ft_quotes(&ms->tkn_lst, env);//lidiamos con comillas
-	
+	}
+	ft_quotes(ms, &ms->tkn_lst, env);//lidiamos con comillas
+	ms->exitstat = exit;
 	/* printf("---------after quotes--------\n");
 	ft_tknprint(ms->tkn_lst); */
 	return (ms->tkn_lst);

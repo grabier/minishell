@@ -6,13 +6,13 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/02 19:37:39 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:37:51 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 //agrega un nuevo argumento al comand o redireccion
-void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst, char **env[])
+void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 {
 	int	i;
 
@@ -23,7 +23,7 @@ void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 		if (i == 0)
 			((*tkn)->token) = ft_delete_squotes(((*tkn)->token));
 		if (ft_strchr((*tkn)->token, '$') && (*tkn)->type != QS)
-			((*tkn)->token) = ft_check_expands((*tkn)->token,  0, env);
+			((*tkn)->token) = ft_check_expands(ms, (*tkn)->token,  0, env);
 		(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
 		//printf("i: %i\n", i);
 		//printf("args[%i]: %s\n", i, (*cmd_lst)->args[i]);

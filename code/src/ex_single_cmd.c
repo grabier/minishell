@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 12:38:43 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:22:20 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 	return (fd);
 }
 
+
+static void	ft_handle_c_fork(int sig)
+{
+	(void)sig;
+	printf("\n");
+	rl_redisplay();
+	rl_replace_line("", 0);
+}
+
 void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 {
 	pid_t	pid;
@@ -61,12 +70,17 @@ void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 	if (pid == 0)//dupeamos la salida out en el hijo para no tener que preocuparnos
 	{
 		//o_fd = ft_open_n_redir_out(cmd, 1);
+		signal(SIGINT, SIG_DFL);
 		dup2(o_fd, STDOUT_FILENO);//los dups realizados en procesos hijos
 		if (!ms->cmd_lst->is_bi)
 			ft_execute_cmd(ms, envp);//no afectan al proceso padre
 	}
 	else
+	{
+		if (pid == -1)
+			signal(SIGINT, ft_handle_c_fork);
 		waitpid(pid, &ms->exitstat, 0);
+	}
 	if (WIFEXITED(ms->exitstat))
 		ms->exitstat = WEXITSTATUS(ms->exitstat);  // Extraer correctamente el exit status
 	else if (WIFSIGNALED(ms->exitstat))

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 11:08:00 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:12:56 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 	}
 	else
 	{
-		
 		printf("entra aki?\n");
 		ft_exec_pipeline(ms, envp);
 	}

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 10:53:24 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:17:37 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_shell
 	t_tkn	*tkn_lst;
 	t_cmd	*cmd_lst;
 	int		exitstat;
+	int		prevexitstat;
 }			t_shell;
 
 //parseo.c
@@ -69,10 +70,10 @@ void	ft_free_shell(t_shell *shell);
 
 //expand_quotes.c
 int		ft_check_quotes(char *input);
-char	*ft_expand(char *input, int start, char **env[]);
-char	*ft_check_expands(char *input, int mode, char **env[]);
+char	*ft_expand(t_shell *ms, char *input, int start, char **env[]);
+char	*ft_check_expands(t_shell *ms, char *input, int mode, char **env[]);
 //char	*ft_do_quotes(char *input);
-void	ft_quotes(t_tkn **tkn, char **env[]);
+void	ft_quotes(t_shell *ms, t_tkn **tkn, char **env[]);
 
 //delete_quotes.c
 char	*ft_delete_squotes(char *input);
@@ -109,7 +110,7 @@ int		ft_find_end_sq(char *input);
 
 //command_lst.c
 int		ft_count_args(t_tkn	*tkn);
-t_cmd	*ft_get_commands(t_tkn *tkn, char **env[]);
+t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[]);
 int		ft_isbuiltin(char *str);
 t_cmd	*ft_cmdnew();
 
@@ -121,7 +122,7 @@ int		ft_cmdsize(t_cmd *lst);
 void	ft_free_cmd_lst(t_cmd **cmd);
 
 //command_types.c
-void	ft_add_cmd(t_tkn **tkn, t_cmd **cmd_lst, char **env[]);
+void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[]);
 char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst);

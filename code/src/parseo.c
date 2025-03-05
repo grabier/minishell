@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 14:46:25 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:21:57 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
 
 void	ft_free_shell(t_shell *shell)
 {
@@ -66,7 +65,9 @@ int	ft_get_input(char *envp[])
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
 		//ms->prompt = ft_get_prompt(envp);
+		ms->prevexitstat = ms->exitstat;
 		signal(SIGINT, ft_handle_c);
+		//printf("exit antes: %i\n", ms->exitstat);
 		ms->input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		//printf("exitstatus: %i\n", ms->exitstat);
 		/* if (!ft_strcmp(ms->input, "exit"))
@@ -88,7 +89,7 @@ int	ft_get_input(char *envp[])
 		}
 		else
 		{
-			ms->cmd_lst = ft_get_commands(ms->tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
+			ms->cmd_lst = ft_get_commands(ms, ms->tkn_lst, &envp);//devuelve una lista con los comandos a ejecutar y las redirs necesarias
 			//printf("sale?\n");
 			//ft_cmdprint(ms->cmd_lst);
 			if (ms->cmd_lst)

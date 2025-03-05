@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/02 19:36:01 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:36:54 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ int	ft_check_quotes(char *input)
 	return (1);
 }
 
-char	*ft_expand(char *input, int start, char **env[])
+char	*ft_expand_exit(t_shell *ms, char *input, int start)
+{
+	char	*aux;
+	int		i;
+
+	//printf("itoa: %i\n", ms->exitstat);
+	aux = ft_itoa(ms->prevexitstat);
+	free(input);
+	return (aux);
+}
+
+char	*ft_expand(t_shell *ms, char *input, int start, char **env[])
 {
 	int		i;
 	int		j;
@@ -45,6 +56,9 @@ char	*ft_expand(char *input, int start, char **env[])
 
 	j = 0;
 	i = start;
+	//printf("input: %s\n", input);
+	if (input[1] == '?')
+		return (ft_expand_exit(ms, input, start));
 	while (input[i] != 34 && input[i] != ' ' && input[i] && input[i] != '$'
 		&& input[i++] != '\'')
 		j++; 
@@ -82,14 +96,14 @@ static char	*ft_copy_to_dollar(char *input)
 	return (res);
 }
 
-char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
+char	*ft_check_expands(t_shell *ms,char *input, int mode, char **env[])//input = "'$HOME'"
 {
 	int	i;
 	char	*res;
 
 	i = 0;
 	res = NULL;
-	printf("entra?\n");
+	//printf("entra?\n");
 	while (input[i] && i >= 0)
 	{
 		if ((input[i] == 34 && input[i + 1] != '\0') || mode == 0)//34 es doble
@@ -103,9 +117,9 @@ char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 			{
 				//printf("entra?\n");
 				free(res);
-				printf("input: %s\n", input);
-				res = ft_expand(input, i + 1, env);
-				printf("res: %s\n", res);
+				//printf("input: %s\n", input);
+				res = ft_expand(ms, input, i + 1, env);
+				//printf("res: %s\n", res);
 				if (!res)
 					return (ft_copy_to_dollar(input));
 				input = ft_strdup(res);
@@ -137,7 +151,7 @@ char	*ft_check_expands(char *input, int mode, char **env[])//input = "'$HOME'"
 	return (res);
 } */
 
-void	ft_quotes(t_tkn **tkn, char **env[])
+void	ft_quotes(t_shell *ms, t_tkn **tkn, char **env[])
 {
 	t_tkn	*first;
 
@@ -150,7 +164,7 @@ void	ft_quotes(t_tkn **tkn, char **env[])
 			if ((*tkn)->type == QD)
 			{
 				
-				(*tkn)->token = ft_check_expands((*tkn)->token, 1, env);
+				(*tkn)->token = ft_check_expands(ms, (*tkn)->token, 1, env);
 				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
 			}
 			else
