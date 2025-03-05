@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 13:15:50 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:53:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_cmd
 typedef struct s_shell
 {
 	char	*input;
+	char	*prompt;
 	t_tkn	*tkn_lst;
 	t_cmd	*cmd_lst;
 	int		exitstat;
@@ -63,6 +64,7 @@ typedef struct s_shell
 
 //parseo.c
 int		ft_get_input(char *envp[]);
+t_shell	*ft_init_shell(void);
 void	ft_free_shell(t_shell *shell);
 
 //expand_quotes.c
@@ -91,7 +93,7 @@ int		ft_tknsize(t_tkn *lst);
 
 //tokenize.c
 t_tkn	*ft_tokenize(t_shell *ms, char ***env);
-int		ft_check_syntax(t_tkn *tokens);
+int		ft_check_syntax(t_shell *ms);
 int		ft_find_end_word(char *input);
 
 //tokenize_functions.c
@@ -168,6 +170,11 @@ int		ft_here_doc(char *limit);
 
 //get_prompt.c
 char	*ft_get_prompt(char **env);
+char	*ft_trim_pwd(void);
+char	*ft_trim_session_manager(char *s);
+char	*ft_get_session_manager(char **env);
+char	*ft_get_user(char **env);
+//char	*ft_trim_before_home(void);
 
 //built_in_cd.c
 int		ft_cd(char ***env, t_cmd *cmd);

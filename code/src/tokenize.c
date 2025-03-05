@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/02 19:27:42 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:22:46 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,42 @@ int ft_check_redirections(t_tkn *tokens)
 }
 
 //checkeamos la sintaxis de los tokens: no puede haber dos pipas ni redirs seguidas, 
-int	ft_check_syntax(t_tkn *tokens)
+int	ft_check_syntax(t_shell *ms)
 {
 	t_tkn *prev = NULL;
+	t_tkn *head = ms->tkn_lst;
 
-	if (!ft_check_redirections(tokens))
+	if (!ft_check_redirections(ms->tkn_lst))
 		return (1);
-	while (tokens)
+	while (ms->tkn_lst)
 	{
-		if (tokens->type == PI)
+		if (ms->tkn_lst->type == PI)
 		{
-			if (!prev || prev->type > 2 || !tokens->next)
+			if (!prev || prev->type > 2 || !ms->tkn_lst->next)
+			{
+				ms->tkn_lst = head;
 				return (printf("Error: Syntax near '|'\n"), 1);
+			}
 		}
-		if (tokens->type == R1 || tokens->type == R2 ||
-			tokens->type == L1 || tokens->type == L2)
+		if (ms->tkn_lst->type == R1 || ms->tkn_lst->type == R2 ||
+			ms->tkn_lst->type == L1 || ms->tkn_lst->type == L2)
 		{
-			if (!tokens->next || tokens->next->type > 2) 
+			if (!ms->tkn_lst->next || ms->tkn_lst->next->type > 2)
+			{
+				ms->tkn_lst = head;
 				return (printf("Error: Missing file for redirection\n"), 1);
+			}
 		}
-		if ((tokens->type == WORD || tokens->type == QS || tokens->type == QD) && !tokens->token)
+		if ((ms->tkn_lst->type == WORD || ms->tkn_lst->type == QS || ms->tkn_lst->type == QD) && !ms->tkn_lst->token)
+		{
+			ms->tkn_lst = head;
 			return (printf("Error: Empty token\n"), 1);
-		prev = tokens;
-		tokens = tokens->next;
+		}
+		prev = ms->tkn_lst;
+		ms->tkn_lst = ms->tkn_lst->next;
 	}
-	return 0; // No errores
+	ms->tkn_lst = head;
+	return (0);
 }
 
 //transformamos el input en una lista enlazada de tokens
@@ -122,12 +133,13 @@ t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 	if (!ms->input || ms->input[0] == 0)
 		return (NULL);
 	ms->tkn_lst = ft_get_tokens(ms->input);//transformamos el input en lista de tokens
-	/* printf("---------before quotes--------\n");
-	ft_tknprint(ms->tkn_lst); */
+	//printf("---------before quotes--------\n");
+	//ft_tknprint(ms->tkn_lst);
 	if (!ft_check_words(ms->tkn_lst))
 		return (ft_free_tkn_lst(&ms->tkn_lst),  NULL);
-	if (ft_check_syntax(ms->tkn_lst) != 0)//checkeamos el orden de los tokens para sintaxis
-		return (ft_free_tkn_lst(&ms->tkn_lst), printf("sale x aki?\n"), NULL);
+	ms->exitstat = ft_check_syntax(ms);
+	if (ms->exitstat != 0)//checkeamos el orden de los tokens para sintaxis
+		return (ft_free_tkn_lst(&ms->tkn_lst), NULL);
 	ft_quotes(&ms->tkn_lst, env);//lidiamos con comillas
 	
 	/* printf("---------after quotes--------\n");

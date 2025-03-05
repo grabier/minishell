@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:21:12 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/25 12:39:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/02 20:14:08 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_cd(char ***env, t_cmd *cmd)
 	char	*aux;
 	char	*aux2;
 
-	if (cmd->args[1] == NULL)
+	if (cmd->args[1] == NULL || !ft_strcmp(cmd->args[1], "~"))
 	{
 		aux = ft_getenv(*env, "HOME");
 		if (!ft_cd_normal(env, aux))
@@ -124,10 +124,7 @@ int	ft_cd(char ***env, t_cmd *cmd)
 		if (!ft_cd_minus(env, cmd))
 			return (0);
 	}
-	else
-	{
-		if (!ft_cd_normal(env, cmd->args[1]))
+	else if (!ft_cd_normal(env, cmd->args[1]))
 			return (0);
-	}
 	return (1);
 }

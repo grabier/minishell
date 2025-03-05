@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/28 19:23:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:14:29 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 	i = 0;
 	var_name = ft_get_var_name(insert);
 	value = ft_strchr(insert, '=') + 1;
-	new_value = ft_strjoin("\"", value);
-	other_value = ft_strjoin(new_value, "\"");
-	free(new_value);
+	/* new_value = ft_strjoin("\"", value);
+	other_value = ft_strjoin(new_value, "\""); */
+	//free(new_value);
 	while (env[i])
 	{
 		if (!ft_strncmp(env[i], var_name, ft_strlen(var_name))
@@ -99,8 +99,8 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 		{
 			free(env[i]);
 			new_value = ft_strjoin(var_name, "=");
-			env[i] = ft_strjoin(new_value, other_value);
-			free(other_value);
+			env[i] = ft_strjoin(new_value, value);
+			//free(other_value);
 			free(new_value);
 			free(var_name);
 			*changed = 1;
@@ -108,7 +108,7 @@ char	**ft_insert_change(char **env, char *insert, int *changed)
 		}
 		i++;
 	}
-	return (free(other_value), free(var_name), env);
+	return (free(var_name), env);
 }
 
 char	**ft_insert_no_value(char **env, char *insert)

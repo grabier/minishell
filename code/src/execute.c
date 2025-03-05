@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 13:29:28 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:08:00 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,33 @@ char	*ft_trim_path(char *s)
 	return (res);
 }
 
+void	ft_add_shlvl(char **env[])
+{
+	int	lv;
+	char	*aux;
+	char	*aux2;
+
+	printf("entra?\n");
+	lv = ft_atoi(ft_getenv(*env, "SHLVL"));
+	lv++;
+	aux = ft_strjoin("SHLVL", "=");
+	aux2 = ft_strjoin(aux, ft_itoa(lv));
+	ft_insert_dp(*env, aux2);
+	free(aux);
+	free(aux2);
+}
+
 //hay que ejecutar los built ins por separado
 int	ft_execute_cmd(t_shell *ms, char **envp[])
 {
 	//printf("args[0] : %s\n", ms->cmd_lst->args[0]);
 	if (!access(ms->cmd_lst->args[0], X_OK) )//gestionamos si nos entra la ruta del comando
 	{//echo ->>>> /usr/bin/echo
-		//printf("entra\n");
+		//printf("entra1\n");
 		char *aux = ft_strdup(ms->cmd_lst->args[0]);
 		ms->cmd_lst->args[0] = ft_trim_path(ms->cmd_lst->args[0]);
+		if (!ft_strcmp(ms->cmd_lst->args[0], "minishell"))
+			ft_add_shlvl(envp);
 		if (execve(aux, ms->cmd_lst->args, *envp) == -1)
 		{
 			printf("fuck 1\n");
@@ -67,7 +85,6 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 {
 	int	i_fd;
 	int	o_fd;
-	//printf("llega\n");
 	//ft_cmdprint(ms->cmd_lst);
 	if (!ms->cmd_lst->next)//las redirecciones son distintas si no hay pipas
 	{
@@ -77,5 +94,9 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 			ft_exec_single_cmd(ms, envp);
 	}
 	else
+	{
+		
+		printf("entra aki?\n");
 		ft_exec_pipeline(ms, envp);
+	}
 }

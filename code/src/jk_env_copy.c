@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:08:06 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/25 12:25:29 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:36:56 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,26 @@ char	*ft_strdup_jk(char *str) //para copiar las lineas de cada variables de env
 	return (dup);
 }
 
+static char **ft_hardcode_env(void)
+{
+	char	**copy;
+
+	copy = (char **)malloc((2) * sizeof(char *));
+	copy[0] = ft_strdup("SHLVL=0");
+	//copy[1] = ft_strdup("_=/usr/bin/env");
+	copy[1] = NULL;
+	return (copy);
+}
+
 char	**ft_copy_dp(char **env) //para copiar solo el primero puntero con las lineas
 {
 	char	**copy;
 	int		i;
 
 	i = 0;
-	copy = (char **)malloc((ft_strlen_pointers(env) + 2) * sizeof(char *));
+	if (!env[i])
+		return (ft_hardcode_env());
+	copy = (char **)malloc((ft_strlen_pointers(env) + 1) * sizeof(char *));
 	if (!copy)
 		return (NULL);
 	while (env[i])
@@ -58,8 +71,6 @@ char	**ft_copy_dp(char **env) //para copiar solo el primero puntero con las line
 		copy[i] = ft_strdup(env[i]);
 		i++;
 	}
-	copy[i] = ft_strdup("_=/usr/bin/env");
-	i++;
 	copy[i] = NULL;
 	return (copy);
 }
@@ -69,13 +80,14 @@ void	print_env(char **env_copy)
 	int	i;
 
 	i = 0;
-	printf("llega a entrar?\n");
+	//printf("llega a entrar?\n");
 	while (env_copy[i])
 	{
 		if (env_copy[i][0] != '+' && env_copy[i][1] != '+')
 			printf("%s\n", env_copy[i]);
 		i++;
 	}
+	printf("%s\n", "_=/usr/bin/env");
 }
 
 void	print_env_export(char **env_copy)

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:28:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/08 21:19:53 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:08:06 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
+	/* printf("s1: %s\n", s1);
+	printf("s2: %s\n", s2); */
 	if (!s1 || !s2)
 		return (1);
 	if (ft_strlen(s1) != ft_strlen(s2))

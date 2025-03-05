@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:59 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 13:16:23 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:15:58 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_exec_built_in(t_shell *ms, char **envp[])
 {
+	//printf("entra: %s", ms->cmd_lst->args[0]);
 	if (!ft_strcmp(ms->cmd_lst->args[0], "env"))
 		print_env(*envp);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "export"))
