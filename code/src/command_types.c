@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 18:37:51 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:05:58 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 	int	i;
 
 	i = 0;
-	(*cmd_lst)->args = malloc(sizeof(char *) * (ft_count_args(*tkn) + 1));
+	if (!(*cmd_lst)->args)
+		(*cmd_lst)->args = (char **)ft_calloc(sizeof(char *) , (ft_count_args(*tkn) + 1));
+	else
+	{
+		while ((*cmd_lst)->args[i])
+			i++;
+	}
 	while ((*tkn) && ((*tkn)->type == 0 || (*tkn)->type == QS))//mientras que nos encontremos palabras, las vamos añadiendo a args[]
 	{
 		if (i == 0)
 			((*tkn)->token) = ft_delete_squotes(((*tkn)->token));
 		if (ft_strchr((*tkn)->token, '$') && (*tkn)->type != QS)
 			((*tkn)->token) = ft_check_expands(ms, (*tkn)->token,  0, env);
+		//ft_putendl_fd(ft_itoa(i), 2);
+		//printf("token: %s\n", (*tkn)->token);
 		(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
-		//printf("i: %i\n", i);
-		//printf("args[%i]: %s\n", i, (*cmd_lst)->args[i]);
 		i++;
 		if ((*tkn)->next  && ((*tkn)->next->type == 0 || (*tkn)->next->type == QS))
 			(*tkn) = (*tkn)->next;
@@ -36,8 +42,6 @@ void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 	(*cmd_lst)->args[i] = NULL;
 	if (ft_isbuiltin((*cmd_lst)->args[0]))//decidimos si es builtin o cmd
 		(*cmd_lst)->is_bi = 1;
-	else
-		(*cmd_lst)->is_cmd = 1;
 }
 
 char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)

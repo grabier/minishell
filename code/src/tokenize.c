@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 19:24:12 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:08:39 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,33 +75,33 @@ int	ft_check_syntax(t_shell *ms)
 
 //transformamos el input en una lista enlazada de tokens
 //los tokens seran de los tipo que vienen en el .h
-t_tkn	*ft_get_tokens(char *input)
+void	ft_get_tokens(t_shell *ms)
 {
 	int		i;
-	t_tkn	*tkn_lst;
 
-	tkn_lst = NULL;
 	i = 0;
-	while (input[i])
+	while (ms->input[i])
 	{
-		if ((input[i]) == ' ')
+		if ((ms->input[i]) == ' ')
 			i++;
-		else if (input[i] == 34 || input[i] == 39)//creamos token de tipo comilla
+		else if (ms->input[i] == 34 || ms->input[i] == 39)//creamos token de tipo comilla
 		{
-			if (!ft_quote_tkn(&tkn_lst, input, &i))//ARREGLAR
-				return (ft_free_tkn_lst(&tkn_lst), NULL);
+			if (!ft_quote_tkn(&ms->tkn_lst, ms, &i))//ARREGLAR
+			{
+				ft_free_tkn_lst(&ms->tkn_lst);
+				break;
+			}	
 		}
-		else if (input[i] == '<' || input[i] == '>')//tokens de tipo redireccion
-			ft_redir_tkn(&tkn_lst, input, &i);
-		else if (input[i] == '|')//tokens de tipo pipa
-			ft_pipe_tkn(&tkn_lst, input, &i);
+		else if (ms->input[i] == '<' || ms->input[i] == '>')//tokens de tipo redireccion
+			ft_redir_tkn(&ms->tkn_lst, ms->input, &i);
+		else if (ms->input[i] == '|')//tokens de tipo pipa
+			ft_pipe_tkn(&ms->tkn_lst, ms->input, &i);
 		else
 		{
-			if (!ft_word_tkn(&tkn_lst, input, &i))//si no es ninguno de los anteriores creamos token de tipo palabra
+			if (!ft_word_tkn(&ms->tkn_lst, ms->input, &i))//si no es ninguno de los anteriores creamos token de tipo palabra
 				break;
 		}
 	}
-	return (tkn_lst);
 }
 
 int	ft_check_words(t_tkn *tkn)
@@ -133,7 +133,7 @@ t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 
 	if (!ms->input || ms->input[0] == 0)
 		return (NULL);
-	ms->tkn_lst = ft_get_tokens(ms->input);//transformamos el input en lista de tokens
+	ft_get_tokens(ms);//transformamos el input en lista de tokens
 	//printf("---------before quotes--------\n");
 	//ft_tknprint(ms->tkn_lst);
 	if (!ft_check_words(ms->tkn_lst))

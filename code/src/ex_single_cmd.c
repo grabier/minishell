@@ -6,13 +6,14 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 18:22:20 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/09 13:35:17 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 //devuelve el fd de infile/outfile, 0, y 1 por defecto
 //pero consideramos las redirecciones
+
 int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 {
 	int	fd;
@@ -48,6 +49,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 static void	ft_handle_c_fork(int sig)
 {
 	(void)sig;
+	printf("entra c_fork: %i\n", signal_flag);
 	printf("\n");
 	rl_redisplay();
 	rl_replace_line("", 0);
@@ -61,6 +63,7 @@ void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 	int		saved_stdin;
 
 	
+	//signal_flag = 1;
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
 	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);//en la funcion open_n_redir, asi que hay que
 	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0);//guardar una copia del STDIN para devolverlo
@@ -71,14 +74,14 @@ void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 	{
 		//o_fd = ft_open_n_redir_out(cmd, 1);
 		signal(SIGINT, SIG_DFL);
+		//signal_flag = 1;
 		dup2(o_fd, STDOUT_FILENO);//los dups realizados en procesos hijos
 		if (!ms->cmd_lst->is_bi)
 			ft_execute_cmd(ms, envp);//no afectan al proceso padre
 	}
 	else
-	{
-		if (pid == -1)
-			signal(SIGINT, ft_handle_c_fork);
+	{	
+		signal_flag = 1;
 		waitpid(pid, &ms->exitstat, 0);
 	}
 	if (WIFEXITED(ms->exitstat))
@@ -90,6 +93,7 @@ void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 	if (o_fd != 1)
 		close(o_fd);
 	dup2(saved_stdin, STDIN_FILENO);//devolvemos STDIN a lo original
+	//signal(SIGQUIT, SIG_IGN);
 	//close(saved_stdin);
 	//printf("llegaaaaa\n");
 }

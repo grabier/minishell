@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 19:21:57 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:37:47 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
+int	signal_flag;
 
 void	ft_free_shell(t_shell *shell)
 {
@@ -40,13 +42,29 @@ t_shell	*ft_init_shell(void)
 	return (ms);
 }
 
-static void	ft_handle_c(int sig)
+void	ft_handle_c(int sig)
 {
 	(void)sig;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	rl_redisplay();
+	printf("entra en c_normal: %i\n", signal_flag);
+	if (signal_flag == 0)
+		rl_redisplay();
+	if (signal_flag == 2)
+	{
+		signal_flag = 0;
+		exit(130);
+	}
+	signal_flag = 0;
+}
+
+void	ft_handle_d(int sig)
+{
+	(void)sig;
+	printf("entra?\n");
+	exit(130);
+	signal_flag = 0;
 }
 
 int	ft_get_input(char *envp[])
@@ -67,8 +85,14 @@ int	ft_get_input(char *envp[])
 		//ms->prompt = ft_get_prompt(envp);
 		ms->prevexitstat = ms->exitstat;
 		signal(SIGINT, ft_handle_c);
+		//signal(SIGQUIT, ft_handle_d);
 		//printf("exit antes: %i\n", ms->exitstat);
 		ms->input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		if (ms->input == NULL)
+		{
+			ft_free_split(envp);
+			break ;
+		}
 		//printf("exitstatus: %i\n", ms->exitstat);
 		/* if (!ft_strcmp(ms->input, "exit"))
 		{
@@ -83,7 +107,7 @@ int	ft_get_input(char *envp[])
 		//ft_tknprint(ms->tkn_lst);
 		if (!ms->tkn_lst)
 		{
-			//printf("sale x aki?\n");
+			//printf("SALE x aki?\n");
 			//printf("exit: %i\n", ms->exitstat);
 			ft_free_shell(ms);
 		}

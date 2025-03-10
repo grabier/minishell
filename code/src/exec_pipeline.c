@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/28 12:47:06 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:36:02 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ void	ft_exec_pipeline(t_shell *ms, char **envp[])
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
 	t_cmd *head = ms->cmd_lst;
-	//ft_cmdprint(ms->cmd_lst);
-	//printf("entra?\n");
 	while (ms->cmd_lst->next)//del primero al penultimo
 	{
 		i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);//el infile lo dupeamos 
@@ -110,8 +108,6 @@ void	ft_exec_pipeline(t_shell *ms, char **envp[])
 		i++;
 		ms->cmd_lst = ms->cmd_lst->next;
 	}
-	/* i_fd = ft_open_n_redir(cmd, 0);
-	o_fd = ft_open_n_redir(cmd, 1); */
 	pids[i] = ft_exec_last_cmd(ms, envp, saved_stdin);//ultimo comando a parte
 	i = 0;//pq las redirecciones son distintas(no devuelve a una pipe)
 	while (i < size)
@@ -123,8 +119,4 @@ void	ft_exec_pipeline(t_shell *ms, char **envp[])
 	dup2(saved_stdin, STDIN_FILENO);
 	dup2(saved_stdout, STDOUT_FILENO);
 	ms->cmd_lst = head;
-	/* if (i_fd != 0)
-		close(i_fd);
-	if (o_fd != 1)
-		close(o_fd); */
 }

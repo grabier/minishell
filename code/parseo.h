@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 19:17:37 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:57:28 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define L1 6
 # define L2 7
 
+extern int signal_flag;
 
 typedef struct s_tkn
 {
@@ -96,9 +97,10 @@ int		ft_tknsize(t_tkn *lst);
 t_tkn	*ft_tokenize(t_shell *ms, char ***env);
 int		ft_check_syntax(t_shell *ms);
 int		ft_find_end_word(char *input);
+void	ft_get_tokens(t_shell *ms);
 
 //tokenize_functions.c
-t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, char *input, int *i);
+t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, t_shell *ms, int *i);
 t_tkn	*ft_redir_tkn(t_tkn **tkn_lst, char *input, int *i);
 t_tkn	*ft_pipe_tkn(t_tkn **tkn_lst, char *input, int *i);
 t_tkn	*ft_word_tkn(t_tkn **tkn_lst, char *input, int *i);
@@ -190,4 +192,8 @@ int		ft_pwd(char ***env, t_cmd *cmd);
 //built_in_echo.c
 void	ft_echo(t_cmd *cmd);
 void	ft_do_echo(t_cmd *cmd);
+
+//signals.c
+void	ft_handle_c(int sig);
+
 #endif 

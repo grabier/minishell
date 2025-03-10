@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:53:32 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 10:52:59 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/10 11:57:49 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_find_end_sq(char *input)
 	while (input[i] != 39 && input[i])
 		i++;
 	if (!input[i])
-		return (printf("sq end not found\n"), 0);
+		return (0);
 	return (i + 1);
 }
 
