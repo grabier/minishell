@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 14:37:47 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:52:44 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ void	ft_handle_c(int sig)
 	printf("entra en c_normal: %i\n", signal_flag);
 	if (signal_flag == 0)
 		rl_redisplay();
-	if (signal_flag == 2)
+	/* if (signal_flag == 2)
 	{
 		signal_flag = 0;
 		exit(130);
-	}
+	} */
 	signal_flag = 0;
 }
 
-void	ft_handle_d(int sig)
+/* void	ft_handle_d(int sig)
 {
 	(void)sig;
 	printf("entra?\n");
 	exit(130);
 	signal_flag = 0;
-}
+} */
 
 int	ft_get_input(char *envp[])
 {
@@ -85,12 +85,13 @@ int	ft_get_input(char *envp[])
 		//ms->prompt = ft_get_prompt(envp);
 		ms->prevexitstat = ms->exitstat;
 		signal(SIGINT, ft_handle_c);
-		//signal(SIGQUIT, ft_handle_d);
 		//printf("exit antes: %i\n", ms->exitstat);
-		ms->input = readline("minichell> ");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
+		ms->input = readline("\033[0;33mminichell> \033[0;37m");//FALTA: prompt personalizado: $USER@$HOSTNAME(hasta el primer .):pwd$
 		if (ms->input == NULL)
 		{
 			ft_free_split(envp);
+			printf("exit\n");
+			
 			break ;
 		}
 		//printf("exitstatus: %i\n", ms->exitstat);

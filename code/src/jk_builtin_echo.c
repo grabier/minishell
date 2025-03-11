@@ -6,11 +6,28 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:02:36 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/02/24 10:54:50 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:34:51 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
+
+
+int		ft_check_flag(char *s)
+{
+	int	i;
+
+	if (s[0] != '-')
+		return (0);
+	i = 1;
+	while (s[i])
+	{
+		if (s[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (i);
+}
 
 void	ft_do_echo(t_cmd *cmd)
 {
@@ -19,10 +36,10 @@ void	ft_do_echo(t_cmd *cmd)
 
 	i = 1;
 	newline = 1;
-	if (cmd->args[i] && strcmp(cmd->args[i], "-n") == 0)
+	if (cmd->args[i] && ft_check_flag(cmd->args[i]))
 	{
 		newline = 0;
-		i++;
+		i ++;
 	}
 	while (cmd->args[i])
 	{

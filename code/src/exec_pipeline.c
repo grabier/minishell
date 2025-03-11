@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 20:36:02 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:42:12 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	ft_exec_last_cmd(t_shell *ms, char **envp[], int	saved_stdin)
 		return (0);
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		dup2(o_fd, STDOUT_FILENO);
 		if(!ms->cmd_lst->is_bi)
 			ft_execute_cmd(ms, envp);
@@ -37,7 +38,10 @@ int	ft_exec_last_cmd(t_shell *ms, char **envp[], int	saved_stdin)
 		return (0);
 	}
 	else
+	{
+		signal_flag = 1;
 		return (pid);
+	}
 	//waitpid(pid, NULL, 0);
 	if (i_fd != 0)
 		close(i_fd);
@@ -57,6 +61,7 @@ int	ft_exec_middle_cmd(t_shell *ms, char **envp[], int i_fd, int o_fd)
 		return (0);
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		close(p[0]);
 		if (!ms->cmd_lst->outfile)
 			dup2(p[1], STDOUT_FILENO);
@@ -73,6 +78,7 @@ int	ft_exec_middle_cmd(t_shell *ms, char **envp[], int i_fd, int o_fd)
 	}
 	else//cuando estas en el padre, pid contiene el process id del hijo
 	{
+		signal_flag = 1;
 		close(p[1]);
 		dup2(p[0], STDIN_FILENO);//dupeamos el stdin en el proceso padre
 		//para que el siguiente comando lea de la pipa

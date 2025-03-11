@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:43:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 14:38:43 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:49:08 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int	ft_here_doc(char *limit)
 		while (1)
 		{
 			buff = readline("heredoc:");
-			if (!ft_strcmp(buff, limit))
+			if (!ft_strcmp(buff, limit) || buff == NULL)
+			{
+				printf("warning: EOF found\n");
 				break ;
+			}
 			write(fd, buff, ft_strlen(buff));
 			write(fd, "\n", 1);
 			free(buff);

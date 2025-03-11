@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 19:12:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:18:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_trim_path(char *s)
 	i = ft_strlen(s) - 1;
 	j = 0;
 	//rintf("i : %d\n", i);
-	while (s[i] && s[i] != '/')
+	while (i > 0 && s[i] != '/')
 		i--;
 	i++;
 	res = malloc(ft_strlen(s) - i + 1);
@@ -35,6 +35,7 @@ char	*ft_trim_path(char *s)
 	}
 	res[j] = '\0';
 	free(s);
+	//printf("res: %s\n", res);
 	return (res);
 }
 
@@ -44,7 +45,7 @@ void	ft_add_shlvl(char **env[])
 	char	*aux;
 	char	*aux2;
 
-	printf("entra?\n");
+	//printf("entra?\n");
 	lv = ft_atoi(ft_getenv(*env, "SHLVL"));
 	lv++;
 	aux = ft_strjoin("SHLVL", "=");
@@ -58,6 +59,8 @@ void	ft_add_shlvl(char **env[])
 int	ft_execute_cmd(t_shell *ms, char **envp[])
 {
 	//printf("args[0] : %s\n", ms->cmd_lst->args[0]);
+	if (!ms->cmd_lst->args)
+		exit(2);
 	if (!access(ms->cmd_lst->args[0], X_OK) )//gestionamos si nos entra la ruta del comando
 	{//echo ->>>> /usr/bin/echo
 		//printf("entra1\n");
@@ -65,6 +68,12 @@ int	ft_execute_cmd(t_shell *ms, char **envp[])
 		ms->cmd_lst->args[0] = ft_trim_path(ms->cmd_lst->args[0]);
 		if (!ft_strcmp(ms->cmd_lst->args[0], "minishell"))
 			ft_add_shlvl(envp);
+		//printf("aux: %s\n", aux);
+		/* if (ms->cmd_lst->args == NULL)
+		{
+			printf("carajos\n");
+			printf("args: %s\n", ms->cmd_lst->args[0]);
+		} */
 		if (execve(aux, ms->cmd_lst->args, *envp) == -1)
 		{
 			printf("fuck 1\n");
@@ -95,7 +104,7 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 	}
 	else
 	{
-		printf("entra aki?\n");
+		//printf("entra aki?\n");
 		ft_exec_pipeline(ms, envp);
 	}
 }
