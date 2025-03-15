@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 14:05:58 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:26:02 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 
 	i = 0;
 	if (!(*cmd_lst)->args)
-		(*cmd_lst)->args = (char **)ft_calloc(sizeof(char *) , (ft_count_args(*tkn) + 1));
+		(*cmd_lst)->args = ft_calloc(sizeof(char *) , (ft_count_args(*tkn) + 1));
 	else
 	{
 		while ((*cmd_lst)->args[i])
@@ -32,7 +32,8 @@ void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
 			((*tkn)->token) = ft_check_expands(ms, (*tkn)->token,  0, env);
 		//ft_putendl_fd(ft_itoa(i), 2);
 		//printf("token: %s\n", (*tkn)->token);
-		(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
+		if ((*tkn)->token)
+			(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
 		i++;
 		if ((*tkn)->next  && ((*tkn)->next->type == 0 || (*tkn)->next->type == QS))
 			(*tkn) = (*tkn)->next;

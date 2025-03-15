@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 13:55:53 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:28:40 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int	ft_count_args(t_tkn	*tkn)
 	int	i;
 
 	i = 0;
-	while (tkn && (tkn->type == 0 || (tkn)->type == QS || (tkn)->type == L1))
+	while (tkn && (tkn->type == 0 || (tkn)->type == QS || (tkn)->type == L1
+	|| (tkn)->type == R1 || (tkn)->type == R2))
 	{
-		if ((tkn)->type == L1)
+		if ((tkn)->type == L1 || (tkn)->type == R1 || (tkn)->type == R2)
 			tkn = tkn->next->next;
 		else
 		{
@@ -48,7 +49,7 @@ int	ft_count_args(t_tkn	*tkn)
 		}
 	}
 	//ft_putendl_fd(ft_itoa(i), 2);
-	//fprintf(stderr, "PATATA\n");
+	//printf("count args: %i\n", i);
 	return (i);
 }
 

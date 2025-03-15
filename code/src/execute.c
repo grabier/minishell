@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/11 13:18:32 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:30:39 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,26 @@ void	ft_add_shlvl(char **env[])
 	int	lv;
 	char	*aux;
 	char	*aux2;
+	char	**insert;
 
-	//printf("entra?\n");
-	lv = ft_atoi(ft_getenv(*env, "SHLVL"));
+	aux = ft_getenv(*env, "SHLVL");
+	insert = malloc(3 * sizeof(char *));
+	if (!aux)
+	{
+		free(aux);
+		return ;
+	}
+	insert[0] = ft_strdup("carajos ");
+	lv = ft_atoi(aux);
+	//printf("lv: %i\n", lv);
+	free(aux);
 	lv++;
 	aux = ft_strjoin("SHLVL", "=");
 	aux2 = ft_strjoin(aux, ft_itoa(lv));
-	ft_insert_dp(*env, aux2);
+	printf("aux2: %s\n", aux2);
+	insert[1] = ft_strdup(aux2);
+	insert[2] = NULL; 
+	ft_insert_dp(*env, insert);
 	free(aux);
 	free(aux2);
 }
@@ -104,7 +117,7 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 	}
 	else
 	{
-		//printf("entra aki?\n");
+		printf("entra a pipas\n");
 		ft_exec_pipeline(ms, envp);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:07:37 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 11:56:50 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:07:37 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, t_shell *ms, int *i)
 		if (!end)
 		{
 			ms->exitstat = 2;
-			return (printf("End quote not found\n"), NULL);
+			return (printf("End quote not found\n"), ft_free_tkn_lst(&ms->tkn_lst), NULL);
 		}
 		ft_tknadd_back(tkn_lst, ft_tknnew(ft_substr(&ms->input[*i], 0, end), 2));
 	}
@@ -32,7 +32,7 @@ t_tkn	*ft_quote_tkn(t_tkn **tkn_lst, t_shell *ms, int *i)
 		if (!end)
 		{
 			ms->exitstat = 2;
-			return (printf("End quote not found\n"), NULL);//cambion end por *i+end
+			return (printf("End quote not found\n"), ft_free_tkn_lst(&ms->tkn_lst), NULL);//cambion end por *i+end
 		}
 		ft_tknadd_back(tkn_lst, ft_tknnew(ft_substr(ms->input, *i, end), 1));
 	}

@@ -1,0 +1,976 @@
+GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG=
+MACADDRESS=3c:7d:0a:1a:6a:14
+MANAGERPID=2605309
+SYSTEMD_EXEC_PID=2605889
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/104789/bus
+LIBVIRT_DEFAULT_URI=qemu:///system
+GIO_LAUNCHED_DESKTOP_FILE_PID=2606811
+IM_CONFIG_PHASE=1
+GTK_IM_MODULE=ibus
+LOGNAME=gmontoro
+JOURNAL_STREAM=9:8969212
+XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_SESSION_CLASS=user
+XDG_DATA_DIRS_VSCODE_SNAP_ORIG=/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+OPAMROOT=/home/gmontoro/.opam
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+FT_HOOK_PATHNAME=login-user.d
+RUSTUP_HOME=/usr/local/rustup
+PATH=/home/gmontoro/bin:/home/gmontoro/bin:/home/gmontoro/.cargo/bin:/usr/local/cargo/bin:/home/gmontoro/.opam/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/gmontoro/.dotnet/tools:/usr/local/go/bin
+SESSION_MANAGER=local/c2r1s2.42malaga.com:@/tmp/.ICE-unix/2605859,unix/c2r1s2.42malaga.com:/tmp/.ICE-unix/2605859
+GTK_EXE_PREFIX=/snap/code/185/usr
+GDM_LANG=en
+INVOCATION_ID=c0584425f92d4e04b1f22f0b4e04425b
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session14
+XDG_MENU_PREFIX=gnome-
+BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/code_code.desktop
+XDG_RUNTIME_DIR=/run/user/104789
+DISPLAY=:0
+LOCPATH=/snap/code/185/usr/lib/locale
+LANG=en_US.UTF-8
+XDG_CURRENT_DESKTOP=Unity
+DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/gmontoro/.cache/dotnet_bundle_extract
+GIO_MODULE_DIR_VSCODE_SNAP_ORIG=
+XDG_DATA_HOME=/home/gmontoro/snap/code/185/.local/share
+XMODIFIERS=@im=ibus
+XDG_SESSION_DESKTOP=ubuntu
+XAUTHORITY=/home/gmontoro/.Xauthority
+SSH_AGENT_LAUNCHER=gnome-keyring
+SSH_AUTH_SOCK=/run/user/104789/keyring/ssh
+GSETTINGS_SCHEMA_DIR=/home/gmontoro/snap/code/185/.local/share/glib-2.0/schemas
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/gmontoro
+SHELL=/bin/zsh
+KRB5CCNAME=FILE:/tmp/krb5cc_104789_w0bi8l
+QT_ACCESSIBILITY=1
+GDMSESSION=ubuntu
+GTK_PATH_VSCODE_SNAP_ORIG=
+FONTCONFIG_FILE=/etc/fonts/fonts.conf
+FT_HOOK_NAME=login-user
+GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG=
+DOCKER_HOST=unix:///run/user/104789/docker.sock
+GPG_AGENT_INFO=/run/user/104789/gnupg/S.gpg-agent:0:1
+GJS_DEBUG_OUTPUT=stderr
+QT_IM_MODULE=ibus
+PWD=/home/gmontoro/Desktop/mini-git/code
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+CARGO_HOME=/home/gmontoro/.cargo
+XDG_DATA_DIRS=/home/gmontoro/snap/code/185/.local/share:/home/gmontoro/snap/code/185:/snap/code/185/usr/share:/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+CHROME_DESKTOP=code.desktop
+ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
+GDK_BACKEND=x11
+OLDPWD=/home/gmontoro/Desktop/mini-git
+ZSH=/home/gmontoro/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+_P9K_SSH_TTY=/dev/pts/0
+_=/home/gmontoro/Desktop/mini-git/code/./minishell
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.98.0
+COLORTERM=truecolor
+GIT_ASKPASS=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/snap/code/185/usr/share/code/code
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_IPC_HANDLE=/run/user/104789/vscode-git-233ebbe3eb.sock
+VSCODE_INJECTION=1
+VSCODE_NONCE=7c0b50b2-03c2-42c3-9f09-2a455c25722c
+ZDOTDIR=/home/gmontoro
+USER_ZDOTDIR=/home/gmontoro
+TERM=xterm-256color
+P9K_TTY=old
+_P9K_TTY=/dev/pts/0
+P9K_SSH=0
+a=
+popo=lala
+c=popo\gmontoro
+_=/usr/bin/env
+minichell> export a=a"hola"
+minichell> env
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+LANGUAGE=en
+USER=gmontoro
+FONTCONFIG_PATH=/etc/fonts
+OPAMSWITCH=default
+GIO_MODULE_DIR=/home/gmontoro/snap/code/common/.cache/gio-modules
+XDG_SESSION_TYPE=x11
+GTK_EXE_PREFIX_VSCODE_SNAP_ORIG=
+GDK_BACKEND_VSCODE_SNAP_ORIG=
+SHLVL=2
+HOME=/home/gmontoro
+LOCPATH_VSCODE_SNAP_ORIG=
+DESKTOP_SESSION=ubuntu
+GTK_PATH=/snap/code/185/usr/lib/x86_64-linux-gnu/gtk-3.0
+XDG_DATA_HOME_VSCODE_SNAP_ORIG=
+GTK_IM_MODULE_FILE=/home/gmontoro/snap/code/common/.cache/immodules/immodules.cache
+GIO_LAUNCHED_DESKTOP_FILE=/var/lib/snapd/desktop/applications/code_code.desktop
+GTK_MODULES=gail:atk-bridge
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG=
+MACADDRESS=3c:7d:0a:1a:6a:14
+MANAGERPID=2605309
+SYSTEMD_EXEC_PID=2605889
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/104789/bus
+LIBVIRT_DEFAULT_URI=qemu:///system
+GIO_LAUNCHED_DESKTOP_FILE_PID=2606811
+IM_CONFIG_PHASE=1
+GTK_IM_MODULE=ibus
+LOGNAME=gmontoro
+JOURNAL_STREAM=9:8969212
+XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_SESSION_CLASS=user
+XDG_DATA_DIRS_VSCODE_SNAP_ORIG=/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+OPAMROOT=/home/gmontoro/.opam
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+FT_HOOK_PATHNAME=login-user.d
+RUSTUP_HOME=/usr/local/rustup
+PATH=/home/gmontoro/bin:/home/gmontoro/bin:/home/gmontoro/.cargo/bin:/usr/local/cargo/bin:/home/gmontoro/.opam/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/gmontoro/.dotnet/tools:/usr/local/go/bin
+SESSION_MANAGER=local/c2r1s2.42malaga.com:@/tmp/.ICE-unix/2605859,unix/c2r1s2.42malaga.com:/tmp/.ICE-unix/2605859
+GTK_EXE_PREFIX=/snap/code/185/usr
+GDM_LANG=en
+INVOCATION_ID=c0584425f92d4e04b1f22f0b4e04425b
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session14
+XDG_MENU_PREFIX=gnome-
+BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/code_code.desktop
+XDG_RUNTIME_DIR=/run/user/104789
+DISPLAY=:0
+LOCPATH=/snap/code/185/usr/lib/locale
+LANG=en_US.UTF-8
+XDG_CURRENT_DESKTOP=Unity
+DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/gmontoro/.cache/dotnet_bundle_extract
+GIO_MODULE_DIR_VSCODE_SNAP_ORIG=
+XDG_DATA_HOME=/home/gmontoro/snap/code/185/.local/share
+XMODIFIERS=@im=ibus
+XDG_SESSION_DESKTOP=ubuntu
+XAUTHORITY=/home/gmontoro/.Xauthority
+SSH_AGENT_LAUNCHER=gnome-keyring
+SSH_AUTH_SOCK=/run/user/104789/keyring/ssh
+GSETTINGS_SCHEMA_DIR=/home/gmontoro/snap/code/185/.local/share/glib-2.0/schemas
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/gmontoro
+SHELL=/bin/zsh
+KRB5CCNAME=FILE:/tmp/krb5cc_104789_w0bi8l
+QT_ACCESSIBILITY=1
+GDMSESSION=ubuntu
+GTK_PATH_VSCODE_SNAP_ORIG=
+FONTCONFIG_FILE=/etc/fonts/fonts.conf
+FT_HOOK_NAME=login-user
+GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG=
+DOCKER_HOST=unix:///run/user/104789/docker.sock
+GPG_AGENT_INFO=/run/user/104789/gnupg/S.gpg-agent:0:1
+GJS_DEBUG_OUTPUT=stderr
+QT_IM_MODULE=ibus
+PWD=/home/gmontoro/Desktop/mini-git/code
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+CARGO_HOME=/home/gmontoro/.cargo
+XDG_DATA_DIRS=/home/gmontoro/snap/code/185/.local/share:/home/gmontoro/snap/code/185:/snap/code/185/usr/share:/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+CHROME_DESKTOP=code.desktop
+ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
+GDK_BACKEND=x11
+OLDPWD=/home/gmontoro/Desktop/mini-git
+ZSH=/home/gmontoro/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+_P9K_SSH_TTY=/dev/pts/0
+_=/home/gmontoro/Desktop/mini-git/code/./minishell
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.98.0
+COLORTERM=truecolor
+GIT_ASKPASS=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/snap/code/185/usr/share/code/code
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_IPC_HANDLE=/run/user/104789/vscode-git-233ebbe3eb.sock
+VSCODE_INJECTION=1
+VSCODE_NONCE=7c0b50b2-03c2-42c3-9f09-2a455c25722c
+ZDOTDIR=/home/gmontoro
+USER_ZDOTDIR=/home/gmontoro
+TERM=xterm-256color
+P9K_TTY=old
+_P9K_TTY=/dev/pts/0
+P9K_SSH=0
+a=a
+popo=lala
+c=popo\gmontoro
+_=/usr/bin/env
+minichell> pwd
+/home/gmontoro/Desktop/mini-git/code
+minichell> unset PWD
+minichell> pwd
+/home/gmontoro/Desktop/mini-git/code
+minichell> bash
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ mkdir -P popo/lala
+mkdir: invalid option -- 'P'
+Try 'mkdir --help' for more information.
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ mkdir -p popo/lala
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ cd popo/lala
+gmontoro@c2r1s2:~/Desktop/mini-git/code/popo/lala$ rm -rf ../../popo
+gmontoro@c2r1s2:~/Desktop/mini-git/code/popo/lala$ pwd
+/home/gmontoro/Desktop/mini-git/code/popo/lala
+gmontoro@c2r1s2:~/Desktop/mini-git/code/popo/lala$ unset PWD
+gmontoro@c2r1s2:.$ pwd
+/home/gmontoro/Desktop/mini-git/code/popo/lala
+gmontoro@c2r1s2:.$ pwd -P
+pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+gmontoro@c2r1s2:.$ bash
+job-working-directory: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+gmontoro@c2r1s2:.$ 
+exit
+gmontoro@c2r1s2:.$ 
+exit
+minichell> ls
+Makefile  minishell  objs  outfile  parseo.h  src
+minichell> pwd
+/home/gmontoro/Desktop/mini-git/code
+minichell> cd .. | ls
+Makefile  minishell  objs  outfile  parseo.h  src
+minichell> cd 
+minichell> ls
+cc  clang  Cleaner_42.sh  cleeean  Desktop  Documents  Downloads  end  file  goinfre  GoogleEarthWallpaper  porongas  Public  sgoinfre  snap  Templates  Wallpapers
+minichell> cd -
+minichell> pwd
+/home/gmontoro/Desktop/mini-git/code
+minichell> ls
+Makefile  minishell  objs  outfile  parseo.h  src
+minichell> unset HOME
+minichell> cd
+cd: unable to chdir
+minichell> echo $?
+0
+minichell> bash
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ cd
+bash: cd: HOME not set
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ echo $?
+1
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ 
+exit
+minichell> cd ~
+cd: unable to chdir
+minichell> cd ~
+cd: unable to chdir
+minichell> unset OLDPWD
+minichell> cd -
+cd: unable to chdir
+minichell> bash
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ cd -
+bash: cd: OLDPWD not set
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ echo $?
+1
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ 
+exit
+minichell> env
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+LANGUAGE=en
+USER=gmontoro
+FONTCONFIG_PATH=/etc/fonts
+OPAMSWITCH=default
+GIO_MODULE_DIR=/home/gmontoro/snap/code/common/.cache/gio-modules
+XDG_SESSION_TYPE=x11
+GTK_EXE_PREFIX_VSCODE_SNAP_ORIG=
+GDK_BACKEND_VSCODE_SNAP_ORIG=
+SHLVL=2
+LOCPATH_VSCODE_SNAP_ORIG=
+DESKTOP_SESSION=ubuntu
+GTK_PATH=/snap/code/185/usr/lib/x86_64-linux-gnu/gtk-3.0
+XDG_DATA_HOME_VSCODE_SNAP_ORIG=
+GTK_IM_MODULE_FILE=/home/gmontoro/snap/code/common/.cache/immodules/immodules.cache
+GIO_LAUNCHED_DESKTOP_FILE=/var/lib/snapd/desktop/applications/code_code.desktop
+GTK_MODULES=gail:atk-bridge
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG=
+MACADDRESS=3c:7d:0a:1a:6a:14
+MANAGERPID=2605309
+SYSTEMD_EXEC_PID=2605889
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/104789/bus
+LIBVIRT_DEFAULT_URI=qemu:///system
+GIO_LAUNCHED_DESKTOP_FILE_PID=2606811
+IM_CONFIG_PHASE=1
+GTK_IM_MODULE=ibus
+LOGNAME=gmontoro
+JOURNAL_STREAM=9:8969212
+XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_SESSION_CLASS=user
+XDG_DATA_DIRS_VSCODE_SNAP_ORIG=/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+OPAMROOT=/home/gmontoro/.opam
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+FT_HOOK_PATHNAME=login-user.d
+RUSTUP_HOME=/usr/local/rustup
+PATH=/home/gmontoro/bin:/home/gmontoro/bin:/home/gmontoro/.cargo/bin:/usr/local/cargo/bin:/home/gmontoro/.opam/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/gmontoro/.dotnet/tools:/usr/local/go/bin
+SESSION_MANAGER=local/c2r1s2.42malaga.com:@/tmp/.ICE-unix/2605859,unix/c2r1s2.42malaga.com:/tmp/.ICE-unix/2605859
+GTK_EXE_PREFIX=/snap/code/185/usr
+GDM_LANG=en
+INVOCATION_ID=c0584425f92d4e04b1f22f0b4e04425b
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session14
+XDG_MENU_PREFIX=gnome-
+BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/code_code.desktop
+XDG_RUNTIME_DIR=/run/user/104789
+DISPLAY=:0
+LOCPATH=/snap/code/185/usr/lib/locale
+LANG=en_US.UTF-8
+XDG_CURRENT_DESKTOP=Unity
+DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/gmontoro/.cache/dotnet_bundle_extract
+GIO_MODULE_DIR_VSCODE_SNAP_ORIG=
+XDG_DATA_HOME=/home/gmontoro/snap/code/185/.local/share
+XMODIFIERS=@im=ibus
+XDG_SESSION_DESKTOP=ubuntu
+XAUTHORITY=/home/gmontoro/.Xauthority
+SSH_AGENT_LAUNCHER=gnome-keyring
+SSH_AUTH_SOCK=/run/user/104789/keyring/ssh
+GSETTINGS_SCHEMA_DIR=/home/gmontoro/snap/code/185/.local/share/glib-2.0/schemas
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/gmontoro
+SHELL=/bin/zsh
+KRB5CCNAME=FILE:/tmp/krb5cc_104789_w0bi8l
+QT_ACCESSIBILITY=1
+GDMSESSION=ubuntu
+GTK_PATH_VSCODE_SNAP_ORIG=
+FONTCONFIG_FILE=/etc/fonts/fonts.conf
+FT_HOOK_NAME=login-user
+GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG=
+DOCKER_HOST=unix:///run/user/104789/docker.sock
+GPG_AGENT_INFO=/run/user/104789/gnupg/S.gpg-agent:0:1
+GJS_DEBUG_OUTPUT=stderr
+QT_IM_MODULE=ibus
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+CARGO_HOME=/home/gmontoro/.cargo
+XDG_DATA_DIRS=/home/gmontoro/snap/code/185/.local/share:/home/gmontoro/snap/code/185:/snap/code/185/usr/share:/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+CHROME_DESKTOP=code.desktop
+ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
+GDK_BACKEND=x11
+ZSH=/home/gmontoro/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+_P9K_SSH_TTY=/dev/pts/0
+_=/home/gmontoro/Desktop/mini-git/code/./minishell
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.98.0
+COLORTERM=truecolor
+GIT_ASKPASS=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/snap/code/185/usr/share/code/code
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_IPC_HANDLE=/run/user/104789/vscode-git-233ebbe3eb.sock
+VSCODE_INJECTION=1
+VSCODE_NONCE=7c0b50b2-03c2-42c3-9f09-2a455c25722c
+ZDOTDIR=/home/gmontoro
+USER_ZDOTDIR=/home/gmontoro
+TERM=xterm-256color
+P9K_TTY=old
+_P9K_TTY=/dev/pts/0
+P9K_SSH=0
+a=a
+popo=lala
+c=popo\gmontoro
+PWD=/home/gmontoro/Desktop/mini-git/code
+_=/usr/bin/env
+minichell> unset a c popo
+minichell> env
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+LANGUAGE=en
+USER=gmontoro
+FONTCONFIG_PATH=/etc/fonts
+OPAMSWITCH=default
+GIO_MODULE_DIR=/home/gmontoro/snap/code/common/.cache/gio-modules
+XDG_SESSION_TYPE=x11
+GTK_EXE_PREFIX_VSCODE_SNAP_ORIG=
+GDK_BACKEND_VSCODE_SNAP_ORIG=
+SHLVL=2
+LOCPATH_VSCODE_SNAP_ORIG=
+DESKTOP_SESSION=ubuntu
+GTK_PATH=/snap/code/185/usr/lib/x86_64-linux-gnu/gtk-3.0
+XDG_DATA_HOME_VSCODE_SNAP_ORIG=
+GTK_IM_MODULE_FILE=/home/gmontoro/snap/code/common/.cache/immodules/immodules.cache
+GIO_LAUNCHED_DESKTOP_FILE=/var/lib/snapd/desktop/applications/code_code.desktop
+GTK_MODULES=gail:atk-bridge
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG=
+MACADDRESS=3c:7d:0a:1a:6a:14
+MANAGERPID=2605309
+SYSTEMD_EXEC_PID=2605889
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/104789/bus
+LIBVIRT_DEFAULT_URI=qemu:///system
+GIO_LAUNCHED_DESKTOP_FILE_PID=2606811
+IM_CONFIG_PHASE=1
+GTK_IM_MODULE=ibus
+LOGNAME=gmontoro
+JOURNAL_STREAM=9:8969212
+XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG=/etc/xdg/xdg-ubuntu:/etc/xdg
+XDG_SESSION_CLASS=user
+XDG_DATA_DIRS_VSCODE_SNAP_ORIG=/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+OPAMROOT=/home/gmontoro/.opam
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+FT_HOOK_PATHNAME=login-user.d
+RUSTUP_HOME=/usr/local/rustup
+PATH=/home/gmontoro/bin:/home/gmontoro/bin:/home/gmontoro/.cargo/bin:/usr/local/cargo/bin:/home/gmontoro/.opam/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/gmontoro/.dotnet/tools:/usr/local/go/bin
+SESSION_MANAGER=local/c2r1s2.42malaga.com:@/tmp/.ICE-unix/2605859,unix/c2r1s2.42malaga.com:/tmp/.ICE-unix/2605859
+GTK_EXE_PREFIX=/snap/code/185/usr
+GDM_LANG=en
+INVOCATION_ID=c0584425f92d4e04b1f22f0b4e04425b
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session14
+XDG_MENU_PREFIX=gnome-
+BAMF_DESKTOP_FILE_HINT=/var/lib/snapd/desktop/applications/code_code.desktop
+XDG_RUNTIME_DIR=/run/user/104789
+DISPLAY=:0
+LOCPATH=/snap/code/185/usr/lib/locale
+LANG=en_US.UTF-8
+XDG_CURRENT_DESKTOP=Unity
+DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/gmontoro/.cache/dotnet_bundle_extract
+GIO_MODULE_DIR_VSCODE_SNAP_ORIG=
+XDG_DATA_HOME=/home/gmontoro/snap/code/185/.local/share
+XMODIFIERS=@im=ibus
+XDG_SESSION_DESKTOP=ubuntu
+XAUTHORITY=/home/gmontoro/.Xauthority
+SSH_AGENT_LAUNCHER=gnome-keyring
+SSH_AUTH_SOCK=/run/user/104789/keyring/ssh
+GSETTINGS_SCHEMA_DIR=/home/gmontoro/snap/code/185/.local/share/glib-2.0/schemas
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/gmontoro
+SHELL=/bin/zsh
+KRB5CCNAME=FILE:/tmp/krb5cc_104789_w0bi8l
+QT_ACCESSIBILITY=1
+GDMSESSION=ubuntu
+GTK_PATH_VSCODE_SNAP_ORIG=
+FONTCONFIG_FILE=/etc/fonts/fonts.conf
+FT_HOOK_NAME=login-user
+GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG=
+DOCKER_HOST=unix:///run/user/104789/docker.sock
+GPG_AGENT_INFO=/run/user/104789/gnupg/S.gpg-agent:0:1
+GJS_DEBUG_OUTPUT=stderr
+QT_IM_MODULE=ibus
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+CARGO_HOME=/home/gmontoro/.cargo
+XDG_DATA_DIRS=/home/gmontoro/snap/code/185/.local/share:/home/gmontoro/snap/code/185:/snap/code/185/usr/share:/usr/share/ubuntu:/usr/share/gnome:/home/gmontoro/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+CHROME_DESKTOP=code.desktop
+ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
+GDK_BACKEND=x11
+ZSH=/home/gmontoro/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+_P9K_SSH_TTY=/dev/pts/0
+_=/home/gmontoro/Desktop/mini-git/code/./minishell
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.98.0
+COLORTERM=truecolor
+GIT_ASKPASS=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/snap/code/185/usr/share/code/code
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+VSCODE_GIT_ASKPASS_MAIN=/snap/code/185/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_IPC_HANDLE=/run/user/104789/vscode-git-233ebbe3eb.sock
+VSCODE_INJECTION=1
+VSCODE_NONCE=7c0b50b2-03c2-42c3-9f09-2a455c25722c
+ZDOTDIR=/home/gmontoro
+USER_ZDOTDIR=/home/gmontoro
+TERM=xterm-256color
+P9K_TTY=old
+_P9K_TTY=/dev/pts/0
+P9K_SSH=0
+popo=lala
+c=popo\gmontoro
+PWD=/home/gmontoro/Desktop/mini-git/code
+_=/usr/bin/env
+minichell> unset popo
+minichell> unset popo
+minichell> unset popo
+minichell> unset popo
+minichell> unset %popo
+minichell> echo "-nnnnnnn" -nnnnn -n -npopo
+-nnnnn -n -npopominichell> echo -npopo
+-npopo
+minichell> echo "-nnnnnnn" -nnnnn -n -npopo
+-nnnnn -n -
+^Centra en c_normal: 1
+
+entra en c_normal: 1
+minichell> echo -npopo
+-npopo
+minichell> echo -npopo
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+^Cminichell> 
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+^Cminichell> 
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+minichell> 
+entra en c_normal: 0
+^Cminichell> 
+entra en c_normal: 0
+minichell> echo po pa              lala
+po pa lala
+minichell> exit a a
+exit
+minishell: exit: too many arguments
+minichell> echo $?
+0
+minichell> bash
+gmontoro@c2r1s2:/home/gmontoro/Desktop/mini-git/code$ exit a a
+exit
+bash: exit: a: numeric argument required
+minichell> echo $?
+2
+minichell> exit 999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+exit
+minichell> echo $?
+255
+minichell> exit 99
+exit
+❯ echo $?
+99
+❯ ./minishell
+minichell> exit 260
+exit
+❯ echo $?
+4
+❯ ./minishell
+minichell> 
+exit
+❯ make
+[Compiling] src/jk_builtin_exit.c
+[Building Main] Creating minishell...
+[Success] minishell created successfully!
+❯ ./minishell
+minichell> exit a a
+exit
+minishell: exit: too many arguments
+❯ ./minishell
+minichell> exit -5
+exit
+❯ echo $?
+251
+❯ bash
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ exit -5
+exit
+❯ echo $?
+251
+❯ ./minishell
+minichell> > a > b echo > c hola >d adios | cat
+=================================================================
+==2828652==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000002c00 at pc 0x0000004d5db3 bp 0x7ffcfb21dca0 sp 0x7ffcfb21dc98
+WRITE of size 8 at 0x602000002c00 thread T0
+    #0 0x4d5db2 in ft_add_cmd /home/gmontoro/Desktop/mini-git/code/src/command_types.c:42:22
+    #1 0x4d1a74 in ft_get_commands /home/gmontoro/Desktop/mini-git/code/src/command_lst.c:94:4
+    #2 0x4cb8e6 in ft_get_input /home/gmontoro/Desktop/mini-git/code/src/parseo.c:96:18
+    #3 0x4cba1f in main /home/gmontoro/Desktop/mini-git/code/src/parseo.c:111:2
+    #4 0x73d47ce29d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+    #5 0x73d47ce29e3f in __libc_start_main csu/../csu/libc-start.c:392:3
+    #6 0x41f394 in _start (/home/gmontoro/Desktop/mini-git/code/minishell+0x41f394)
+
+0x602000002c00 is located 0 bytes to the right of 16-byte region [0x602000002bf0,0x602000002c00)
+allocated by thread T0 here:
+    #0 0x49a25d in malloc (/home/gmontoro/Desktop/mini-git/code/minishell+0x49a25d)
+    #1 0x4dc7d5 in ft_calloc /home/gmontoro/Desktop/mini-git/libft/ft_calloc.c:21:11
+    #2 0x4d5434 in ft_add_cmd /home/gmontoro/Desktop/mini-git/code/src/command_types.c:21:31
+    #3 0x4d1a74 in ft_get_commands /home/gmontoro/Desktop/mini-git/code/src/command_lst.c:94:4
+    #4 0x4cb8e6 in ft_get_input /home/gmontoro/Desktop/mini-git/code/src/parseo.c:96:18
+    #5 0x4cba1f in main /home/gmontoro/Desktop/mini-git/code/src/parseo.c:111:2
+    #6 0x73d47ce29d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/gmontoro/Desktop/mini-git/code/src/command_types.c:42:22 in ft_add_cmd
+Shadow bytes around the buggy address:
+  0x0c047fff8530: fa fa fd fd fa fa 00 00 fa fa fd fa fa fa 00 04
+  0x0c047fff8540: fa fa 02 fa fa fa 02 fa fa fa 02 fa fa fa 02 fa
+  0x0c047fff8550: fa fa fd fa fa fa 02 fa fa fa 02 fa fa fa 05 fa
+  0x0c047fff8560: fa fa 02 fa fa fa 02 fa fa fa 06 fa fa fa 02 fa
+  0x0c047fff8570: fa fa 04 fa fa fa fd fa fa fa fd fa fa fa 00 00
+=>0x0c047fff8580:[fa]fa 05 fa fa fa 05 fa fa fa 02 fa fa fa 05 fa
+  0x0c047fff8590: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff85a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff85b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff85c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff85d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==2828652==ABORTING
+❯ ls
+a  b  Makefile  minishell  objs  outfile  parseo.h  src
+❯ ls
+❯ ./minishell
+minichell> > c > d echo hola adios | cat
+minichell> ls
+a  b  c  d  Makefile  minishell  objs  outfile  parseo.h  src
+minichell> cat d
+hola adios
+minichell> echo hola adios | cat < Makefile 
+# Variables
+CC = clang
+CFLAGS = -g -fsanitize=address
+
+LIBFT_DIR = ../libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+INCLUDES = -I$(LIBFT_DIR)
+
+SRC_DIR = ./src
+SRCS =  $(SRC_DIR)/parseo.c\
+                $(SRC_DIR)/aux.c\
+                $(SRC_DIR)/delete_quotes.c\
+                $(SRC_DIR)/expand_quotes.c\
+                $(SRC_DIR)/token_list_func.c\
+                $(SRC_DIR)/tokenize_functions.c\
+                $(SRC_DIR)/tokenize_aux.c\
+                $(SRC_DIR)/tokenize.c\
+                $(SRC_DIR)/command_lst.c\
+                $(SRC_DIR)/command_lst2.c\
+                $(SRC_DIR)/search_path.c\
+                $(SRC_DIR)/execute.c\
+                $(SRC_DIR)/ex_single_cmd.c\
+                $(SRC_DIR)/exec_pipeline.c\
+                $(SRC_DIR)/command_types.c\
+                $(SRC_DIR)/built-ins.c\
+                $(SRC_DIR)/jk_builtin_env.c\
+                $(SRC_DIR)/jk_builtin_exit.c\
+                $(SRC_DIR)/jk_env_copy.c\
+                $(SRC_DIR)/here_doc.c\
+                $(SRC_DIR)/get_prompt.c\
+                $(SRC_DIR)/built_in_cd.c\
+                $(SRC_DIR)/built_in_pwd.c\
+                $(SRC_DIR)/jk_builtin_echo.c\
+#               $(SRC_DIR)/ft_utils.c\
+
+OBJ_DIR = ./objs
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+NAME = minishell
+
+#OBJ_DIR_BONUS = ./objs_bonus
+#BONUS_DIR = ./src
+#BONUS_SRCS = $(BONUS_DIR)/bonus/pipex_bonus.c\
+                        $(BONUS_DIR)/ft_execute.c\
+                        $(BONUS_DIR)/ft_process.c\
+                        $(BONUS_DIR)/ft_utils.c\
+
+#BONUS_OBJS = $(BONUS_SRCS:$(BONUS_DIR)/%.c=$(OBJ_DIR_BONUS)/%.o)
+
+#BONUS_NAME = pipex_bonus
+
+# Colors
+RED                             = \033[0;31m
+GREEN                           = \033[0;32m
+YELLOW                          = \033[0;33m
+CYAN                            = \033[0;36m
+WHITE                           = \033[0;37m
+RESET                           = \033[0m
+
+# Reglas
+all: $(NAME) $(EXEC)
+
+#bonus: $(BONUS_NAME)
+
+#$(BONUS_NAME): $(OBJ_DIR_BONUS) $(LIBFT) $(BONUS_OBJS)
+#       @printf "$(CYAN)[Building Bonus] Creating $(BONUS_NAME)...\n$(RESET)"
+#       @$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(BONUS_NAME)
+#       @printf "$(GREEN)[Success] $(BONUS_NAME) created successfully!\n$(RESET)"
+
+$(NAME): $(OBJ_DIR) $(LIBFT) $(OBJS)
+        @printf "$(CYAN)[Building Main] Creating $(NAME)...\n$(RESET)"
+        @$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+        @printf "$(GREEN)[Success] $(NAME) created successfully!\n$(RESET)"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+        @mkdir -p $(dir $@)
+        @printf "$(YELLOW)[Compiling]$(RESET) $<\n"
+        @$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+#$(OBJ_DIR_BONUS)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR_BONUS)
+#       @mkdir -p $(dir $@)
+#       @printf "$(YELLOW)[Compiling Bonus]$(RESET) $<\n"
+#       @$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR):
+        @printf "$(CYAN)[Directory] Creating object directory $(OBJ_DIR)...\n$(RESET)"
+        @mkdir -p $(OBJ_DIR)
+
+#$(OBJ_DIR_BONUS):
+#       @printf "$(CYAN)[Directory] Creating bonus object directory $(OBJ_DIR_BONUS)...\n$(RESET)"
+#       @mkdir -p $(OBJ_DIR_BONUS)
+
+$(LIBFT):
+        @$(MAKE) -C $(LIBFT_DIR)
+        @$(MAKE) -C $(LIBFT_DIR) bonus
+        @$(MAKE) -C $(LIBFT_DIR) clean
+        @printf "$(GREEN)[Libft Ready] Libft compiled successfully!\n$(RESET)"
+
+clean:
+        @printf "$(RED)[Cleaning] Removing object files...\n$(RESET)"
+        @rm -rf $(OBJ_DIR)
+        @printf "$(GREEN)[Cleaned] Object files removed successfully!\n$(RESET)"
+
+fclean: clean
+        @printf "$(RED)[Full Clean] Removing binaries and $(LIBFT)...\n$(RESET)"
+        @$(MAKE) -C $(LIBFT_DIR) fclean
+        @rm -f $(NAME)
+        @printf "$(GREEN)[Cleaned] All binaries and libraries removed successfully!\n$(RESET)"
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus
+minichell> echo hola adios | < d cat < Makefile 
+# Variables
+CC = clang
+CFLAGS = -g -fsanitize=address
+
+LIBFT_DIR = ../libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+INCLUDES = -I$(LIBFT_DIR)
+
+SRC_DIR = ./src
+SRCS =  $(SRC_DIR)/parseo.c\
+                $(SRC_DIR)/aux.c\
+                $(SRC_DIR)/delete_quotes.c\
+                $(SRC_DIR)/expand_quotes.c\
+                $(SRC_DIR)/token_list_func.c\
+                $(SRC_DIR)/tokenize_functions.c\
+                $(SRC_DIR)/tokenize_aux.c\
+                $(SRC_DIR)/tokenize.c\
+                $(SRC_DIR)/command_lst.c\
+                $(SRC_DIR)/command_lst2.c\
+                $(SRC_DIR)/search_path.c\
+                $(SRC_DIR)/execute.c\
+                $(SRC_DIR)/ex_single_cmd.c\
+                $(SRC_DIR)/exec_pipeline.c\
+                $(SRC_DIR)/command_types.c\
+                $(SRC_DIR)/built-ins.c\
+                $(SRC_DIR)/jk_builtin_env.c\
+                $(SRC_DIR)/jk_builtin_exit.c\
+                $(SRC_DIR)/jk_env_copy.c\
+                $(SRC_DIR)/here_doc.c\
+                $(SRC_DIR)/get_prompt.c\
+                $(SRC_DIR)/built_in_cd.c\
+                $(SRC_DIR)/built_in_pwd.c\
+                $(SRC_DIR)/jk_builtin_echo.c\
+#               $(SRC_DIR)/ft_utils.c\
+
+OBJ_DIR = ./objs
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+NAME = minishell
+
+#OBJ_DIR_BONUS = ./objs_bonus
+#BONUS_DIR = ./src
+#BONUS_SRCS = $(BONUS_DIR)/bonus/pipex_bonus.c\
+                        $(BONUS_DIR)/ft_execute.c\
+                        $(BONUS_DIR)/ft_process.c\
+                        $(BONUS_DIR)/ft_utils.c\
+
+#BONUS_OBJS = $(BONUS_SRCS:$(BONUS_DIR)/%.c=$(OBJ_DIR_BONUS)/%.o)
+
+#BONUS_NAME = pipex_bonus
+
+# Colors
+RED                             = \033[0;31m
+GREEN                           = \033[0;32m
+YELLOW                          = \033[0;33m
+CYAN                            = \033[0;36m
+WHITE                           = \033[0;37m
+RESET                           = \033[0m
+
+# Reglas
+all: $(NAME) $(EXEC)
+
+#bonus: $(BONUS_NAME)
+
+#$(BONUS_NAME): $(OBJ_DIR_BONUS) $(LIBFT) $(BONUS_OBJS)
+#       @printf "$(CYAN)[Building Bonus] Creating $(BONUS_NAME)...\n$(RESET)"
+#       @$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(BONUS_NAME)
+#       @printf "$(GREEN)[Success] $(BONUS_NAME) created successfully!\n$(RESET)"
+
+$(NAME): $(OBJ_DIR) $(LIBFT) $(OBJS)
+        @printf "$(CYAN)[Building Main] Creating $(NAME)...\n$(RESET)"
+        @$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+        @printf "$(GREEN)[Success] $(NAME) created successfully!\n$(RESET)"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+        @mkdir -p $(dir $@)
+        @printf "$(YELLOW)[Compiling]$(RESET) $<\n"
+        @$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+#$(OBJ_DIR_BONUS)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR_BONUS)
+#       @mkdir -p $(dir $@)
+#       @printf "$(YELLOW)[Compiling Bonus]$(RESET) $<\n"
+#       @$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR):
+        @printf "$(CYAN)[Directory] Creating object directory $(OBJ_DIR)...\n$(RESET)"
+        @mkdir -p $(OBJ_DIR)
+
+#$(OBJ_DIR_BONUS):
+#       @printf "$(CYAN)[Directory] Creating bonus object directory $(OBJ_DIR_BONUS)...\n$(RESET)"
+#       @mkdir -p $(OBJ_DIR_BONUS)
+
+$(LIBFT):
+        @$(MAKE) -C $(LIBFT_DIR)
+        @$(MAKE) -C $(LIBFT_DIR) bonus
+        @$(MAKE) -C $(LIBFT_DIR) clean
+        @printf "$(GREEN)[Libft Ready] Libft compiled successfully!\n$(RESET)"
+
+clean:
+        @printf "$(RED)[Cleaning] Removing object files...\n$(RESET)"
+        @rm -rf $(OBJ_DIR)
+        @printf "$(GREEN)[Cleaned] Object files removed successfully!\n$(RESET)"
+
+fclean: clean
+        @printf "$(RED)[Full Clean] Removing binaries and $(LIBFT)...\n$(RESET)"
+        @$(MAKE) -C $(LIBFT_DIR) fclean
+        @rm -f $(NAME)
+        @printf "$(GREEN)[Cleaned] All binaries and libraries removed successfully!\n$(RESET)"
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus
+minichell> < Makefile cat << popo < d
+heredoc:lala
+heredoc:$USER
+heredoc:popo
+heredoc:popo
+heredoc:popo
+heredoc:d
+warning: EOF found
+lala
+$USER
+popo
+popo
+popo
+minichell> < Makefile cat << popo < d
+heredoc:popo
+heredoc:d
+warning: EOF found
+popo
+minichell> cat d
+hola adios
+minichell> cat << popo << lala 
+heredoc:lss
+heredoc:lala
+warning: EOF found
+lss
+minichell> cat << popo << lala 
+heredoc:popo
+heredoc:popo
+heredoc:popo
+heredoc:lala
+warning: EOF found
+popo
+popo
+popo
+minichell> cat << popo << lala 
+heredoc:
+entra en c_normal: 2
+minichell> cat << popo << lala 
+heredoc:
+warning: EOF found
+minichell> cat << popo << lala 
+heredoc:
+warning: EOF found
+minichell> cat << popo << lala 
+heredoc:
+entra en c_normal: 2
+minichell> echo $?
+0
+minichell> ^C
+entra en c_normal: 1
+minichell> echo $?
+0
+minichell> bash
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ ^C
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ echo $?
+130
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ ^C
+gmontoro@c2r1s2:~/Desktop/mini-git/code$ 
+exit
+minichell> cat
+^C
+entra en c_normal: 1
+minichell> echo $?
+130
+minichell> export a=popo
+minichell> echo "'$a'"
+'popo
+minichell> echo '"$a"'
+"$a"
+minichell> echo "'$a'"
+'popo
+minichell> echo "'$a'a"
+'popoa
+minichell> echo "a'$a'a"
+a'popoa
+minichell> echo '$a'
+$a
+minichell> echo $a$a
+popopopo
+minichell> echo $a"hola"
+popo hola
+minichell> echo $a$?
+popo
+minichell> expr $? $?
+expr: syntax error: unexpected argument ‘0’
+minichell> expr $? + $?
+4
+minichell> expr $?+$?
+0
+minichell> expr $? + $?
+2
+minichell> expr $? * $?
+0
+minichell> ls
+a  b  c  d  Makefile  minishell  objs  outfile  parseo.h  src
+minichell> popo
+popo: command not found
+fuck 2
+minichell> expr $? * $?
+16129
+minichell> $a
+popo: command not found
+fuck 2
+minichell> $asss
+(null): command not found
+fuck 2
+minichell> unset PATH
+minichell> $asss
+(null): command not found
+fuck 2
+
+=================================================================
+==2838466==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 16 byte(s) in 1 object(s) allocated from:
+    #0 0x49a25d in malloc (/home/gmontoro/Desktop/mini-git/code/minishell+0x49a25d)
+    #1 0x4dc7d5 in ft_calloc /home/gmontoro/Desktop/mini-git/libft/ft_calloc.c:21:11
+    #2 0x4d5434 in ft_add_cmd /home/gmontoro/Desktop/mini-git/code/src/command_types.c:21:31
+    #3 0x4d1a74 in ft_get_commands /home/gmontoro/Desktop/mini-git/code/src/command_lst.c:94:4
+    #4 0x4cb8e6 in ft_get_input /home/gmontoro/Desktop/mini-git/code/src/parseo.c:96:18
+    #5 0x4cba1f in main /home/gmontoro/Desktop/mini-git/code/src/parseo.c:111:2
+    #6 0x7c504e629d8f in __libc_start_call_main csu/../sysdeps/nptl/libc_start_call_main.h:58:16
+
+SUMMARY: AddressSanitizer: 16 byte(s) leaked in 1 allocation(s).
+minichell> 

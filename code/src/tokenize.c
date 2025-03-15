@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:49:35 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 14:08:39 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:21:58 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_get_tokens(t_shell *ms)
 		{
 			if (!ft_quote_tkn(&ms->tkn_lst, ms, &i))//ARREGLAR
 			{
-				ft_free_tkn_lst(&ms->tkn_lst);
+				//ft_free_tkn_lst(&ms->tkn_lst);
 				break;
 			}	
 		}
@@ -134,8 +134,8 @@ t_tkn	*ft_tokenize(t_shell *ms, char ***env)
 	if (!ms->input || ms->input[0] == 0)
 		return (NULL);
 	ft_get_tokens(ms);//transformamos el input en lista de tokens
-	//printf("---------before quotes--------\n");
-	//ft_tknprint(ms->tkn_lst);
+	/* printf("---------before quotes--------\n");
+	ft_tknprint(ms->tkn_lst); */
 	if (!ft_check_words(ms->tkn_lst))
 		return (ft_free_tkn_lst(&ms->tkn_lst),  NULL);
 	exit = ft_check_syntax(ms);

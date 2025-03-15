@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:39:29 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/11 13:42:12 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:26:42 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_exec_last_cmd(t_shell *ms, char **envp[], int	saved_stdin)
 	int		i_fd;
 	int		o_fd;
 
-	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);
-	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0);
+	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin, ms);
+	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0, ms);
 	pid = fork();
 	if (pid < 0)
 		return (0);
@@ -104,8 +104,8 @@ void	ft_exec_pipeline(t_shell *ms, char **envp[])
 	t_cmd *head = ms->cmd_lst;
 	while (ms->cmd_lst->next)//del primero al penultimo
 	{
-		i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);//el infile lo dupeamos 
-		o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0);//el outfile no
+		i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin, ms);//el infile lo dupeamos 
+		o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0, ms);//el outfile no
 		pids[i] = ft_exec_middle_cmd(ms, envp, i_fd, o_fd);
 		if (i_fd != 0)
 			close(i_fd);

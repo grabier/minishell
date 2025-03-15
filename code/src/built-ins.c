@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:59 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/03 10:15:58 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:50:07 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	ft_exec_built_in(t_shell *ms, char **envp[])
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "export"))
 	{
 		if (ms->cmd_lst->args[1])
-			*envp = ft_insert_dp(*envp, ms->cmd_lst->args[1]);
+			*envp = ft_insert_dp(*envp, ms->cmd_lst->args);
 		else
 			print_env_export(*envp);
 	}
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "unset"))
 		*envp = ft_unset(*envp, ms->cmd_lst->args[1]);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "cd"))
-		ft_cd(envp, ms->cmd_lst);
+		ms->exitstat = ft_cd(envp, ms->cmd_lst);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "pwd"))
 		ft_pwd(envp, ms->cmd_lst);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "echo"))
@@ -37,3 +37,4 @@ void	ft_exec_built_in(t_shell *ms, char **envp[])
 	else
 		return ;
 	}
+	

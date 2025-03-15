@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/10 11:57:28 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:18:30 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_cmd
 {
 	char	**args;
 	char	*infile;
+	char	*delimiter;
 	char	*outfile;
 	int		append;
 	int		hd;
@@ -142,7 +143,7 @@ int		ft_execute_cmd(t_shell *ms, char **envp[]);
 
 //ex_single_cmd.c
 void	ft_exec_single_cmd(t_shell *ms, char **envp[]);
-int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin);
+int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin, t_shell *ms);
 
 //exec_pipeline.c
 void	ft_exec_pipeline(t_shell *ms, char **envp[]);
@@ -156,7 +157,7 @@ void	ft_exec_built_in(t_shell *ms, char **envp[]);
 char	**ft_unset(char **env_copy, char *str);
 char	*ft_get_var_name(char *var);
 char	**ft_insert_change(char **env, char *insert, int *changed);
-char	**ft_insert_dp(char **env, char *insert);
+char	**ft_insert_dp(char **env, char **insert);
 
 //builtin-exit.c
 int		ft_is_num(char *str);
@@ -169,7 +170,7 @@ void	print_env(char **env_copy);
 void	print_env_export(char **env_copy);
 
 //here_doc.c
-int		ft_here_doc(char *limit);
+int		ft_here_doc(char *limit, t_shell *ms);
 
 //get_prompt.c
 char	*ft_get_prompt(char **env);

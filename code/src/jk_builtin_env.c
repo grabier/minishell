@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/05 13:14:29 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:38:33 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,19 @@ char	**ft_insert_no_value(char **env, char *insert)
 		}
 		copy[i++] = ft_strdup(aux);
 		copy[i] = NULL;
-		ft_free_split_dp(env);
-		free(aux);
-		return (copy);
+		return (ft_free_split_dp(env), free(aux), copy);
 	}
-	else
-		return (free(aux), env);
+	return (free(aux), env);
 }
 
-char	**ft_insert_dp(char **env, char *insert)
+static char	**ft_do_export(char **env, char *insert)
 {
 	char	**copy;
 	int		i;
 	char	*aux;
 	int		changed;
 
+	
 	if (!ft_strchr(insert, '='))
 		return (ft_insert_no_value(env, insert));
 	i = 0;
@@ -157,8 +155,7 @@ char	**ft_insert_dp(char **env, char *insert)
 	env = ft_insert_change(env, insert, &changed);
 	if (changed == 1)
 		return (env);
-	copy = (char **)malloc((ft_strlen_pointers(env) + 1 + 1) * sizeof(char *));
-	if (!copy)
+	if (!(copy = malloc((ft_strlen_pointers(env) + 1 + 1) * sizeof(char *))))
 		return (NULL);
 	while (env[i])
 	{
@@ -166,9 +163,25 @@ char	**ft_insert_dp(char **env, char *insert)
 		i++;
 	}
 	copy[i] = ft_strdup(insert);
-	i++;
-	copy[i] = NULL;
+	copy[++i] = NULL;
 	ft_free_split_dp(env);
+	return (copy);
+}
+
+
+char	**ft_insert_dp(char **env, char **insert)
+{
+	char	**copy;
+	int		i;
+
+	i = 1;
+	copy = env;
+	//printf("insert: %s\n", insert[0]);
+	while (insert[i])
+	{
+		copy = ft_do_export(copy, insert[i]);
+		i++;
+	}
 	return (copy);
 }
 

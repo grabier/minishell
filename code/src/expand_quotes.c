@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 19:36:54 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:24:11 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_check_quotes(char *input)
 	cont1 = 0;
 	cont2 = 0;
 	i = 0;
-	printf("input: %s\n", input);
+	//printf("input: %s\n", input);
 	while (input[i])
 	{
 		if (input[i] == 39)
@@ -79,7 +79,7 @@ static char	*ft_copy_to_dollar(char *input)
 	int		i;
 	char	*res;
 
-	i = 0;
+	i = 1;
 	while (input[i] && input[i] != '$')
 		i++;
 	if (i == 0)

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:33:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/09 13:35:17 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/14 20:43:23 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 //devuelve el fd de infile/outfile, 0, y 1 por defecto
 //pero consideramos las redirecciones
 
-int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
+int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin, t_shell *ms)
 {
 	int	fd;
 	
 	if (mode == 0)//mode 0 ->infile
-	fd = 0;
+		fd = 0;
 	else//mode 1 -> outfile
-	fd = 1;
+		fd = 1;
 	if (mode == 0 && cmd->infile && !cmd->hd)
 	{
 		fd = open(cmd->infile, O_RDONLY, 0777);
@@ -32,7 +32,7 @@ int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin)
 	else if (mode == 0 && cmd->infile && cmd->hd)
 	{
 		dup2(saved_stdin, STDIN_FILENO);
-		fd = ft_here_doc(cmd->infile);
+		fd = ft_here_doc(cmd->infile, ms);
 		dup2(fd, STDIN_FILENO);
 	}
 	else if (mode == 1 && cmd->outfile && !cmd->append)
@@ -65,16 +65,20 @@ void	ft_exec_single_cmd(t_shell *ms, char **envp[])
 	
 	//signal_flag = 1;
 	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
-	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin);//en la funcion open_n_redir, asi que hay que
-	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0);//guardar una copia del STDIN para devolverlo
-	if (i_fd < 0 || o_fd < 0)
+	i_fd = ft_open_n_redir(ms->cmd_lst, 0, saved_stdin, ms);//en la funcion open_n_redir, asi que hay que
+	o_fd = ft_open_n_redir(ms->cmd_lst, 1, 0, ms);//guardar una copia del STDIN para devolverlo
+/* 	printf("continua\n");
+	printf("1exit: %i\n", ms->exitstat);
+	printf("1prebvexit: %i\n", ms->prevexitstat); */
+	if (i_fd < 0 || o_fd < 0 || ms->exitstat == 130)
 		return ;
 	pid = fork();
 	if (pid == 0)//dupeamos la salida out en el hijo para no tener que preocuparnos
 	{
 		//o_fd = ft_open_n_redir_out(cmd, 1);
-		signal(SIGINT, SIG_DFL);
-		//signal_flag = 1;
+		//signal(SIGINT, SIG_DFL);
+		//signal_flag = 0;
+		//printf("continua2\n");
 		dup2(o_fd, STDOUT_FILENO);//los dups realizados en procesos hijos
 		if (!ms->cmd_lst->is_bi)
 			ft_execute_cmd(ms, envp);//no afectan al proceso padre
