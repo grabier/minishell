@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:42:00 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/15 14:23:22 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 09:25:11 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_shell	*ft_init_shell(void)
 	ms->cmd_lst = NULL;
 	ms->tkn_lst = NULL;
 	ms->exitstat = 0;
+	ms->prevexitstat = 0;
 	return (ms);
 }
 
@@ -94,7 +95,7 @@ int	ft_get_input(char *envp[])
 	t_shell	*ms;
 
 	ms = ft_init_shell();
-	ms->exitstat = 0;
+	//ms->exitstat = 0;
 	while (1)//la minishell es lo que ocurra dentro de este bucle
 	{
 		/* printf("exit: %i\n", ms->exitstat);
@@ -131,7 +132,7 @@ int main(int argc, char *argv[], char *env[])
 {
 	char **cpy;
 	
-	cpy =  ft_copy_dp(env);
+	cpy =  ft_copy_env(env);
 	//print_env(cpy);
 	ft_get_input(cpy);
 	/* print_env(cpy);

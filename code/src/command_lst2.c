@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/14 20:25:54 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:03:46 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,10 @@ void	ft_free_cmd_lst(t_cmd **cmd)
 {
 	t_cmd *aux;
 
-	//printf("entra a free_cmd_lst\n");
-	//ft_cmdprint(*cmd);
 	if (!*cmd)
 		return ;
 	while (*cmd)
 	{
-		//printf("freed cmd\n");
 		aux = (*cmd)->next;
 		if ((*cmd)->args)
 			ft_free_split((*cmd)->args);

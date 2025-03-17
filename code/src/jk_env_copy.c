@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:08:06 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/05 14:36:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 09:24:45 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char **ft_hardcode_env(void)
 	return (copy);
 }
 
-char	**ft_copy_dp(char **env) //para copiar solo el primero puntero con las lineas
+char	**ft_copy_env(char **env) //para copiar solo el primero puntero con las lineas
 {
 	char	**copy;
 	int		i;

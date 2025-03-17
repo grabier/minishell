@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 19:55:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/14 20:30:39 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/15 16:41:34 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_add_shlvl(char **env[])
 	printf("aux2: %s\n", aux2);
 	insert[1] = ft_strdup(aux2);
 	insert[2] = NULL; 
-	ft_insert_dp(*env, insert);
+	ft_export(*env, insert);
 	free(aux);
 	free(aux2);
 }
@@ -76,7 +76,7 @@ int	ft_execute_cmd(t_shell *ms, char **envp[])
 		exit(2);
 	if (!access(ms->cmd_lst->args[0], X_OK) )//gestionamos si nos entra la ruta del comando
 	{//echo ->>>> /usr/bin/echo
-		//printf("entra1\n");
+		printf("entra1\n");
 		char *aux = ft_strdup(ms->cmd_lst->args[0]);
 		ms->cmd_lst->args[0] = ft_trim_path(ms->cmd_lst->args[0]);
 		if (!ft_strcmp(ms->cmd_lst->args[0], "minishell"))
@@ -87,6 +87,7 @@ int	ft_execute_cmd(t_shell *ms, char **envp[])
 			printf("carajos\n");
 			printf("args: %s\n", ms->cmd_lst->args[0]);
 		} */
+		printf("ENTRA AL EXECVE: %s\n", ms->cmd_lst->args[0]);
 		if (execve(aux, ms->cmd_lst->args, *envp) == -1)
 		{
 			printf("fuck 1\n");
@@ -94,6 +95,7 @@ int	ft_execute_cmd(t_shell *ms, char **envp[])
 			exit(127);
 		}
 	}
+	printf("ENTRA AL EXECVE: %s\n", ms->cmd_lst->args[0]);
 	if (execve(ft_find_path(ms->cmd_lst->args[0], *envp), ms->cmd_lst->args, *envp) == -1)
 	{
 		printf("fuck 2\n");
@@ -117,7 +119,6 @@ void	ft_exec_commands(t_shell *ms, char **envp[])
 	}
 	else
 	{
-		printf("entra a pipas\n");
 		ft_exec_pipeline(ms, envp);
 	}
 }

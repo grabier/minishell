@@ -6,12 +6,12 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:19:26 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:46:42 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:04:54 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-//34 == doble    ||   39 == single
+
 int	ft_count_quotes(char *input, int mode)
 {
 	int	i;

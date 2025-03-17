@@ -1,6 +1,6 @@
 # Variables
 CC = clang
-CFLAGS = -g -fsanitize=address
+CFLAGS = -g #-fsanitize=address
 
 LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -24,14 +24,16 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/exec_pipeline.c\
 		$(SRC_DIR)/command_types.c\
 		$(SRC_DIR)/built-ins.c\
-		$(SRC_DIR)/jk_builtin_env.c\
-		$(SRC_DIR)/jk_builtin_exit.c\
+		$(SRC_DIR)/builtin_jk_export.c\
+		$(SRC_DIR)/builtin_jk_unset.c\
+		$(SRC_DIR)/builtin_jk_exit.c\
 		$(SRC_DIR)/jk_env_copy.c\
 		$(SRC_DIR)/here_doc.c\
 		$(SRC_DIR)/get_prompt.c\
 		$(SRC_DIR)/built_in_cd.c\
+		$(SRC_DIR)/built_in_cd_utils.c\
 		$(SRC_DIR)/built_in_pwd.c\
-		$(SRC_DIR)/jk_builtin_echo.c\
+		$(SRC_DIR)/builtin_jk_echo.c\
 #		$(SRC_DIR)/ft_utils.c\
 
 OBJ_DIR = ./objs

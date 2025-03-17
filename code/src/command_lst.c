@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:44:41 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/14 20:28:40 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:01:15 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[])
 {
 	t_cmd	*new;
 	t_cmd	*cmd_lst;
-	
-	//printf("entra?\n");
+
 	cmd_lst = NULL;
 	new = ft_cmdnew();
 	while (tkn)
@@ -93,11 +92,8 @@ t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[])
 		}
 		else if (tkn->type == WORD || tkn->type == QS)// word
 			ft_add_cmd(ms, &tkn, &new, env);
-		else if (tkn->type == L1)// < infile
-		{
-			if (!ft_add_infile(&tkn, &new))
+		else if (tkn->type == L1 && !ft_add_infile(&tkn, &new))// < infile
 				return (ft_free_cmd_lst(&cmd_lst), ft_free_split(new->args), free(new), NULL);
-		}
 		else if (tkn->type == R1)// > outfile
 			ft_add_outfile(&tkn, &new);
 		else if (tkn->type == R2)// >> append
@@ -105,9 +101,6 @@ t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[])
 		else if (tkn->type == L2)// << here_doc
 			ft_add_here_doc(&tkn, &new);
 		tkn = tkn->next;
-		}
-	//printf("sale?\n");
-	ft_cmdadd_back(&cmd_lst, new);
-	//ft_cmdprint(cmd_lst);
-	return (cmd_lst);
+	}
+	return (ft_cmdadd_back(&cmd_lst, new), cmd_lst);
 }

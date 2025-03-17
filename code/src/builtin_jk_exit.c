@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jk_builtin_exit.c                                  :+:      :+:    :+:   */
+/*   builtin_jk_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:13:40 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/15 14:24:47 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 09:41:52 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_exit(t_shell *ms, char *env[])
 	printf("exit\n");
 	if (ms->cmd_lst->args[1])
 	{
-		//printf("entra al bucle\n");
 		if (!ft_is_num(ms->cmd_lst->args[1]))
 		{
 			printf("minishell: exit: numeric argument required\n");
@@ -54,8 +53,6 @@ void	ft_exit(t_shell *ms, char *env[])
 			return ;
 		}
 	}
-	ft_free_shell(ms);
-	free(ms);
-	//printf("porkenoexitea: %i\n", exit_code);
+	(ft_free_shell(ms), free(ms));
 	exit((unsigned char)exit_code);
 }

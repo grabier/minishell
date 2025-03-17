@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/14 20:18:30 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:12:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,30 +144,12 @@ int		ft_execute_cmd(t_shell *ms, char **envp[]);
 //ex_single_cmd.c
 void	ft_exec_single_cmd(t_shell *ms, char **envp[]);
 int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin, t_shell *ms);
+void	ft_close_if_needed(int i_fd, int o_fd);
 
 //exec_pipeline.c
 void	ft_exec_pipeline(t_shell *ms, char **envp[]);
 int		ft_exec_middle_cmd(t_shell *ms, char **envp[], int i_fd, int o_fd);
 int		ft_exec_last_cmd(t_shell *ms, char **envp[], int saved_stdin);
-
-//built-ins.c
-void	ft_exec_built_in(t_shell *ms, char **envp[]);
-
-//builtin-env.c
-char	**ft_unset(char **env_copy, char *str);
-char	*ft_get_var_name(char *var);
-char	**ft_insert_change(char **env, char *insert, int *changed);
-char	**ft_insert_dp(char **env, char **insert);
-
-//builtin-exit.c
-int		ft_is_num(char *str);
-void	ft_exit(t_shell *ms, char *env[]);
-
-//builtin-env-cpy.c
-int		ft_strlen_pointers(char *env[]);
-char	**ft_copy_dp(char **env);
-void	print_env(char **env_copy);
-void	print_env_export(char **env_copy);
 
 //here_doc.c
 int		ft_here_doc(char *limit, t_shell *ms);
@@ -180,19 +162,51 @@ char	*ft_get_session_manager(char **env);
 char	*ft_get_user(char **env);
 //char	*ft_trim_before_home(void);
 
+//built-ins.c
+void	ft_exec_built_in(t_shell *ms, char **envp[]);
+
+//builtin-export.c
+char	**ft_export(char **env, char **insert);
+char	**ft_do_export(char **env, char *insert);
+char	*ft_get_var_name(char *var);
+char	**ft_insert_change(char **env, char *insert, int *changed);
+char	**ft_insert_no_value(char **env, char *insert);
+
+//builtin-unset.c
+char	**ft_unset(char **env_copy, char **str);
+void	ft_free_split_dp(char **split);
+char	**ft_do_unset(char **env_copy, char *str);
+int		ft_len_to_equal(char *str);
+char	**ft_copy_dp(char **src, int pos);
+
 //built_in_cd.c
 int		ft_cd(char ***env, t_cmd *cmd);
 int		ft_cd_dot(char ***env, t_cmd *cmd);
 int		ft_cd_normal(char ***env, char *path);
 int		ft_cd_minus(char ***env, t_cmd *cmd);
+
+//built_in_cd_utils.c
 char	*ft_getenv(char **env, char *var);
+char	**ft_unset_in_cd(char **env, char *str);
+char	**ft_get_dp(char *aux);
 
 //built_in_pwd.c
 int		ft_pwd(char ***env, t_cmd *cmd);
 
 //built_in_echo.c
-void	ft_echo(t_cmd *cmd);
+void	ft_echo(t_cmd *cmd, t_shell *ms);
 void	ft_do_echo(t_cmd *cmd);
+int		ft_check_flag(char *s);
+
+//builtin-exit.c
+int		ft_is_num(char *str);
+void	ft_exit(t_shell *ms, char *env[]);
+
+//builtin-env-cpy.c
+int		ft_strlen_pointers(char *env[]);
+char	**ft_copy_env(char **env);
+void	print_env(char **env_copy);
+void	print_env_export(char **env_copy);
 
 //signals.c
 void	ft_handle_c(int sig);
