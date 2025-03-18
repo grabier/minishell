@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 15:03:57 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/17 17:23:45 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:33:13 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ char	*ft_strcat_cmd(char *s1, char *s2)
 	}
 	re[j] = '\0';
 	if (access(re, X_OK) == -1)
-	{
 		return (free(re), NULL);
-	}
 	return (re);
 }
 
@@ -57,7 +55,6 @@ char	*ft_find_cmd(char *cmd, char *path)
 	while (split[i])
 	{
 		result = ft_strcat_cmd(split[i], cmd);
-		//printf("rsult: %s\n", result);
 		if (result)
 			break ;
 		free(result);
@@ -85,7 +82,8 @@ char	*aux_find_path(char *cmd, char *envp[], char *res, int i)
 		return (NULL);
 	if (!ft_find_cmd(cmd, path))
 	{
-		printf("%s: command not found\n", cmd);
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": command not found\n", 21);
 		return (free(res), NULL);
 	}
 	return (free(res), ft_find_cmd(cmd, path));

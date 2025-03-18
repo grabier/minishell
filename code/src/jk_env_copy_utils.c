@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   jk_env_copy_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 10:53:32 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/05 15:00:20 by gmontoro         ###   ########.fr       */
+/*   Created: 2025/03/18 15:49:57 by gmontoro          #+#    #+#             */
+/*   Updated: 2025/03/18 17:31:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 
-void	handle_sigquit_fork(int sig)
+int	ft_strlen_pointers(char *env[])
 {
-	printf("Quit (core dumped)");
-	g_signal = sig;
-	kill(0, SIGINT);
+	int	i;
+
+	i = 0;
+	while (env[i])
+		i++;
+	return (i);
 }
 
-void	handle_sigint_fork(int sig)
+char	*ft_strdup_jk(char *str)
 {
-	printf("\n");
-	if (g_signal == 0)
-		g_signal = sig;
-}
+	char	*dup;
+	int		i;
 
-void	handle_sigint_main(int sig)
-{
-	(void)sig;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	i = 0;
+	dup = malloc(ft_strlen(str) * sizeof(char) + 1);
+	if (!dup)
+		return (NULL);
+	while (str[i])
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

@@ -6,41 +6,17 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:25:56 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/12 18:24:11 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:22:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 
-int	ft_check_quotes(char *input)
-{
-	int	i;
-	int	cont1;
-	int	cont2;
-
-	cont1 = 0;
-	cont2 = 0;
-	i = 0;
-	//printf("input: %s\n", input);
-	while (input[i])
-	{
-		if (input[i] == 39)
-			cont1++;
-		if (input[i] == 34)
-			cont2++;
-		i++;
-	}
-	if (cont1 % 2 != 0 || cont2 % 2 != 0)
-		return (0);
-	return (1);
-}
-
 char	*ft_expand_exit(t_shell *ms, char *input, int start)
 {
 	char	*aux;
-	int		i;
 
-	//printf("itoa: %i\n", ms->exitstat);
+	(void)start;
 	aux = ft_itoa(ms->prevexitstat);
 	free(input);
 	return (aux);
@@ -56,17 +32,16 @@ char	*ft_expand(t_shell *ms, char *input, int start, char **env[])
 
 	j = 0;
 	i = start;
-	//printf("input: %s\n", input);
 	if (input[1] == '?')
 		return (ft_expand_exit(ms, input, start));
 	while (input[i] != 34 && input[i] != ' ' && input[i] && input[i] != '$'
 		&& input[i++] != '\'')
-		j++; 
+		j++;
 	name = malloc(sizeof(char) * (j + 1));
 	ft_strlcpy(name, &input[start], j + 1);
 	aux = ft_getenv(*env, name);
 	if (!aux)
-		return (free(name),free(aux), NULL);
+		return (free(name), free(aux), NULL);
 	res = ft_strinsert(input, aux, start - 1, i - 1);
 	free(input);
 	free(name);
@@ -74,7 +49,7 @@ char	*ft_expand(t_shell *ms, char *input, int start, char **env[])
 	return (res);
 }
 
-static char	*ft_copy_to_dollar(char *input)
+char	*ft_copy_to_dollar(char *input)
 {
 	int		i;
 	char	*res;
@@ -96,74 +71,47 @@ static char	*ft_copy_to_dollar(char *input)
 	return (res);
 }
 
-char	*ft_check_expands(t_shell *ms,char *input, int mode, char **env[])//input = "'$HOME'"
+char	*ft_check_expands(t_shell *ms, char *in, int mode, char **env[])
 {
-	int	i;
-	char	*res;
-
-	i = 0;
-	res = NULL;
-	//printf("entra?\n");
-	while (input[i] && i >= 0)
+	ms->aux = NULL;
+	while (in[++ms->i] && in[ms->i + 1] && ms->i >= 0)
 	{
-		if ((input[i] == 34 && input[i + 1] != '\0') || mode == 0)//34 es doble
+		if ((in[ms->i] == 34 && in[ms->i + 1] != '\0') || mode == 0)
 		{
 			if (mode != 0)
-				i++;
-			//printf("mode: %i\n",mode);
-			while (input[i] != '$' && input[i] != 34 && input[i])
-				i++;
-			if (input[i] == '$' && input[i + 1] != ' ' && input[i + 1] != '\"' && input[i + 1])
+				ms->i++;
+			while (!f(in[ms->i], in[ms->i], 0, 0) && ms->i < ft_strlen(in) - 1)
+				ms->i++;
+			if (!f(in[ms->i], in[ms->i + 1], in[ms->i + 1], 1) && in[ms->i + 1])
 			{
-				//printf("entra?\n");
-				free(res);
-				//printf("input: %s\n", input);
-				res = ft_expand(ms, input, i + 1, env);
-				//printf("res: %s\n", res);
-				if (!res)
-					return (ft_copy_to_dollar(input));
-				input = ft_strdup(res);
-				if (ft_strchr(input, '$'))
-					i = -1;
-				else
+				if (ms->aux)
+					free(ms->aux);
+				ms->aux = ft_expand(ms, in, ms->i + 1, env);
+				if (!ms->aux)
+					return (ft_copy_to_dollar(in));
+				in = ft_strdup(ms->aux);
+				if (ft_strchr(in, '$'))
+					ms->i = -1;
+				else if (!ft_strchr(in, '$') || ms->i < ft_strlen(in) - 1)
 					break ;
 			}
 		}
-		i++;
 	}
-	//printf("res: %s\n", res);
-	if (res)
-		return (free(input), res);
-	else
-		return (free(res), input);
+	return (ft_check_return(in, ms->aux));
 }
-
-/* char *ft_do_quotes(char *input)
-{
-	char	*res;
-
-	if (!ft_check_quotes(input))
-		return (NULL);
-	res = ft_check_expands(input, 1);
-	if (!res)
-		return (input);
-	//printf("res: %s\n", res);
-	return (res);
-} */
 
 void	ft_quotes(t_shell *ms, t_tkn **tkn, char **env[])
 {
 	t_tkn	*first;
 
 	first = *tkn;
-	//print_env(*env);
 	while (*tkn)
 	{
 		if ((*tkn)->type == QD || (*tkn)->type == QS)
 		{
 			if ((*tkn)->type == QD)
 			{
-				
+				ms->i = -1;
 				(*tkn)->token = ft_check_expands(ms, (*tkn)->token, 1, env);
 				(*tkn)->token = ft_delete_dquotes((*tkn)->token);
 			}

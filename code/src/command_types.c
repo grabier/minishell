@@ -6,51 +6,53 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:14:39 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 09:54:43 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-//agrega un nuevo argumento al comand o redireccion
-void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[])
+
+void	ft_add_cmd(t_shell *ms, t_tkn **t, t_cmd **cmd_lst, char **env[])
 {
 	int	i;
 
 	i = 0;
 	if (!(*cmd_lst)->args)
-		(*cmd_lst)->args = ft_calloc(sizeof(char *), (ft_count_args(*tkn) + 1));
+		(*cmd_lst)->args = ft_calloc(sizeof(char *), (ft_count_args(*t) + 1));
 	else
 		while ((*cmd_lst)->args[i])
 			i++;
-	while ((*tkn) && ((*tkn)->type == 0 || (*tkn)->type == QS))//mientras que nos encontremos palabras, las vamos añadiendo a args[]
+	while ((*t) && ((*t)->type == 0 || (*t)->type == QS))
 	{
 		if (i == 0)
-			((*tkn)->token) = ft_delete_squotes(((*tkn)->token));
-		if (ft_strchr((*tkn)->token, '$') && (*tkn)->type != QS)
-			((*tkn)->token) = ft_check_expands(ms, (*tkn)->token,  0, env);
-		if ((*tkn)->token)
-			(*cmd_lst)->args[i] = ft_strdup((*tkn)->token);
+			((*t)->token) = ft_delete_squotes(((*t)->token));
+		ms->i = -1;
+		if (ft_strchr((*t)->token, '$') && (*t)->type != QS)
+			((*t)->token) = ft_check_expands(ms, (*t)->token, 0, env);
+		if ((*t)->token)
+			(*cmd_lst)->args[i] = ft_strdup((*t)->token);
 		i++;
-		if ((*tkn)->next  && ((*tkn)->next->type == 0 || (*tkn)->next->type == QS))
-			(*tkn) = (*tkn)->next;
+		if ((*t)->next && ((*t)->next->type == 0 || (*t)->next->type == QS))
+			(*t) = (*t)->next;
 		else
 			break ;
 	}
-	if (ft_isbuiltin((*cmd_lst)->args[0]))//decidimos si es builtin o cmd
+	if (ft_isbuiltin((*cmd_lst)->args[0]))
 		(*cmd_lst)->is_bi = 1;
 }
 
-char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)
+char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst, t_shell *ms)
 {
-	int	fd;
-
 	(*tkn) = (*tkn)->next;
 	if (!(*cmd_lst)->infile)
 	{
 		if (!access((*tkn)->token, R_OK))
 			(*cmd_lst)->infile = ft_strdup((*tkn)->token);
 		else
-			return (printf("%s: no file\n",(*tkn)->token), NULL);
+		{
+			ms->exitstat = 1;
+			return (printf("%s: no file\n", (*tkn)->token), NULL);
+		}
 	}
 	else
 	{
@@ -59,8 +61,7 @@ char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst)
 	}
 	return (".");
 }
-//comprobamos si hay un outfile existente. si lo hay creamos el archivo 
-//y nos olvidamos de el
+
 void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	int	fd;
@@ -81,7 +82,7 @@ void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst)
 void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst)
 {
 	int	fd;
-	
+
 	(*tkn) = (*tkn)->next;
 	if (!(*cmd_lst)->outfile)
 		(*cmd_lst)->outfile = ft_strdup((*tkn)->token);

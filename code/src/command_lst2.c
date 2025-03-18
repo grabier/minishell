@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:19:10 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 10:03:46 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:58:54 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_cmd_lst(t_cmd **cmd)
 {
-	t_cmd *aux;
+	t_cmd	*aux;
 
 	if (!*cmd)
 		return ;
@@ -56,7 +56,7 @@ void	ft_cmdprint(t_cmd *lst)
 
 void	ft_cmdadd_back(t_cmd **lst, t_cmd *new)
 {
-	t_cmd *aux;
+	t_cmd	*aux;
 
 	aux = *lst;
 	if (!new)

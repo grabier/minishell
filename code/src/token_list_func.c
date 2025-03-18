@@ -6,12 +6,12 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:50:20 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/11 19:26:07 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:33:24 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-//funciones para moverse por listas de tokens
+
 void	ft_tknprint(t_tkn *lst)
 {
 	while (lst)
@@ -24,7 +24,7 @@ void	ft_tknprint(t_tkn *lst)
 
 void	ft_tknadd_back(t_tkn **lst, t_tkn *new)
 {
-	t_tkn *aux;
+	t_tkn	*aux;
 
 	aux = *lst;
 	if (!new)

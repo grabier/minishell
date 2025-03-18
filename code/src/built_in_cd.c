@@ -6,16 +6,14 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:21:12 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 09:37:30 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:29:07 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
-//entra $VAR y sale su contenido
 
 int	ft_cd_dot(char ***env, t_cmd *cmd)
 {
-	int	i;
 	char	*aux;
 	char	*aux2;
 	char	**insert;
@@ -39,9 +37,8 @@ int	ft_cd_dot(char ***env, t_cmd *cmd)
 	return (1);
 }
 
-int	ft_cd_minus(char ***env, t_cmd *cmd)//se va al directorio anterior
-{//pero no en la ruta
-	int	i;
+int	ft_cd_minus(char ***env, t_cmd *cmd)
+{
 	char	*aux;
 	char	*aux2;
 	char	**insert;
@@ -69,25 +66,24 @@ int	ft_cd_minus(char ***env, t_cmd *cmd)//se va al directorio anterior
 
 int	ft_cd_normal(char ***env, char *path)
 {
-	int	i;
 	char	*aux;
 	char	*aux2;
 	char	**insert;
 
-	*env = ft_unset_in_cd(*env, "OLDPWD");//eliminamos OLDPWD del env
-	aux2 = getcwd(NULL, 0);//te devuelve el pwd y lo guardamos en aux2
-	aux = ft_strjoin("OLDPWD=", aux2);//añdimos oldpwd delante
-	if (chdir(path) == -1)//cambiamos de directorio
+	*env = ft_unset_in_cd(*env, "OLDPWD");
+	aux2 = getcwd(NULL, 0);
+	aux = ft_strjoin("OLDPWD=", aux2);
+	if (chdir(path) == -1)
 		return (free(aux), free(aux2), printf("cd: unable to chdir\n"), 0);
 	insert = ft_get_dp(aux);
-	*env = ft_export(*env, insert);//exportamos el OLDPWD al entorno
+	*env = ft_export(*env, insert);
 	ft_free_split(insert);
 	(free(aux), free(aux2));
-	aux2 = getcwd(NULL, 0);//recogemos la ruta actual 
-	aux = ft_strjoin("PWD=", aux2);//le añadimos PWD delante
-	*env = ft_unset_in_cd(*env, "PWD");//eliminamos PWD del entorno
+	aux2 = getcwd(NULL, 0);
+	aux = ft_strjoin("PWD=", aux2);
+	*env = ft_unset_in_cd(*env, "PWD");
 	insert = ft_get_dp(aux);
-	*env = ft_export(*env, insert);//exportamos el nuevo PWD
+	*env = ft_export(*env, insert);
 	ft_free_split(insert);
 	(free(aux), free(aux2));
 	return (1);
@@ -95,7 +91,6 @@ int	ft_cd_normal(char ***env, char *path)
 
 int	ft_cd(char ***env, t_cmd *cmd)
 {
-	int	i;
 	char	*aux;
 
 	if (cmd->args[1] == NULL || !ft_strcmp(cmd->args[1], "~"))
@@ -106,7 +101,7 @@ int	ft_cd(char ***env, t_cmd *cmd)
 		return (free(aux), 0);
 	}
 	if (cmd->args[2] != NULL)
-		return (printf("cd: too many arguments\n"), 0);
+		return (printf("cd: too many arguments\n"), 1);
 	else if (!ft_strcmp(cmd->args[1], "."))
 	{
 		if (!ft_cd_dot(env, cmd))
@@ -118,6 +113,6 @@ int	ft_cd(char ***env, t_cmd *cmd)
 			return (1);
 	}
 	else if (!ft_cd_normal(env, cmd->args[1]))
-			return (1);
+		return (1);
 	return (0);
 }

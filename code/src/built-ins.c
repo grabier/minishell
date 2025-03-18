@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:59 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 09:39:44 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:30:15 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_exec_built_in(t_shell *ms, char **envp[])
 {
-	//printf("entra: %s", ms->cmd_lst->args[0]);
 	if (!ft_strcmp(ms->cmd_lst->args[0], "env"))
 		print_env(*envp);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "export"))
@@ -29,12 +28,11 @@ void	ft_exec_built_in(t_shell *ms, char **envp[])
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "cd"))
 		ms->exitstat = ft_cd(envp, ms->cmd_lst);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "pwd"))
-		ft_pwd(envp, ms->cmd_lst);
+		ft_pwd();
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "echo"))
 		ft_echo(ms->cmd_lst, ms);
 	else if (!ft_strcmp(ms->cmd_lst->args[0], "exit"))
-		ft_exit(ms, *envp);
+		ft_exit(ms);
 	else
 		return ;
 }
-	

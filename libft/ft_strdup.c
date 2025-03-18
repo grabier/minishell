@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:26:46 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/15 19:13:57 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:24:02 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strdup(const char *s1)
 {
 	char	*result;
-	size_t	i;
+	int		i;
 
 	i = 0;
 	if (!s1)

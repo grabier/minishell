@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/17 09:43:56 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:27:53 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,8 @@ char	**ft_insert_no_value(char **env, char *insert)
 	char	**copy;
 	int		i;
 	char	*aux;
-	int		changed;
-	
+
 	i = 0;
-	/* aux = ft_strjoin("++", insert);
-	ft_unset(env, aux);
-	free(aux); */
 	aux = ft_strjoin(insert, "=");
 	if (!ft_strnstr(insert, aux, ft_strlen(insert) - 1))
 	{
@@ -95,10 +91,8 @@ char	**ft_do_export(char **env, char *insert)
 {
 	char	**copy;
 	int		i;
-	char	*aux;
 	int		changed;
 
-	
 	if (!ft_strchr(insert, '='))
 		return (ft_insert_no_value(env, insert));
 	i = 0;
@@ -106,7 +100,8 @@ char	**ft_do_export(char **env, char *insert)
 	env = ft_insert_change(env, insert, &changed);
 	if (changed == 1)
 		return (env);
-	if (!(copy = malloc((ft_strlen_pointers(env) + 1 + 1) * sizeof(char *))))
+	copy = malloc((ft_strlen_pointers(env) + 1 + 1) * sizeof(char *));
+	if (!copy)
 		return (NULL);
 	while (env[i])
 	{
@@ -133,5 +128,3 @@ char	**ft_export(char **env, char **insert)
 	}
 	return (copy);
 }
-
-

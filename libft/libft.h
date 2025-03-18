@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:01:18 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/02/08 20:05:31 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:25:32 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 typedef struct s_list
 {
-	int			content;
-	int			index;
-	int			pos;
-	int			costa;
-	int			costb;
-	int			opa;
-	int			opb;
-	int			size;
+	int				content;
+	int				index;
+	int				pos;
+	int				costa;
+	int				costb;
+	int				opa;
+	int				opb;
+	int				size;
 	struct s_list	*next;
 }	t_list;
 
@@ -47,7 +47,7 @@ void	ft_lstclear(t_list **lst, void (*del) (int));
 void	ft_lstdelone(t_list *lst, void (*del)(int));
 void	ft_lstiter(t_list *lst, void (*f)(int));
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstmap(t_list *lst, int(*f)(int), void (*del)(int));
+t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 t_list	*ft_lstnew(int content);
 int		ft_lstsize(t_list *lst);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -64,7 +64,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strjoin(const char *s1, const char *s2);
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
@@ -72,7 +72,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(const char *s1, const char *set);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, int start, int len);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_free_split(char **split);

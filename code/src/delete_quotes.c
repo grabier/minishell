@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:19:26 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 10:04:54 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:01:48 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_count_quotes(char *input, int mode)
 
 	i = 0;
 	cont = 0;
+	if (!input)
+		return (0);
 	while (input[i])
 	{
 		if (input[i] == mode)
@@ -39,7 +41,7 @@ char	*ft_delete_dquotes(char *input)
 	j = 0;
 	while (input[i])
 	{
-		if(input[i] == 34)
+		if (input[i] == 34)
 			i++;
 		else
 			res[j++] = input[i++];
@@ -60,7 +62,7 @@ char	*ft_delete_squotes(char *input)
 	j = 0;
 	while (input[i])
 	{
-		if(input[i] == 39)
+		if (input[i] == 39)
 			i++;
 		else
 			res[j++] = input[i++];

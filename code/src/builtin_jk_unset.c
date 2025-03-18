@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:25:35 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/17 09:44:16 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:54:21 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_copy_dp(char **src, int pos)
 	int		i;
 	int		j;
 	char	**copy;
-	
+
 	i = 0;
 	j = 0;
 	copy = (char **)malloc(ft_strlen_pointers(src) * sizeof(char *));
@@ -50,7 +50,7 @@ char	**ft_copy_dp(char **src, int pos)
 	while (src[i])
 	{
 		if (i != pos)
-		copy[j++] = ft_strdup(src[i]);
+			copy[j++] = ft_strdup(src[i]);
 		i++;
 	}
 	copy[j] = NULL;
@@ -62,13 +62,13 @@ char	**ft_do_unset(char **env_copy, char *str)
 {
 	int		i;
 	int		pos;
-	
+
 	i = 0;
 	pos = -1;
 	while (env_copy[i])
 	{
 		if (!ft_strncmp(str, env_copy[i], ft_len_to_equal(env_copy[i])))
-		pos = i;
+			pos = i;
 		i++;
 	}
 	if (pos == -1)

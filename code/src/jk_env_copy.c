@@ -6,56 +6,26 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:08:06 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/17 09:24:45 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:32:43 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//checkear si existe ya la variable    insert==export
-//limpiar todo + comentarios + dividirlo en 2 archivos y pasarlo a gabri
-
 #include "../parseo.h"
 
-
-int	ft_strlen_pointers(char *env[]) //para saber cuantas variables en env
+char	**ft_hardcode_env(void)
 {
-	int	i;
+	char	**c;
+	char	*a;
 
-	i = 0;
-	while (env[i])
-		i++;
-	return (i);
+	a = "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/bin";
+	c = (char **)malloc((3) * sizeof(char *));
+	c[0] = ft_strdup("SHLVL=0");
+	c[1] = ft_strdup(a);
+	c[2] = NULL;
+	return (c);
 }
 
-char	*ft_strdup_jk(char *str) //para copiar las lineas de cada variables de env
-{
-	char	*dup;
-	int		i;
-
-	i = 0;
-	dup = malloc(ft_strlen(str) * sizeof(char) + 1);
-	if (!dup)
-		return (NULL);
-	while (str[i])
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-static char **ft_hardcode_env(void)
-{
-	char	**copy;
-
-	copy = (char **)malloc((2) * sizeof(char *));
-	copy[0] = ft_strdup("SHLVL=0");
-	//copy[1] = ft_strdup("_=/usr/bin/env");
-	copy[1] = NULL;
-	return (copy);
-}
-
-char	**ft_copy_env(char **env) //para copiar solo el primero puntero con las lineas
+char	**ft_copy_env(char **env)
 {
 	char	**copy;
 	int		i;
@@ -80,7 +50,6 @@ void	print_env(char **env_copy)
 	int	i;
 
 	i = 0;
-	//printf("llega a entrar?\n");
 	while (env_copy[i])
 	{
 		if (env_copy[i][0] != '+' && env_copy[i][1] != '+')
@@ -97,7 +66,8 @@ void	print_env_export(char **env_copy)
 	i = 0;
 	while (env_copy[i])
 	{
-		if (env_copy[i][0] != '_' && env_copy[i][0] != '+' && env_copy[i][1] != '+')
+		if (env_copy[i][0] != '_'
+				&& env_copy[i][0] != '+' && env_copy[i][1] != '+')
 		{
 			printf("declare -x ");
 			printf("%s\n", env_copy[i]);
@@ -110,41 +80,3 @@ void	print_env_export(char **env_copy)
 		i++;
 	}
 }
-
-
-
-
-
-
-
-
-
-/* int main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	
-	char **copy;
-	copy = ft_copy_dp(env);
-	int i = 0;
-	while(copy[i])
-	{
-		printf("%s\n", copy[i]);
-		i++;
-	}
-	char **newc;
-	newc = ft_insert_dp(copy, "JENNY");
-	newc = ft_insert_dp(newc, "GABI");
-	newc = ft_insert_dp(newc, "noe");
-	newc = ft_insert_dp(newc, "jr");
-	newc = ft_unset(newc, "JENNY");
-	newc = ft_unset(newc, "GABI");
-	i = 0;
-	while(newc[i])
-	{
-		printf("%s\n", newc[i]);
-		i++;
-	}
-	//ft_free_split(copy);
-	ft_free_split(newc);
-} */

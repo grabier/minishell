@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 11:41:54 by gmontoro          #+#    #+#             */
-/*   Updated: 2025/03/17 10:12:21 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:30:06 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,54 @@
 # define L1 6
 # define L2 7
 
-extern int signal_flag;
+extern int	g_signal_flag;
 
 typedef struct s_tkn
 {
-	char	*token;
-	int		type;
-	struct	s_tkn	*next;
+	char			*token;
+	int				type;
+	struct s_tkn	*next;
 }			t_tkn;
 
 typedef struct s_cmd
 {
-	char	**args;
-	char	*infile;
-	char	*delimiter;
-	char	*outfile;
-	int		append;
-	int		hd;
-	int		is_cmd;
-	int		is_bi;
-	int		exit_status;
-	struct	s_cmd	*next;
+	char			**args;
+	char			*infile;
+	char			*delimiter;
+	char			*outfile;
+	int				append;
+	int				hd;
+	int				is_cmd;
+	int				is_bi;
+	int				exit_status;
+	struct s_cmd	*next;
 }			t_cmd;
 
 typedef struct s_shell
 {
 	char	*input;
 	char	*prompt;
+	char	*em;
 	t_tkn	*tkn_lst;
+	//t_tkn	*head;
 	t_cmd	*cmd_lst;
+	t_cmd	*head;
 	int		exitstat;
 	int		prevexitstat;
+	int		i;
+	int		fd;
+	char	*aux;
 }			t_shell;
 
+typedef struct s_quo
+{
+	char	*in;
+	char	**env;
+	int		mode;
+}			t_quo;
+
 //parseo.c
-int		ft_get_input(char *envp[]);
+int		ft_get_input(char *envp[], t_shell *ms);
 t_shell	*ft_init_shell(void);
 void	ft_free_shell(t_shell *shell);
 
@@ -74,13 +87,18 @@ void	ft_free_shell(t_shell *shell);
 int		ft_check_quotes(char *input);
 char	*ft_expand(t_shell *ms, char *input, int start, char **env[]);
 char	*ft_check_expands(t_shell *ms, char *input, int mode, char **env[]);
-//char	*ft_do_quotes(char *input);
 void	ft_quotes(t_shell *ms, t_tkn **tkn, char **env[]);
 
 //delete_quotes.c
 char	*ft_delete_squotes(char *input);
 char	*ft_delete_dquotes(char *input);
 int		ft_count_quotes(char *input, int mode);
+char	*ft_copy_to_dollar(char *input);
+
+//delete_quotes_utils.c
+int		ft_check_quotes(char *input);
+char	*ft_check_return(char *input, char *res);
+int		f(int i, int j, int k, int f);
 
 //aux
 char	*ft_strinsert(char *str, char *word, int start, int end);
@@ -96,7 +114,7 @@ int		ft_tknsize(t_tkn *lst);
 
 //tokenize.c
 t_tkn	*ft_tokenize(t_shell *ms, char ***env);
-int		ft_check_syntax(t_shell *ms);
+int		ft_check_syntax(t_shell *ms, t_tkn *prev, t_tkn *head);
 int		ft_find_end_word(char *input);
 void	ft_get_tokens(t_shell *ms);
 
@@ -115,7 +133,7 @@ int		ft_find_end_sq(char *input);
 int		ft_count_args(t_tkn	*tkn);
 t_cmd	*ft_get_commands(t_shell *ms, t_tkn *tkn, char **env[]);
 int		ft_isbuiltin(char *str);
-t_cmd	*ft_cmdnew();
+t_cmd	*ft_cmdnew(void);
 
 //command_lst2.c
 void	ft_cmdprint(t_cmd *lst);
@@ -126,7 +144,7 @@ void	ft_free_cmd_lst(t_cmd **cmd);
 
 //command_types.c
 void	ft_add_cmd(t_shell *ms, t_tkn **tkn, t_cmd **cmd_lst, char **env[]);
-char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst);
+char	*ft_add_infile(t_tkn **tkn, t_cmd **cmd_lst, t_shell *ms);
 void	ft_add_outfile(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_append(t_tkn **tkn, t_cmd **cmd_lst);
 void	ft_add_here_doc(t_tkn **tkn, t_cmd **cmd_lst);
@@ -147,9 +165,11 @@ int		ft_open_n_redir(t_cmd *cmd, int mode, int saved_stdin, t_shell *ms);
 void	ft_close_if_needed(int i_fd, int o_fd);
 
 //exec_pipeline.c
-void	ft_exec_pipeline(t_shell *ms, char **envp[]);
+void	ft_exec_pipeline(t_shell *ms, char **envp[], int i);
 int		ft_exec_middle_cmd(t_shell *ms, char **envp[], int i_fd, int o_fd);
 int		ft_exec_last_cmd(t_shell *ms, char **envp[], int saved_stdin);
+void	ft_check_signals(t_shell *ms);
+void	ft_do_middle_process(t_shell *ms, char **envp[]);
 
 //here_doc.c
 int		ft_here_doc(char *limit, t_shell *ms);
@@ -191,7 +211,7 @@ char	**ft_unset_in_cd(char **env, char *str);
 char	**ft_get_dp(char *aux);
 
 //built_in_pwd.c
-int		ft_pwd(char ***env, t_cmd *cmd);
+int		ft_pwd(void);
 
 //built_in_echo.c
 void	ft_echo(t_cmd *cmd, t_shell *ms);
@@ -200,13 +220,17 @@ int		ft_check_flag(char *s);
 
 //builtin-exit.c
 int		ft_is_num(char *str);
-void	ft_exit(t_shell *ms, char *env[]);
+void	ft_exit(t_shell *ms);
 
 //builtin-env-cpy.c
-int		ft_strlen_pointers(char *env[]);
 char	**ft_copy_env(char **env);
 void	print_env(char **env_copy);
 void	print_env_export(char **env_copy);
+int		ft_strlen_pointers(char *env[]);
+
+//builtin-env-cpy.c
+char	**ft_hardcode_env(void);
+char	*ft_strdup_jk(char *str);
 
 //signals.c
 void	ft_handle_c(int sig);

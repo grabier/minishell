@@ -6,13 +6,13 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:02:36 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/17 09:40:22 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:53:12 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parseo.h"
 
-int		ft_check_flag(char *s)
+int	ft_check_flag(char *s)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	ft_do_echo(t_cmd *cmd)
 	if (newline)
 		printf("\n");
 }
-//modificado el echo para que permita redirecciones
+
 void	ft_echo(t_cmd *cmd, t_shell *ms)
 {
 	int		i_fd;
@@ -58,9 +58,9 @@ void	ft_echo(t_cmd *cmd, t_shell *ms)
 	int		saved_stdin;
 	int		saved_stdout;
 
-	saved_stdin = dup(STDIN_FILENO);//las redirecciones in las gestionamos 
+	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
-	i_fd = ft_open_n_redir(cmd, 0, saved_stdin, ms);//en la funcion open_n_redir, asi que hay que
+	i_fd = ft_open_n_redir(cmd, 0, saved_stdin, ms);
 	o_fd = ft_open_n_redir(cmd, 1, 0, ms);
 	dup2(o_fd, STDOUT_FILENO);
 	ft_do_echo(cmd);

@@ -6,7 +6,7 @@
 /*   By: gmontoro <gmontoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:13:40 by jkubecka          #+#    #+#             */
-/*   Updated: 2025/03/17 09:41:52 by gmontoro         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:28:08 by gmontoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_is_num(char *str)
 	return (1);
 }
 
-void	ft_exit(t_shell *ms, char *env[])
+void	ft_exit(t_shell *ms)
 {
 	int	exit_code;
 

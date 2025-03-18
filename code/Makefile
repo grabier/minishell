@@ -1,6 +1,6 @@
 # Variables
 CC = clang
-CFLAGS = -g #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 
 LIBFT_DIR = ../libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -12,6 +12,7 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/aux.c\
 		$(SRC_DIR)/delete_quotes.c\
 		$(SRC_DIR)/expand_quotes.c\
+		$(SRC_DIR)/expand_quotes_utils.c\
 		$(SRC_DIR)/token_list_func.c\
 		$(SRC_DIR)/tokenize_functions.c\
 		$(SRC_DIR)/tokenize_aux.c\
@@ -28,8 +29,8 @@ SRCS =	$(SRC_DIR)/parseo.c\
 		$(SRC_DIR)/builtin_jk_unset.c\
 		$(SRC_DIR)/builtin_jk_exit.c\
 		$(SRC_DIR)/jk_env_copy.c\
+		$(SRC_DIR)/jk_env_copy_utils.c\
 		$(SRC_DIR)/here_doc.c\
-		$(SRC_DIR)/get_prompt.c\
 		$(SRC_DIR)/built_in_cd.c\
 		$(SRC_DIR)/built_in_cd_utils.c\
 		$(SRC_DIR)/built_in_pwd.c\
