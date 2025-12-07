@@ -1,51 +1,60 @@
-# Minishell
+# 🐚 Minishell - As beautiful as a shell can be
 
-Minishell es una implementación simplificada de un shell en C, desarrollada como parte del currículo de la escuela 42. Su objetivo es profundizar en el funcionamiento de los intérpretes de comandos, la gestión de procesos y señales, así como mejorar la comprensión del sistema operativo Unix/Linux.
+> "Writing your own shell is the best way to understand how your OS really talks to you."
 
-## Características
+[![C](https://img.shields.io/badge/Language-C-blue?style=for-the-badge&logo=c)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![Bash](https://img.shields.io/badge/Shell-Bash_Compatible-4EAA25?style=for-the-badge&logo=gnu-bash)](https://www.gnu.org/software/bash/)
+[![42](https://img.shields.io/badge/School-42-000000?style=for-the-badge&logo=42)](https://42.fr/)
 
-- Soporte para múltiples comandos encadenados con pipes (`|`).
-- Gestión de redirecciones de entrada y salida (`>`, `>>`, `<`, `<<`).
-- Implementación de built-ins (`cd`, `export`, `unset`, `env`, etc.).
-- Manejo de variables de entorno sin el uso de `setenv`, `unsetenv` ni `environ`.
-- Expansión de variables (`$VAR`).
-- Manejo de señales (`Ctrl+C`, `Ctrl+D`, `Ctrl+\`).
-- Soporte para comillas simples y dobles.
-- Gestión de errores de sintaxis y ejecución.
+## 🚀 Introducción
 
-## Instalación y Uso
+Minishell es una recreación simplificada (pero robusta) de la shell Bash. Este proyecto no trata solo de parsear comandos, sino de entender y manipular los procesos del sistema, la gestión de memoria y los descriptores de archivos a bajo nivel utilizando la API de C de Unix.
 
-```sh
-# Clonar el repositorio
-git clone https://github.com/grabier/minishell.git
+El objetivo: crear una shell funcional capaz de ejecutar comandos, manejar tuberías (pipes), redirecciones y señales, **sin fugas de memoria (memory leaks)**.
+
+---
+
+## 📸 Demo en Acción
+
+![Pipes Demo](assets/minishell.png)
+
+---
+
+## ✨ Características Implementadas
+
+| Categoría | Funcionalidades |
+| :--- | :--- |
+| **Command Execution** | Ejecución de binarios (ej. `/bin/ls`) y comandos del `PATH`. |
+| **Built-ins** | Implementación propia de `echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`. |
+| **Redirections** | Input (`<`), Output (`>`), Append (`>>`) y Here-Doc (`<<`). |
+| **Pipes** | Tuberías infinitas (`cmd1 | cmd2 | cmd3 ...`). |
+| **Signals** | Manejo correcto de `Ctrl-C` (SIGINT), `Ctrl-\` (SIGQUIT) y `Ctrl-D` (EOF). |
+| **Parsing** | Manejo de comillas simples (`' '`) y dobles (`" "`) y expansión de variables (`$VAR`). |
+| **Memory** | Gestión rigurosa. Cero leaks comprobados con Valgrind. |
+
+---
+
+## 🧠 Desafíos Técnicos
+
+Lo más complejo de este proyecto no fue lo que se ve, sino lo que ocurre detrás:
+
+* **Arquitectura Padre/Hijo:** Uso intensivo de `fork()` para crear subprocesos y `execve()` para convertirlos en nuevos programas.
+* **Gestión de File Descriptors:** Uso de `dup2()` y `pipe()` para redirigir `STDIN` y `STDOUT` entre procesos sin perder el control de la terminal.
+* **Signal Handling:** Evitar que la shell se cierre cuando un proceso hijo recibe una señal de interrupción, diferenciando entre el modo interactivo y el de ejecución.
+
+---
+
+## 🛠️ Instalación y Uso
+
+```bash
+# 1. Clona el repositorio
+git clone [https://github.com/grabier/minishell.git](https://github.com/grabier/minishell.git)
+
+# 2. Entra al directorio
 cd minishell
 
-# Compilar el proyecto
+# 3. Compila (asegúrate de tener readline instalado)
 make
 
-# Ejecutar Minishell
+# 4. Ejecuta
 ./minishell
-```
-
-## Ejemplos de Uso
-
-```sh
-# Ejecutar un comando simple
-echo "Hola, mundo"
-
-# Redirecciones
-ls > output.txt
-
-# Uso de pipes
-ls -l | grep minishell
-
-# Manejo de variables de entorno
-export PATH="/usr/bin:$PATH"
-echo $PATH
-```
-
-## Dependencias
-
-- `gcc` (o cualquier compilador compatible con C)
-- `make`
-- Entorno Linux o MacOS
