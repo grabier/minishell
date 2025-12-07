@@ -6,55 +6,55 @@
 [![Bash](https://img.shields.io/badge/Shell-Bash_Compatible-4EAA25?style=for-the-badge&logo=gnu-bash)](https://www.gnu.org/software/bash/)
 [![42](https://img.shields.io/badge/School-42-000000?style=for-the-badge&logo=42)](https://42.fr/)
 
-## 🚀 Introducción
+## 🚀 Introduction
 
-Minishell es una recreación simplificada (pero robusta) de la shell Bash. Este proyecto no trata solo de parsear comandos, sino de entender y manipular los procesos del sistema, la gestión de memoria y los descriptores de archivos a bajo nivel utilizando la API de C de Unix.
+Minishell is a simplified (yet robust) recreation of the Bash shell. This project is not just about parsing commands, but about understanding and manipulating system processes, memory management, and file descriptors at a low level using the Unix C API.
 
-El objetivo: crear una shell funcional capaz de ejecutar comandos, manejar tuberías (pipes), redirecciones y señales, **sin fugas de memoria (memory leaks)**.
+The goal: to create a functional shell capable of executing commands, handling pipes, redirections, and signals, **with zero memory leaks**.
 
 ---
 
-## 📸 Demo en Acción
+## 📸 Demo in Action
 
 ![Pipes Demo](assets/minishell.png)
 
 ---
 
-## ✨ Características Implementadas
+## ✨ Implemented Features
 
-| Categoría | Funcionalidades |
+| Category | Functionalities |
 | :--- | :--- |
-| **Command Execution** | Ejecución de binarios (ej. `/bin/ls`) y comandos del `PATH`. |
-| **Built-ins** | Implementación propia de `echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`. |
-| **Redirections** | Input (`<`), Output (`>`), Append (`>>`) y Here-Doc (`<<`). |
-| **Pipes** | Tuberías infinitas (`cmd1 | cmd2 | cmd3 ...`). |
-| **Signals** | Manejo correcto de `Ctrl-C` (SIGINT), `Ctrl-\` (SIGQUIT) y `Ctrl-D` (EOF). |
-| **Parsing** | Manejo de comillas simples (`' '`) y dobles (`" "`) y expansión de variables (`$VAR`). |
-| **Memory** | Gestión rigurosa. Cero leaks comprobados con Valgrind. |
+| **Command Execution** | Execution of binaries (e.g., `/bin/ls`) and `PATH` commands. |
+| **Built-ins** | Custom implementation of `echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`. |
+| **Redirections** | Input (`<`), Output (`>`), Append (`>>`), and Here-Doc (`<<`). |
+| **Pipes** | Infinite pipes (`cmd1 | cmd2 | cmd3 ...`). |
+| **Signals** | Proper handling of `Ctrl-C` (SIGINT), `Ctrl-\` (SIGQUIT), and `Ctrl-D` (EOF). |
+| **Parsing** | Handling of single (`' '`) and double (`" "`) quotes and variable expansion (`$VAR`). |
+| **Memory** | Rigorous management. Zero leaks verified with Valgrind. |
 
 ---
 
-## 🧠 Desafíos Técnicos
+## 🧠 Technical Challenges
 
-Lo más complejo de este proyecto no fue lo que se ve, sino lo que ocurre detrás:
+The most complex part of this project wasn't what you see, but what happens under the hood:
 
-* **Arquitectura Padre/Hijo:** Uso intensivo de `fork()` para crear subprocesos y `execve()` para convertirlos en nuevos programas.
-* **Gestión de File Descriptors:** Uso de `dup2()` y `pipe()` para redirigir `STDIN` y `STDOUT` entre procesos sin perder el control de la terminal.
-* **Signal Handling:** Evitar que la shell se cierre cuando un proceso hijo recibe una señal de interrupción, diferenciando entre el modo interactivo y el de ejecución.
+* **Parent/Child Architecture:** Intensive use of `fork()` to create subprocesses and `execve()` to convert them into new programs.
+* **File Descriptor Management:** Use of `dup2()` and `pipe()` to redirect `STDIN` and `STDOUT` between processes without losing control of the terminal.
+* **Signal Handling:** Preventing the shell from closing when a child process receives an interrupt signal, distinguishing between interactive and execution modes.
 
 ---
 
-## 🛠️ Instalación y Uso
+## 🛠️ Installation & Usage
 
 ```bash
-# 1. Clona el repositorio
+# 1. Clone the repository
 git clone [https://github.com/grabier/minishell.git](https://github.com/grabier/minishell.git)
 
-# 2. Entra al directorio
+# 2. Enter the directory
 cd minishell
 
-# 3. Compila (asegúrate de tener readline instalado)
+# 3. Compile (ensure readline is installed)
 make
 
-# 4. Ejecuta
+# 4. Run
 ./minishell
